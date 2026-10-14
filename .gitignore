@@ -68,3 +68,5 @@ server.log
 # Sandbox runtime infrastructure & uploads (not part of the site)
 /upload/
 Caddyfile
+# Verification screenshots (agent-browser QA)
+/verify-*.png

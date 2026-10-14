@@ -18,11 +18,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Editorial Spread",
+        "description": "A magazine spread study balancing column rhythm, display type and image pacing across a full bleed.",
+        "year": "2024",
+        "client": "Maison Quarterly",
+        "tags": [
+          "editorial",
+          "typography",
+          "print"
+        ],
         "cover": "resources/magazine/featured/magazine.jpg",
         "media": [
           {
@@ -46,11 +50,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Graphic Studies",
+        "description": "Brand and layout explorations — grids, wordmarks and composition studies across a small identity system.",
+        "year": "2024",
+        "client": "Studio Practice",
+        "tags": [
+          "identity",
+          "layout",
+          "branding"
+        ],
         "cover": "resources/design/featured/design.png",
         "media": [
           {
@@ -74,11 +82,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Product Catalog",
+        "description": "A multi-page catalog built around clear hierarchy, tactile paper stock and a measured typographic grid.",
+        "year": "2024",
+        "client": "Atelier Goods",
+        "tags": [
+          "print",
+          "catalog",
+          "layout"
+        ],
         "cover": "resources/catalog-brochure/featured/catalog.jpg",
         "media": [
           {
@@ -102,11 +114,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Brand Mark",
+        "description": "A set of logotype and symbol studies exploring reduction — distilling an idea into a single legible mark.",
+        "year": "2023",
+        "client": "Various Studios",
+        "tags": [
+          "identity",
+          "logotype",
+          "branding"
+        ],
         "cover": "resources/logo-design/featured/logo.jpg",
         "media": [
           {
@@ -130,11 +146,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Display Banners",
+        "description": "Web and display banner set engineered for attention, conversion and responsive delivery across viewports.",
+        "year": "2024",
+        "client": "Retail Campaigns",
+        "tags": [
+          "digital",
+          "display",
+          "advertising"
+        ],
         "cover": "resources/banner-design/featured/banner.jpg",
         "media": [
           {
@@ -158,11 +178,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Social Campaign",
+        "description": "A social media campaign system — templates, motion-ready frames and a content rhythm built for scroll-stopping clarity.",
+        "year": "2024",
+        "client": "Brand Feed",
+        "tags": [
+          "social",
+          "content",
+          "campaign"
+        ],
         "cover": "resources/social-media-design/featured/social.jpg",
         "media": [
           {
@@ -186,11 +210,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Event Poster",
+        "description": "Large-format poster artwork — bold composition, contrast and a single decisive idea carried by type and image.",
+        "year": "2023",
+        "client": "Cultural Series",
+        "tags": [
+          "poster",
+          "print",
+          "typography"
+        ],
         "cover": "resources/poster-design/featured/poster.jpg",
         "media": [
           {
@@ -214,11 +242,15 @@ export const PORTFOLIO: Category[] = [
     "projects": [
       {
         "slug": "featured",
-        "name": "Featured",
-        "description": "",
-        "year": null,
-        "client": null,
-        "tags": [],
+        "name": "Digital Canvas",
+        "description": "A digital painting study — colour, light and atmosphere rendered stroke by stroke on a pressure-sensitive canvas.",
+        "year": "2024",
+        "client": "Personal Work",
+        "tags": [
+          "painting",
+          "illustration",
+          "colour"
+        ],
         "cover": "resources/digital-painting/featured/painting.jpg",
         "media": [
           {

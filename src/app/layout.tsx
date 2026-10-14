@@ -21,7 +21,14 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+// basePath is "" in dev, "/portfolio" in the static export (GitHub Pages).
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+// Canonical GitHub Pages URL — used for absolute OG/Twitter card image URLs
+// so social scrapers (which need absolute URLs) resolve the cover correctly.
+const SITE_URL = "https://shadishafiee1-glitch.github.io/portfolio";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Shadi Shafiee — Visual Designer & Artist",
   description:
     "Portfolio of Shadi Shafiee — magazine, catalog & brochure, logo, banner, social media, poster design and digital painting.",
@@ -36,17 +43,32 @@ export const metadata: Metadata = {
     "brand identity",
   ],
   authors: [{ name: "Shadi Shafiee" }],
+  icons: {
+    icon: `${BASE}/favicon.svg`,
+    shortcut: `${BASE}/favicon.svg`,
+  },
   openGraph: {
     title: "Shadi Shafiee — Visual Designer & Artist",
     description:
       "A portfolio of editorial, identity, print and digital painting work by Shadi Shafiee.",
     type: "website",
+    url: SITE_URL,
+    siteName: "Shadi Shafiee — Portfolio",
+    images: [
+      {
+        url: `${BASE}/og.png`,
+        width: 1344,
+        height: 768,
+        alt: "Shadi Shafiee — Visual Designer & Artist",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Shadi Shafiee — Visual Designer & Artist",
     description:
       "A portfolio of editorial, identity, print and digital painting work by Shadi Shafiee.",
+    images: [`${BASE}/og.png`],
   },
 };
 

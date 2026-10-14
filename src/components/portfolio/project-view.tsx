@@ -7,6 +7,7 @@ import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
+import { SmartImage } from "./smart-image";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -168,11 +169,13 @@ export function ProjectView({
                   className="w-full"
                 />
               ) : (
-                <img
-                  src={assetUrl(m.path)}
+                <SmartImage
+                  src={m.path}
                   alt={m.name}
-                  loading={i < 2 ? "eager" : "lazy"}
-                  className="aspect-[16/10] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03] sm:aspect-[16/9]"
+                  priority={i < 2}
+                  accent={cat.accent}
+                  className="aspect-[16/10] w-full transition-transform duration-[900ms] ease-out group-hover:scale-[1.03] sm:aspect-[16/9]"
+                  caption={String(i + 1).padStart(2, "0")}
                 />
               )}
             </button>
@@ -348,10 +351,13 @@ function Lightbox({
                     className="max-h-[82vh] max-w-[92vw] rounded-lg"
                   />
                 ) : (
-                  <img
-                    src={assetUrl(current.path)}
+                  <SmartImage
+                    src={current.path}
                     alt={current.name}
-                    className="max-h-[82vh] max-w-[92vw] rounded-lg object-contain"
+                    priority
+                    accent={accent}
+                    className="max-h-[82vh] max-w-[92vw] rounded-lg"
+                    imgClassName="object-contain"
                   />
                 )}
                 <p className="mt-3 text-center font-mono text-xs text-white/60">

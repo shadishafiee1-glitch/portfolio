@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
-import { assetUrl } from "@/lib/assets";
+import { SmartImage } from "./smart-image";
 
 interface CursorPreviewProps {
   /** Cover path (relative to public/) to show, or null to hide. */
@@ -58,14 +58,15 @@ export function CursorPreview({ src, accent = "#1a1714" }: CursorPreviewProps) {
               boxShadow: `0 30px 60px -20px rgba(0,0,0,0.45), 0 0 0 1px ${accent}22`,
             }}
           >
-            <img
-              src={assetUrl(src)}
+            <SmartImage
+              src={src}
               alt=""
-              className="h-full w-full object-cover"
-              draggable={false}
+              accent={accent}
+              className="h-full w-full border-0"
+              imgClassName="object-cover"
             />
             <div
-              className="absolute inset-0 ring-1 ring-inset"
+              className="pointer-events-none absolute inset-0 ring-1 ring-inset"
               style={{ boxShadow: `inset 0 0 0 2px ${accent}30` }}
             />
           </motion.div>

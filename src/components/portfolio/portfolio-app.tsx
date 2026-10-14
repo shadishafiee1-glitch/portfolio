@@ -5,6 +5,7 @@ import { useHashRoute } from "@/hooks/use-hash-route";
 import { TOTAL_CATEGORIES, TOTAL_PROJECTS } from "@/data/portfolio";
 import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
+import { ScrollProgress } from "./scroll-progress";
 import { HomeView } from "./home-view";
 import { CategoryView } from "./category-view";
 import { ProjectView } from "./project-view";
@@ -22,6 +23,7 @@ export function PortfolioApp() {
 
   return (
     <div className="grain flex min-h-screen flex-col bg-background">
+      <ScrollProgress />
       <SiteHeader view={view} navigate={navigate} />
 
       <main className="flex-1">

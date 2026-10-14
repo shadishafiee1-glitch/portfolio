@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { CursorPreview } from "./cursor-preview";
 import { PORTFOLIO, TOTAL_CATEGORIES, TOTAL_PROJECTS } from "@/data/portfolio";
-import { assetUrl } from "@/lib/assets";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -198,6 +197,105 @@ export function HomeView({ navigate }: HomeViewProps) {
         <p className="mt-6 text-center text-xs text-muted-foreground sm:hidden">
           Tap a discipline to enter its archive
         </p>
+      </section>
+
+      {/* ── ABOUT / CONTACT ──────────────────────────────────────────── */}
+      <section className="border-t border-border/60 bg-foreground/[0.015]">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 sm:py-28 md:grid-cols-[1.3fr_1fr] md:gap-16">
+          {/* Statement + bio */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, ease }}
+              className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground"
+            >
+              (About)
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease, delay: 0.05 }}
+              className="display-text mt-4 text-balance text-[clamp(1.8rem,4.5vw,3.2rem)] leading-[1.05]"
+            >
+              Designing across print &amp; pixel —{" "}
+              <span className="italic text-muted-foreground">
+                from the first thumbnail to the final bleed.
+              </span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease, delay: 0.12 }}
+              className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-foreground/80"
+            >
+              I&apos;m Shadi Shafiee, a visual designer working at the
+              intersection of editorial, identity and digital painting. This
+              archive collects selected work across {TOTAL_CATEGORIES}{" "}
+              disciplines — an evolving record of how each project moves from
+              rough sketch to finished craft.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease, delay: 0.18 }}
+              className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground"
+            >
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="h-4 w-4" /> Tehran · Remote
+              </span>
+              <span className="text-border">/</span>
+              <span className="inline-flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600" />
+                </span>
+                Available for select projects
+              </span>
+            </motion.div>
+          </div>
+
+          {/* Contact card */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease, delay: 0.1 }}
+            className="flex flex-col justify-between rounded-2xl border border-border/60 bg-card p-7 sm:p-9"
+          >
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                Start a project
+              </p>
+              <p className="display-text mt-3 text-2xl">
+                Have a brief in mind?
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Editorial layouts, identity systems, social campaigns or a
+                canvas commission — tell me about it.
+              </p>
+            </div>
+            <div className="mt-8">
+              <a
+                href="mailto:hello@shadishafiee.com?subject=Project%20enquiry"
+                className="group inline-flex w-full items-center justify-between gap-3 rounded-full bg-foreground px-5 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.01]"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  hello@shadishafiee.com
+                </span>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </a>
+              <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70">
+                Replies within 48 hours
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </section>
     </>
   );

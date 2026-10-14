@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Images } from "lucide-react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
-import { assetUrl } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
+import { SmartImage } from "./smart-image";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -120,17 +120,17 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
                   }
                   className="block w-full text-left"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/60 bg-muted">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/60">
                     {project.cover && (
-                      <img
-                        src={assetUrl(project.cover)}
+                      <SmartImage
+                        src={project.cover}
                         alt={project.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                        accent={cat.accent}
+                        className="absolute inset-0 h-full w-full transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                       />
                     )}
                     {/* hover overlay */}
-                    <div className="absolute inset-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/45 via-black/0 to-black/0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="pointer-events-none absolute inset-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/55 via-black/0 to-black/0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-white">
                         <Images className="h-3.5 w-3.5" />
                         {project.media.length}{" "}
