@@ -287,5 +287,35 @@ currently point at the same commit.
   (404 "graceful, helpful, clear recovery") + `bun run lint` clean.
 - Commit `96e1365` on `main`; `dev` + `feat/initial-portfolio` synced.
 
+### 2025-10-15 — Round 12 (cron review): category filter, list/grid toggle, related rail
+- QA via agent-browser: no regressions; proceeded to features.
+- **Category view tag-filter + view-mode toggle** (rewrote `category-view.tsx`):
+  - `FilterChip` bar = union of all project tags in the category
+    (All / Print / Typography …), accent-coloured active state, `aria-pressed`.
+    Project count badge updates with the filter ("filtered" suffix); empty-
+    filter state with a clear button.
+  - `ViewToggle` grid/list: grid = existing editorial masonry; list = a dense
+    single-column list (thumb + name/desc + inline tags + pieces + arrow).
+    List-view tag chips highlight the active tag.
+  - Global `/` shortcut focuses the first chip; Esc clears the filter. All
+    chips/toggles have accent `focus-visible` rings.
+- **RelatedProjects rail** (`src/components/portfolio/related-projects.tsx`):
+  up to 4 projects from OTHER disciplines sharing a tag (scored by
+  intersection, descending); each card labelled with its discipline
+  (accent pill). Heading "More by tag · <tags>". Verified cross-discipline
+  navigation (magazine → poster-design).
+- **globals.css** a11y + polish: global `:focus-visible` ring;
+  `prefers-reduced-motion` (kills marquee/float/shimmer/ping, collapses
+  transitions); `@media print` (hides fixed bars + overlays, single column).
+- Added 2nd projects to `poster-design` (Music Festival) & `logo-design`
+  (Café Identity) with `meta.json` carrying shared tags so the filter,
+  toggle, and related rail have real multi-project content. Manifest: 8
+  categories, 10 projects.
+- Verified: agent-browser (2 projects + filter bar + view toggle; Print
+  filter → 2; list view inline tags; `/` focuses first chip; related rail
+  4 cards + cross-discipline nav) + VLM (filter + toggle present, clean
+  editorial grid) + `bun run lint` clean.
+- Commit `7ab5df0` on `main`; `dev` + `feat/initial-portfolio` synced.
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
