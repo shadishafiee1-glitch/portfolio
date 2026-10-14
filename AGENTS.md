@@ -389,5 +389,36 @@ currently point at the same commit.
   (About has portrait + bio + disciplines + contact) + `bun run lint` clean.
 - Commit `882c399` on `main`; `dev` + `feat/initial-portfolio` synced.
 
+### 2025-10-15 — Round 16 (cron review): hydration fix, search recently-viewed, GitHub push
+- QA via agent-browser: confirmed the hydration mismatch error on deep-link
+  loads (flagged as benign in round 15 — now fixed properly).
+- **Hydration mismatch fix** (`use-hash-route.ts`): the router now initialises
+  to `{kind:'home'}` on BOTH server and first client render (matching the SSR
+  tree), then syncs to the real hash after mount in a `useEffect`. Eliminates
+  the "Hydration failed" console error on direct deep-link loads. Trade-off:
+  a single-frame flash of home on a deep-link load (unavoidable for hash
+  routers; only affects direct loads). Verified: fresh deep-link → 0 errors.
+- **Search "recently viewed" rail**:
+  - `useRecentlyViewed` hook (`src/hooks/use-recently-viewed.ts`):
+    localStorage-backed history of opened projects (capped at 6, newest-first,
+    deduped by slug). Defensive parse. Key `ss-portfolio:recent`.
+  - `SearchOverlay`: `RecentRail` in the empty state (query empty + history
+    exists) — thumb + name + discipline + relative time ("2m ago",
+    "yesterday"). `choose()` generalised to accept recent entries.
+  - `portfolio-app`: records a visit whenever a project view mounts.
+- `viewKey()` now handles the `about` variant (latent switch-exhaustiveness).
+- **GitHub push** (user-provided PAT): authenticated remote set, `main` +
+  `dev` + `feat/initial-portfolio` all pushed to
+  `github.com/shadishafiee1-glitch/portfolio`. `main` tracks `origin/main`.
+  The GitHub Actions deploy workflow (`.github/workflows/deploy.yml`) will
+  build the static export + publish to Pages on push to `main`/`dev`.
+- Verified: agent-browser (fresh deep-link → 0 hydration errors; visited 3
+  projects → search empty state shows "RECENTLY VIEWED" rail with 3 entries
+  newest-first; clicking the 2nd navigates + closes) + `bun run lint` clean.
+- Commit `c258f54` on `main`; pushed to GitHub (`main`/`dev`/`feat`).
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
+  **The repo is now live on GitHub** — verify the first GitHub Actions build
+  + Pages deployment succeeded, then enable Pages (Settings → Pages →
+  Source = GitHub Actions) if not already enabled.
