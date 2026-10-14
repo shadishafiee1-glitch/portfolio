@@ -242,5 +242,27 @@ branch, before testing. Feature-branch refs persist and can still be pushed to
 GitHub. All three local branches (`main`, `dev`, `feat/initial-portfolio`)
 currently point at the same commit.
 
+### 2025-10-15 — Round 10 (cron review): image-loading polish + features
+- QA via agent-browser confirmed the site was stable (no bugs); proceeded to
+  feature work.
+- **SmartImage** (`src/components/portfolio/smart-image.tsx`): tinted shimmer
+  placeholder + cross-fade-in on decode, applied to category covers, project
+  gallery, lightbox, and cursor preview — eliminates the blank-flash on the
+  large 1758×1080 source images. Cleanly separates the load-fade (img
+  `transition-[opacity,filter]`) from consumer transforms (wrapper
+  `group-hover:scale`).
+- **ScrollProgress** (`scroll-progress.tsx`): thin top reading-progress bar
+  (framer-motion `useScroll` + spring), wired into the app shell.
+- **Home About/Contact section**: editorial bio statement, location/
+  availability row, contact card with mailto CTA.
+- **Enriched all 8 seed projects** with `meta.json` (name/description/year/
+  client/tags); regenerated manifest. Cards + project headers now show real
+  names + DISCIPLINE/YEAR/CLIENT/PIECES meta + tags.
+- **OG image** (`public/og.png`, 1344×768) + **favicon.svg** (S monogram);
+  wired `metadataBase`, icons, openGraph.images, twitter.images in `layout.tsx`.
+- Verified: agent-browser (all features present, scroll bar moves, meta shows,
+  shimmer renders, no errors) + VLM (cohesive, no defects) + `bun run lint` clean.
+- Commit `f1b55fc` on `main`; `dev` + `feat/initial-portfolio` synced.
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
