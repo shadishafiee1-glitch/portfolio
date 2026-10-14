@@ -1,12 +1,14 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { CornerDownLeft, FileText, Hash, Search, Tag, X } from "lucide-react";
+import { Clock, CornerDownLeft, FileText, Hash, Search, Tag, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { assetUrl } from "@/lib/assets";
 import { ALL_TAGS, searchProjects, type SearchEntry } from "@/lib/search";
+import { PORTFOLIO } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
+import type { RecentEntry } from "@/hooks/use-recently-viewed";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -14,6 +16,8 @@ interface SearchOverlayProps {
   open: boolean;
   onClose: () => void;
   navigate: NavigateFn;
+  /** Recently-viewed projects (from localStorage) — shown when query is empty. */
+  recent: RecentEntry[];
 }
 
 /**
@@ -24,15 +28,30 @@ interface SearchOverlayProps {
  * description, tag, client, year or discipline. Arrow keys move the active
  * row, Enter navigates, Esc closes. Quick-filter tag chips narrow the query.
  *
+ * When the query is empty, a "Recently viewed" rail surfaces the visitor's
+ * last-opened projects (from localStorage) for a fast path back.
+ *
  * Purely client-side: searches the build-time manifest, no network, no
  * rate-limit. Works on GitHub Pages (static export).
  */
-export function SearchOverlay({ open, onClose, navigate }: SearchOverlayProps) {
+export function SearchOverlay({ open, onClose, navigate, recent }: SearchOverlayProps) {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const results = useMemo<SearchEntry[]>(() => searchProjects(query, 8), [query]);
+
+  // resolve recent entries to full SearchEntry-like objects (with category)
+  const recentEntries = useMemo(() => {
+    return recent
+      .map((r) => {
+        const category = PORTFOLIO.find((c) => c.slug === r.categorySlug);
+        const project = category?.projects.find((p) => p.slug === r.projectSlug);
+        if (!category || !project) return null;
+        return { project, category, recent: r };
+      })
+      .filter((x): x is NonNullable<typeof x> => x !== null);
+  }, [recent]);
 
   // focus the input when the overlay opens; reset the active row.
   useEffect(() => {
@@ -64,7 +83,7 @@ export function SearchOverlay({ open, onClose, navigate }: SearchOverlayProps) {
   }, [results.length]);
 
   const choose = useCallback(
-    (entry: SearchEntry | undefined) => {
+    (entry: { category: { slug: string }; project: { slug: string } } | undefined) => {
       if (!entry) return;
       navigate({
         kind: "project",
@@ -158,7 +177,14 @@ export function SearchOverlay({ open, onClose, navigate }: SearchOverlayProps) {
             {/* results */}
             <div className="custom-scroll max-h-[52vh] overflow-y-auto p-2">
               {query.trim() === "" ? (
-                <EmptyHint />
+                recentEntries.length > 0 ? (
+                  <RecentRail
+                    entries={recentEntries}
+                    onChoose={(e) => choose(e)}
+                  />
+                ) : (
+                  <EmptyHint />
+                )
               ) : results.length === 0 ? (
                 <NoResults query={query} />
               ) : (
@@ -264,4 +290,80 @@ function NoResults({ query }: { query: string }) {
       </p>
     </div>
   );
+}
+
+function RecentRail({
+  entries,
+  onChoose,
+}: {
+  entries: { project: SearchEntry["project"]; category: SearchEntry["category"]; recent: RecentEntry }[];
+  onChoose: (entry: SearchEntry) => void;
+}) {
+  return (
+    <div className="p-2">
+      <p className="inline-flex items-center gap-1.5 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+        <Clock className="h-3 w-3" /> Recently viewed
+      </p>
+      <ul role="list" aria-label="Recently viewed projects">
+        {entries.map(({ project, category, recent: r }) => (
+          <li key={`${category.slug}/${project.slug}`}>
+            <button
+              type="button"
+              onClick={() => onChoose({ project, category, haystack: "" })}
+              className="group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-accent"
+            >
+              <div className="relative h-10 w-14 shrink-0 overflow-hidden rounded-md border border-border/60 bg-muted">
+                {project.cover && (
+                  <img
+                    src={assetUrl(project.cover)}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    draggable={false}
+                  />
+                )}
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="truncate text-sm font-semibold tracking-tight">
+                    {project.name}
+                  </span>
+                  <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+                    {relativeTime(r.at)}
+                  </span>
+                </div>
+                <p className="mt-0.5 truncate text-xs text-muted-foreground">
+                  {category.name}
+                </p>
+              </div>
+              <span
+                className="hidden shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white sm:inline-block"
+                style={{ backgroundColor: `${category.accent}cc` }}
+              >
+                {category.name}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Compact relative time, e.g. "2m ago", "3h ago", "yesterday". */
+function relativeTime(at: number): string {
+  const diff = Date.now() - at;
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "now";
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  const d = Math.floor(h / 24);
+  if (d === 1) return "yesterday";
+  if (d < 7) return `${d}d ago`;
+  // older than a week — show the date
+  try {
+    return new Date(at).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  } catch {
+    return "";
+  }
 }

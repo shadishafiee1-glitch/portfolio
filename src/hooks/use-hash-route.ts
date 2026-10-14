@@ -55,11 +55,19 @@ function viewToHash(view: View): string {
 }
 
 export function useHashRoute() {
-  const [view, setView] = useState<View>(
-    typeof window === "undefined" ? { kind: "home" } : parseHash(),
-  );
+  // Initialise to `home` on BOTH server and first client render so the
+  // hydration tree matches exactly (the server/build cannot know the URL
+  // hash — it's client-only). After mount we read the real hash and sync.
+  // This eliminates the "Hydration failed because the server rendered HTML
+  // didn't match the client" warning on deep-link loads; the trade-off is a
+  // single-frame flash of home on a deep-link load, which is unavoidable for
+  // hash routers and only affects direct loads (not normal in-app nav).
+  const [view, setView] = useState<View>({ kind: "home" });
 
   useEffect(() => {
+    // sync to the current hash once mounted
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setView(parseHash());
     const onChange = () => setView(parseHash());
     window.addEventListener("hashchange", onChange);
     window.addEventListener("popstate", onChange);

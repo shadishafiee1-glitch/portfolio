@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useHashRoute } from "@/hooks/use-hash-route";
-import { TOTAL_CATEGORIES, TOTAL_PROJECTS } from "@/data/portfolio";
+import { useRecentlyViewed } from "@/hooks/use-recently-viewed";
+import { PORTFOLIO, TOTAL_CATEGORIES, TOTAL_PROJECTS } from "@/data/portfolio";
 import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { ScrollProgress } from "./scroll-progress";
@@ -20,11 +21,13 @@ const ease = [0.22, 1, 0.36, 1] as const;
  *
  * Layout uses a flex column with `min-h-screen` so the footer sticks to the
  * bottom on short pages and is pushed down naturally when content overflows.
- * Hosts the global search overlay (Cmd/Ctrl+K).
+ * Hosts the global search overlay (Cmd/Ctrl+K) and records recently-viewed
+ * projects for the search overlay's history rail.
  */
 export function PortfolioApp() {
   const { view, navigate } = useHashRoute();
   const [searchOpen, setSearchOpen] = useState(false);
+  const { recent, record } = useRecentlyViewed();
 
   // Global Cmd/Ctrl+K opens search; Esc closes (overlay handles Esc itself).
   useEffect(() => {
@@ -48,6 +51,20 @@ export function PortfolioApp() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [searchOpen]);
+
+  // Record a project visit for the search overlay's "recently viewed" rail.
+  useEffect(() => {
+    if (view.kind !== "project") return;
+    const cat = PORTFOLIO.find((c) => c.slug === view.categorySlug);
+    const project = cat?.projects.find((p) => p.slug === view.projectSlug);
+    if (cat && project) {
+      record({
+        categorySlug: cat.slug,
+        projectSlug: project.slug,
+        name: project.name,
+      });
+    }
+  }, [view, record]);
 
   return (
     <div className="grain flex min-h-screen flex-col bg-background">
@@ -92,6 +109,7 @@ export function PortfolioApp() {
         open={searchOpen}
         onClose={() => setSearchOpen(false)}
         navigate={navigate}
+        recent={recent}
       />
     </div>
   );
@@ -101,6 +119,8 @@ function viewKey(view: ReturnType<typeof useHashRoute>["view"]): string {
   switch (view.kind) {
     case "home":
       return "home";
+    case "about":
+      return "about";
     case "category":
       return `cat:${view.categorySlug}`;
     case "project":
