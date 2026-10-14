@@ -40,4 +40,5 @@ export interface Category {
 export type View =
   | { kind: "home" }
   | { kind: "category"; categorySlug: string }
-  | { kind: "project"; categorySlug: string; projectSlug: string };
+  | { kind: "project"; categorySlug: string; projectSlug: string }
+  | { kind: "about" };

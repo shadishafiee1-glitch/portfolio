@@ -74,6 +74,18 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
           >
             Index
           </button>
+          <button
+            type="button"
+            onClick={() => navigate({ kind: "about" })}
+            className={cn(
+              "hidden rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors lg:inline-flex",
+              view.kind === "about"
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            About
+          </button>
           <a
             href="https://github.com/shadishafiee1-glitch/portfolio"
             target="_blank"

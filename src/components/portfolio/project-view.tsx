@@ -12,6 +12,7 @@ import { NotFoundView } from "./not-found-view";
 import { RelatedProjects } from "./related-projects";
 import { ShareButton } from "./share-button";
 import { StickyBackNav } from "./sticky-back-nav";
+import { GalleryProgress } from "./gallery-progress";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -152,6 +153,8 @@ export function ProjectView({
               project.media.length === 1 ? "file" : "files"
             }`}
           />
+          {/* Live gallery progress / scroll-spy (desktop only, multi-piece only) */}
+          <GalleryProgress total={project.media.length} accent={cat.accent} />
         </motion.dl>
       </header>
 
@@ -160,12 +163,13 @@ export function ProjectView({
         {project.media.map((m, i) => (
           <motion.figure
             key={m.path}
+            data-gallery-figure={i}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease }}
             className={cn(
-              "group relative",
+              "group relative scroll-mt-28",
               i % 2 === 1 && "md:ml-[12%]",
             )}
           >

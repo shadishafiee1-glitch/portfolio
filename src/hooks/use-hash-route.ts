@@ -10,6 +10,7 @@ import type { View } from "@/lib/types";
  *   #/                                  -> home
  *   #/<categorySlug>                    -> category index
  *   #/<categorySlug>/<projectSlug>      -> single project gallery
+ *   #/about                             -> long-form About view
  *
  * Hash routing is used (rather than file-based routes) so the site works as a
  * true single page on GitHub Pages with no server-side rewrites — a deep link
@@ -23,6 +24,10 @@ function parseHash(): View {
   if (!hash) return { kind: "home" };
 
   const parts = hash.split("/").filter(Boolean);
+  // special top-level routes first
+  if (parts.length === 1 && parts[0] === "about") {
+    return { kind: "about" };
+  }
   if (parts.length === 1) {
     return { kind: "category", categorySlug: decodeURIComponent(parts[0]) };
   }
@@ -40,6 +45,8 @@ function viewToHash(view: View): string {
   switch (view.kind) {
     case "home":
       return "#/";
+    case "about":
+      return "#/about";
     case "category":
       return `#/${encodeURIComponent(view.categorySlug)}`;
     case "project":

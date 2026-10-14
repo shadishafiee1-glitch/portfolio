@@ -13,9 +13,30 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Editorial & Layout",
     "description": "Editorial design and magazine spreads — typography, rhythm and the choreography of print pages.",
     "accent": "#b45309",
-    "cover": "resources/magazine/featured/01-cover.jpg",
-    "projectCount": 1,
+    "cover": "resources/magazine/cover-story/01-cover.png",
+    "projectCount": 2,
     "projects": [
+      {
+        "slug": "cover-story",
+        "name": "Cover Story",
+        "description": "A magazine cover study — display typography, masthead grid and the choreography of a single decisive cover image.",
+        "year": "2023",
+        "client": "Maison Quarterly",
+        "tags": [
+          "editorial",
+          "typography",
+          "print"
+        ],
+        "cover": "resources/magazine/cover-story/01-cover.png",
+        "media": [
+          {
+            "path": "resources/magazine/cover-story/01-cover.png",
+            "name": "01-cover",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
       {
         "slug": "featured",
         "name": "Editorial Spread",
@@ -418,5 +439,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 15;
+export const TOTAL_PROJECTS = 16;
 export const TOTAL_CATEGORIES = 8;

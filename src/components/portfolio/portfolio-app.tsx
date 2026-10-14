@@ -11,6 +11,7 @@ import { SearchOverlay } from "./search-overlay";
 import { HomeView } from "./home-view";
 import { CategoryView } from "./category-view";
 import { ProjectView } from "./project-view";
+import { AboutView } from "./about-view";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -67,6 +68,7 @@ export function PortfolioApp() {
             transition={{ duration: 0.4, ease }}
           >
             {view.kind === "home" && <HomeView navigate={navigate} />}
+            {view.kind === "about" && <AboutView navigate={navigate} />}
             {view.kind === "category" && (
               <CategoryView categorySlug={view.categorySlug} navigate={navigate} />
             )}
