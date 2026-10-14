@@ -227,7 +227,20 @@ without a prefix. `next/image` & `next/link` apply it automatically; raw
   marquee, float, custom scrollbar).
 - Added GitHub Actions deploy workflow + `public/.nojekyll`.
 - Added `README.md`.
-- Verified: dev server compiles, `GET /` 200, renders name + disciplines.
+- Verified via agent-browser: home/category/project navigation (hash routing),
+  lightbox (open + Escape), theme toggle, sticky footer, mobile responsive.
+  VLM image review confirmed the minimalist editorial design with no layout
+  defects.
+
+### ⚠️ Sandbox quirk (for agents working IN this sandbox)
+The cloud-sandbox worktree is pinned to branch `main`. `git checkout` to a
+feature branch is reverted by the environment; when reverted, tracked files
+absent from the old `main` tree are removed from disk (causing
+`ENOENT scandir src/app` and a blank page). **Mitigation:** commit on `main`,
+or `git merge <feature> --ff-only` into `main` after committing on a feature
+branch, before testing. Feature-branch refs persist and can still be pushed to
+GitHub. All three local branches (`main`, `dev`, `feat/initial-portfolio`)
+currently point at the same commit.
 
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
