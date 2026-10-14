@@ -366,5 +366,28 @@ currently point at the same commit.
   clear arrows + labels, no layout issues) + `bun run lint` clean.
 - Commit `bf5a449` on `main`; `dev` + `feat/initial-portfolio` synced.
 
+### 2025-10-15 — Round 15 (cron review): About view, gallery scroll-spy, all grids multi
+- QA via agent-browser: no regressions; proceeded to features.
+- **About deep-link view** (`about-view.tsx`): long-form editorial bio with
+  portrait, multi-paragraph statement, "In numbers" stats card (08/16/10+/∞),
+  "How I work" approach card, a discipline index grid, and a contact CTA.
+  Reachable from a new "About" link in the header. Router extended with an
+  `about` `View` variant + `#/about` parsing (`types.ts`, `use-hash-route.ts`).
+- **GalleryProgress** (`gallery-progress.tsx`): a live "01/02" counter +
+  vertical scroll-spy dots in the project header (desktop, multi-piece).
+  `IntersectionObserver` tracks the active gallery figure and highlights its
+  dot; clicking a dot smooth-scrolls to that piece. Figures tagged
+  `data-gallery-figure` + `scroll-mt-28`.
+- Added 2nd magazine project (Cover Story) with `meta.json`. Manifest: 8
+  categories, 16 projects — **every** category is now multi-project.
+- Fixed a regression introduced this round: `GalleryProgress` referenced `ease`
+  without defining it, causing a client-side `ReferenceError` that broke the
+  project view (caught via `agent-browser errors --json`). Added the const.
+- Verified: agent-browser (`#/about` renders H1 + portrait + 8 discipline
+  chips + contact CTA + stats; header "About" link navigates; magazine shows 2
+  projects; scroll-spy counter 01→02 + active dot tracks the figure) + VLM
+  (About has portrait + bio + disciplines + contact) + `bun run lint` clean.
+- Commit `882c399` on `main`; `dev` + `feat/initial-portfolio` synced.
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
