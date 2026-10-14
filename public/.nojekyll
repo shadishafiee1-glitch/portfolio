@@ -1,0 +1,3 @@
+# Disable Jekyll so GitHub Pages serves the `_next/` asset folder.
+# Next.js static export places JS/CSS under `/_next/...`; Jekyll would skip
+# anything beginning with an underscore. This empty file turns Jekyll off.
