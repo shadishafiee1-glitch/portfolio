@@ -343,5 +343,28 @@ currently point at the same commit.
   VLM (clean, focused overlay) + `bun run lint` clean.
 - Commit `df48759` on `main`; `dev` + `feat/initial-portfolio` synced.
 
+### 2025-10-15 — Round 14 (cron review): prev/next nav, sticky back, populate grids
+- QA via agent-browser: no regressions; proceeded to features.
+- **Project view prev/next navigation** (replaced the single "next project"
+  button): a two-card grid — Previous (left, `ChevronLeft`, hover
+  translate-x) + Next (right, `ChevronRight`, hover translate-x) — each
+  with an accent-coloured circular arrow, label + italic project name.
+  Gated on `cat.projects.length > 1`. Verified: `poster-design/featured` →
+  Previous navigates to Music Festival.
+- **StickyBackNav** (`sticky-back-nav.tsx`): a compact "Back to <category>"
+  pill that fades in (framer-motion `AnimatePresence`) once the visitor
+  scrolls past ~360px — a one-tap escape from long galleries. Fixed
+  top-center under the site header, accent dot + label. Verified:
+  design project → scroll → pill → click navigates to `#/design`.
+- Added 2nd projects to `design` (Brand Explorations), `catalog-brochure`
+  (Seasonal Lookbook) & `digital-painting` (Portrait Study) with `meta.json`
+  carrying shared tags. Manifest: 8 categories, 15 projects (7 of 8
+  categories now multi-project — only magazine still single-project).
+- Verified: agent-browser (prev/next nav renders; Previous navigates across
+  projects; sticky pill appears on scroll + navigates to parent category;
+  design category shows 2 projects) + VLM (clean editorial prev/next layout,
+  clear arrows + labels, no layout issues) + `bun run lint` clean.
+- Commit `bf5a449` on `main`; `dev` + `feat/initial-portfolio` synced.
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
