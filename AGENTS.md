@@ -264,5 +264,28 @@ currently point at the same commit.
   shimmer renders, no errors) + VLM (cohesive, no defects) + `bun run lint` clean.
 - Commit `f1b55fc` on `main`; `dev` + `feat/initial-portfolio` synced.
 
+### 2025-10-15 — Round 11 (cron review): keyboard nav, graceful 404, filmstrip
+- QA via agent-browser: no regressions from round 10; proceeded to features.
+- **Keyboard navigation** on the home category index (`useRovingList` hook in
+  `src/hooks/use-roving-list.ts` + wiring in `home-view`): ArrowUp/Down move
+  focus between discipline rows, Home/End jump to first/last, Enter is native.
+  Added a visible focus ring (inset accent `focus-visible` shadow) + a keyboard
+  hint in the section subheading. The whole index is now operable without Tab.
+- **NotFoundView** (`src/components/portfolio/not-found-view.tsx`): shared
+  graceful 404 for unknown category/project hashes — editorial "Lost the
+  thread." headline, offending slug in mono, primary CTA back to index +
+  secondary discipline chips. Replaced the inline 404s in category-view &
+  project-view.
+- **Lightbox thumbnail filmstrip** (gated on >1 media): horizontally
+  scrollable thumbnails with active-state ring + `aria-current`; clicking a
+  thumb jumps directly to that piece. Added `onThumb` prop to `Lightbox`.
+- Added a 2nd image to the magazine project (`02-spread-detail.png`) to
+  exercise multi-media + the filmstrip; renamed original to `01-cover.jpg` so
+  it stays the project cover (natural sort).
+- Verified: agent-browser (arrow keys move focus correctly; 404 renders + chip
+  recovery navigates; filmstrip shows 2 thumbs, click jumps to 02/02) + VLM
+  (404 "graceful, helpful, clear recovery") + `bun run lint` clean.
+- Commit `96e1365` on `main`; `dev` + `feat/initial-portfolio` synced.
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
