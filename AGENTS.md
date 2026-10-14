@@ -317,5 +317,31 @@ currently point at the same commit.
   editorial grid) + `bun run lint` clean.
 - Commit `7ab5df0` on `main`; `dev` + `feat/initial-portfolio` synced.
 
+### 2025-10-15 — Round 13 (cron review): global search, share/download, more projects
+- QA via: no regressions; proceeded to features.
+- **Global Jess search (command-palette)**:
+  - `src/lib/search.ts`: flattened index over the whole portfolio
+    (name/description/tags/client/year/discipline); scored substring matching
+    (name-starts-with + tag-exact boosts, AND semantics); `ALL_TAGS`.
+  - `src/components/portfolio/search-overlay.tsx`: overlay with input,
+    quick-filter tag chips, scored results (thumb + name + meta +
+    discipline pill), `ArrowUp/Down` + `Enter` nav, `Esc` to close,
+    body-scroll lock, empty + no-results states.
+  - Triggers: header search button (with `/` kbd hint), global
+    `Cmd/Ctrl+K`, bare `/` (when not typing).
+- **Per-project ShareButton** (`share-button.tsx`) + `useClipboard` hook:
+  builds a deep link from `window.location` (works on dev + GitHub Pages),
+  uses Web Share API on capable devices, falls back to clipboard; transient
+  "Copied" confirmation. Added to the project header.
+- **Per-image download** button on each gallery figure (`<a download>`).
+- Added 2nd projects to `banner-design` (Summer Sale) & `social-media-design`
+  (Launch Campaign) with `meta.json`. Manifest: 8 categories, 12 projects
+  (4 categories now multi-project).
+- Verified: agent-browser (search opens via `/`/header/`Cmd+K`; "identity"
+  → 5 results; `ArrowDown`×2 highlights "Event Poster"; `Enter` navigates
+  + closes; `Esc` closes; share shows "Copied"; download anchor present) +
+  VLM (clean, focused overlay) + `bun run lint` clean.
+- Commit `df48759` on `main`; `dev` + `feat/initial-portfolio` synced.
+
 > **Next agent:** start by reading this file, then `/home/z/my-project/worklog.md`
 > for the operational handover, then `bun run dev` and open the preview.
