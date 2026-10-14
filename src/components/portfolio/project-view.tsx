@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 import { SmartImage } from "./smart-image";
 import { NotFoundView } from "./not-found-view";
+import { RelatedProjects } from "./related-projects";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -187,6 +188,11 @@ export function ProjectView({
           </motion.figure>
         ))}
       </div>
+
+      {/* Related work — other disciplines sharing a tag */}
+      {project.tags.length > 0 && (
+        <RelatedProjects project={project} category={cat} navigate={navigate} />
+      )}
 
       {/* Next project */}
       {nextProject && nextProject.slug !== project.slug && (

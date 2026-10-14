@@ -115,9 +115,30 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Identity & Marks",
     "description": "Logos and brand marks — distilled symbols, wordmarks and the systems that carry an identity.",
     "accent": "#be123c",
-    "cover": "resources/logo-design/featured/logo.jpg",
-    "projectCount": 1,
+    "cover": "resources/logo-design/cafe-identity/01-mockup.png",
+    "projectCount": 2,
     "projects": [
+      {
+        "slug": "cafe-identity",
+        "name": "Café Identity",
+        "description": "A small café identity — wordmark, menu system and collateral with a warm, tactile, minimal voice.",
+        "year": "2024",
+        "client": "Roasthouse Coffee",
+        "tags": [
+          "identity",
+          "branding",
+          "print"
+        ],
+        "cover": "resources/logo-design/cafe-identity/01-mockup.png",
+        "media": [
+          {
+            "path": "resources/logo-design/cafe-identity/01-mockup.png",
+            "name": "01-mockup",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
       {
         "slug": "featured",
         "name": "Brand Mark",
@@ -212,7 +233,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Posters and large-format print artwork — bold composition, contrast and a single decisive idea.",
     "accent": "#1d4ed8",
     "cover": "resources/poster-design/featured/poster.jpg",
-    "projectCount": 1,
+    "projectCount": 2,
     "projects": [
       {
         "slug": "featured",
@@ -232,6 +253,27 @@ export const PORTFOLIO: Category[] = [
             "name": "poster",
             "type": "image",
             "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "music-festival",
+        "name": "Music Festival",
+        "description": "A festival poster series built on bold geometry, screen-print layering and a single decisive type voice.",
+        "year": "2023",
+        "client": "Solstice Festival",
+        "tags": [
+          "poster",
+          "print",
+          "typography"
+        ],
+        "cover": "resources/poster-design/music-festival/01-poster.png",
+        "media": [
+          {
+            "path": "resources/poster-design/music-festival/01-poster.png",
+            "name": "01-poster",
+            "type": "image",
+            "ext": ".png"
           }
         ]
       }
@@ -271,5 +313,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 8;
+export const TOTAL_PROJECTS = 10;
 export const TOTAL_CATEGORIES = 8;

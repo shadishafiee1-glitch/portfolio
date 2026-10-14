@@ -208,3 +208,56 @@
 .cursor-none-interactive * {
   cursor: none;
 }
+
+/* ── Global focus-visible ring ────────────────────────────────────────────
+   A consistent, accessible focus indicator for keyboard users across the
+   site. Uses the foreground colour so it reads on both light & dark themes. */
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline-offset: 3px;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────
+   Respect the OS-level "reduce motion" preference: disable the marquee,
+   float, shimmer, and ping animations, and shorten/disable framer-motion
+   transitions globally via the `motion-reduce` variant. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee,
+  .animate-float-slow {
+    animation: none !important;
+  }
+}
+
+/* ── Print ────────────────────────────────────────────────────────────────
+   A clean print stylesheet so the portfolio prints sensibly (project grids
+   collapse to a single column, fixed bars & overlays are hidden). */
+@media print {
+  header,
+  footer,
+  .fixed,
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .grain::after {
+    display: none !important;
+  }
+}
+
