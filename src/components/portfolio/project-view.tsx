@@ -11,6 +11,7 @@ import { SmartImage } from "./smart-image";
 import { NotFoundView } from "./not-found-view";
 import { RelatedProjects } from "./related-projects";
 import { ShareButton } from "./share-button";
+import { StickyBackNav } from "./sticky-back-nav";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -50,14 +51,25 @@ export function ProjectView({
     );
   }
 
-  const nextProject = (() => {
+  const { prevProject, nextProject } = (() => {
     const idx = cat.projects.findIndex((p) => p.slug === project.slug);
-    if (idx === -1) return null;
-    return cat.projects[(idx + 1) % cat.projects.length];
+    if (idx === -1) return { prevProject: null, nextProject: null };
+    const n = cat.projects.length;
+    return {
+      prevProject: cat.projects[(idx - 1 + n) % n],
+      nextProject: cat.projects[(idx + 1) % n],
+    };
   })();
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 pb-24 pt-10 sm:px-8 sm:pt-16">
+      {/* Sticky back-to-category pill (fades in on long scrolls) */}
+      <StickyBackNav
+        label={cat.name}
+        accent={cat.accent}
+        onClick={() => navigate({ kind: "category", categorySlug: cat.slug })}
+      />
+
       {/* Breadcrumb */}
       <motion.div
         initial={{ opacity: 0, x: -8 }}
@@ -214,35 +226,76 @@ export function ProjectView({
         <RelatedProjects project={project} category={cat} navigate={navigate} />
       )}
 
-      {/* Next project */}
-      {nextProject && nextProject.slug !== project.slug && (
-        <motion.button
+      {/* Prev / Next project nav */}
+      {cat.projects.length > 1 && (
+        <motion.nav
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease }}
-          onClick={() =>
-            navigate({
-              kind: "project",
-              categorySlug: cat.slug,
-              projectSlug: nextProject.slug,
-            })
-          }
-          className="mt-20 flex w-full flex-col items-start gap-3 rounded-xl border border-border/60 p-6 text-left transition-colors hover:bg-accent/60 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+          aria-label="Project navigation"
+          className="mt-20 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4"
         >
-          <span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Next in {cat.name}
-            </span>
-            <span className="display-text mt-1 block text-2xl italic sm:text-3xl">
-              {nextProject.name}
-            </span>
-          </span>
-          <ChevronRight
-            className="h-6 w-6 shrink-0 text-muted-foreground"
-            style={{ color: cat.accent }}
-          />
-        </motion.button>
+          {/* Prev */}
+          {prevProject && prevProject.slug !== project.slug && (
+            <button
+              type="button"
+              onClick={() =>
+                navigate({
+                  kind: "project",
+                  categorySlug: cat.slug,
+                  projectSlug: prevProject.slug,
+                })
+              }
+              className="group flex items-center gap-4 rounded-xl border border-border/60 p-5 text-left transition-colors hover:bg-accent/60 sm:p-6"
+            >
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 transition-all duration-300 group-hover:-translate-x-1 group-hover:border-[color:var(--accent)] group-hover:bg-[color:var(--accent)] group-hover:text-white"
+                style={{ ["--accent" as string]: cat.accent }}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  Previous
+                </span>
+                <span className="display-text mt-0.5 block truncate text-xl italic sm:text-2xl">
+                  {prevProject.name}
+                </span>
+              </span>
+            </button>
+          )}
+
+          {/* Next */}
+          {nextProject && nextProject.slug !== project.slug && (
+            <button
+              type="button"
+              onClick={() =>
+                navigate({
+                  kind: "project",
+                  categorySlug: cat.slug,
+                  projectSlug: nextProject.slug,
+                })
+              }
+              className="group flex items-center justify-end gap-4 rounded-xl border border-border/60 p-5 text-right transition-colors hover:bg-accent/60 sm:p-6 sm:col-start-2"
+            >
+              <span className="min-w-0">
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  Next in {cat.name}
+                </span>
+                <span className="display-text mt-0.5 block truncate text-xl italic sm:text-2xl">
+                  {nextProject.name}
+                </span>
+              </span>
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 transition-all duration-300 group-hover:translate-x-1 group-hover:border-[color:var(--accent)] group-hover:bg-[color:var(--accent)] group-hover:text-white"
+                style={{ ["--accent" as string]: cat.accent }}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </span>
+            </button>
+          )}
+        </motion.nav>
       )}
 
       {/* Lightbox */}

@@ -51,9 +51,30 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Graphic & Brand",
     "description": "Graphic design explorations across identity, layout and composition — the craft of visual communication.",
     "accent": "#0f766e",
-    "cover": "resources/design/featured/design.png",
-    "projectCount": 1,
+    "cover": "resources/design/brand-explorations/01-sheet.png",
+    "projectCount": 2,
     "projects": [
+      {
+        "slug": "brand-explorations",
+        "name": "Brand Explorations",
+        "description": "An identity exploration sheet — logo lockups, palette swatches and typographic voice tested across a small system.",
+        "year": "2024",
+        "client": "Studio Practice",
+        "tags": [
+          "identity",
+          "branding",
+          "layout"
+        ],
+        "cover": "resources/design/brand-explorations/01-sheet.png",
+        "media": [
+          {
+            "path": "resources/design/brand-explorations/01-sheet.png",
+            "name": "01-sheet",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
       {
         "slug": "featured",
         "name": "Graphic Studies",
@@ -84,7 +105,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Catalogs, brochures and multi-page folios built for clarity, hierarchy and tactile print quality.",
     "accent": "#9333ea",
     "cover": "resources/catalog-brochure/featured/catalog.jpg",
-    "projectCount": 1,
+    "projectCount": 2,
     "projects": [
       {
         "slug": "featured",
@@ -104,6 +125,27 @@ export const PORTFOLIO: Category[] = [
             "name": "catalog",
             "type": "image",
             "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "lookbook",
+        "name": "Seasonal Lookbook",
+        "description": "A multi-page lookbook folio — photography pacing, refined grid and a tactile, editorial flow across the spread.",
+        "year": "2024",
+        "client": "Atelier Goods",
+        "tags": [
+          "print",
+          "catalog",
+          "editorial"
+        ],
+        "cover": "resources/catalog-brochure/lookbook/01-spread.png",
+        "media": [
+          {
+            "path": "resources/catalog-brochure/lookbook/01-spread.png",
+            "name": "01-spread",
+            "type": "image",
+            "ext": ".png"
           }
         ]
       }
@@ -328,7 +370,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Digital paintings and illustrations — colour, light and atmosphere rendered stroke by stroke.",
     "accent": "#7c3aed",
     "cover": "resources/digital-painting/featured/painting.jpg",
-    "projectCount": 1,
+    "projectCount": 2,
     "projects": [
       {
         "slug": "featured",
@@ -350,10 +392,31 @@ export const PORTFOLIO: Category[] = [
             "ext": ".jpg"
           }
         ]
+      },
+      {
+        "slug": "portrait-study",
+        "name": "Portrait Study",
+        "description": "A painterly portrait study — expressive brushwork, warm atmosphere and colour built up stroke by stroke.",
+        "year": "2024",
+        "client": "Personal Work",
+        "tags": [
+          "painting",
+          "illustration",
+          "colour"
+        ],
+        "cover": "resources/digital-painting/portrait-study/01-painting.png",
+        "media": [
+          {
+            "path": "resources/digital-painting/portrait-study/01-painting.png",
+            "name": "01-painting",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
       }
     ]
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 12;
+export const TOTAL_PROJECTS = 15;
 export const TOTAL_CATEGORIES = 8;
