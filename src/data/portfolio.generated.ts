@@ -169,7 +169,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Web and display banners engineered for attention, conversion and responsive delivery.",
     "accent": "#15803d",
     "cover": "resources/banner-design/featured/banner.jpg",
-    "projectCount": 1,
+    "projectCount": 2,
     "projects": [
       {
         "slug": "featured",
@@ -191,6 +191,27 @@ export const PORTFOLIO: Category[] = [
             "ext": ".jpg"
           }
         ]
+      },
+      {
+        "slug": "summer-sale",
+        "name": "Summer Sale",
+        "description": "A responsive display-banner set for a seasonal retail campaign — bold geometry, warm palette and a clear, scalable layout.",
+        "year": "2024",
+        "client": "Seasonal Retail",
+        "tags": [
+          "digital",
+          "display",
+          "advertising"
+        ],
+        "cover": "resources/banner-design/summer-sale/01-hero.png",
+        "media": [
+          {
+            "path": "resources/banner-design/summer-sale/01-hero.png",
+            "name": "01-hero",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
       }
     ]
   },
@@ -201,7 +222,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Social media creatives, campaigns and content systems built for scroll-stopping clarity.",
     "accent": "#c2410c",
     "cover": "resources/social-media-design/featured/social.jpg",
-    "projectCount": 1,
+    "projectCount": 2,
     "projects": [
       {
         "slug": "featured",
@@ -221,6 +242,27 @@ export const PORTFOLIO: Category[] = [
             "name": "social",
             "type": "image",
             "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "launch-campaign",
+        "name": "Launch Campaign",
+        "description": "A social launch system — posts, stories and motion-ready frames sharing one warm gradient identity.",
+        "year": "2024",
+        "client": "Brand Feed",
+        "tags": [
+          "social",
+          "content",
+          "campaign"
+        ],
+        "cover": "resources/social-media-design/launch-campaign/01-grid.png",
+        "media": [
+          {
+            "path": "resources/social-media-design/launch-campaign/01-grid.png",
+            "name": "01-grid",
+            "type": "image",
+            "ext": ".png"
           }
         ]
       }
@@ -313,5 +355,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 10;
+export const TOTAL_PROJECTS = 12;
 export const TOTAL_CATEGORIES = 8;

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
@@ -10,6 +10,7 @@ import type { NavigateFn } from "@/hooks/use-hash-route";
 import { SmartImage } from "./smart-image";
 import { NotFoundView } from "./not-found-view";
 import { RelatedProjects } from "./related-projects";
+import { ShareButton } from "./share-button";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -115,6 +116,12 @@ export function ProjectView({
               ))}
             </div>
           )}
+          <div className="mt-6 flex items-center gap-3">
+            <ShareButton projectName={project.name} />
+            <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70">
+              {project.media.length} {project.media.length === 1 ? "piece" : "pieces"} below
+            </span>
+          </div>
         </div>
 
         {/* meta */}
@@ -178,12 +185,25 @@ export function ProjectView({
               <span className="font-mono text-xs text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} — {m.name}
               </span>
-              <span
-                className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
-                style={{ color: cat.accent }}
-              >
-                View ↗
-              </span>
+              <div className="flex items-center gap-3">
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
+                  style={{ color: cat.accent }}
+                >
+                  View ↗
+                </span>
+                {m.type === "image" && (
+                  <a
+                    href={assetUrl(m.path)}
+                    download
+                    aria-label={`Download ${m.name}`}
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground opacity-0 transition-all duration-200 hover:bg-accent hover:text-foreground group-hover:opacity-100"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </div>
             </figcaption>
           </motion.figure>
         ))}

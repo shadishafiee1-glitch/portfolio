@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github } from "lucide-react";
+import { Github, Search } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import type { View } from "@/lib/types";
@@ -10,9 +10,10 @@ import type { NavigateFn } from "@/hooks/use-hash-route";
 interface SiteHeaderProps {
   view: View;
   navigate: NavigateFn;
+  onOpenSearch: () => void;
 }
 
-export function SiteHeader({ view, navigate }: SiteHeaderProps) {
+export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
   const onHome = view.kind === "home";
 
   return (
@@ -48,11 +49,24 @@ export function SiteHeader({ view, navigate }: SiteHeaderProps) {
 
         {/* Right cluster */}
         <nav className="flex items-center gap-1.5">
+          {/* Search trigger */}
+          <button
+            type="button"
+            onClick={onOpenSearch}
+            aria-label="Search (press slash)"
+            className="group inline-flex h-9 items-center gap-2 rounded-full border border-border/70 pl-3 pr-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <Search className="h-4 w-4" />
+            <span className="hidden text-[13px] sm:inline">Search</span>
+            <kbd className="hidden rounded border border-border/70 bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline">
+              /
+            </kbd>
+          </button>
           <button
             type="button"
             onClick={() => navigate({ kind: "home" })}
             className={cn(
-              "hidden rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors sm:inline-flex",
+              "hidden rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors lg:inline-flex",
               onHome
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground",
