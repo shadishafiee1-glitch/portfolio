@@ -13,7 +13,7 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Editorial & Layout",
     "description": "Editorial design and magazine spreads — typography, rhythm and the choreography of print pages.",
     "accent": "#b45309",
-    "cover": "resources/magazine/featured/magazine.jpg",
+    "cover": "resources/magazine/featured/01-cover.jpg",
     "projectCount": 1,
     "projects": [
       {
@@ -27,13 +27,19 @@ export const PORTFOLIO: Category[] = [
           "typography",
           "print"
         ],
-        "cover": "resources/magazine/featured/magazine.jpg",
+        "cover": "resources/magazine/featured/01-cover.jpg",
         "media": [
           {
-            "path": "resources/magazine/featured/magazine.jpg",
-            "name": "magazine",
+            "path": "resources/magazine/featured/01-cover.jpg",
+            "name": "01-cover",
             "type": "image",
             "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/featured/02-spread-detail.png",
+            "name": "02-spread-detail",
+            "type": "image",
+            "ext": ".png"
           }
         ]
       }

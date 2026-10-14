@@ -8,6 +8,7 @@ import { assetUrl } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 import { SmartImage } from "./smart-image";
+import { NotFoundView } from "./not-found-view";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -39,18 +40,11 @@ export function ProjectView({
 
   if (!cat || !project) {
     return (
-      <div className="mx-auto max-w-3xl px-5 py-32 text-center">
-        <p className="text-sm uppercase tracking-widest text-muted-foreground">
-          404
-        </p>
-        <h1 className="display-text mt-4 text-4xl">Project not found</h1>
-        <button
-          onClick={() => navigate({ kind: "home" })}
-          className="mt-8 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm hover:bg-accent"
-        >
-          Back to index
-        </button>
-      </div>
+      <NotFoundView
+        label={cat ? "Project" : "Category"}
+        slug={cat ? projectSlug : `${categorySlug}/${projectSlug}`}
+        navigate={navigate}
+      />
     );
   }
 
@@ -240,6 +234,7 @@ export function ProjectView({
             cur === null ? null : (cur + 1) % project.media.length,
           )
         }
+        onThumb={(i) => setLightbox(i)}
         media={project.media}
         accent={cat.accent}
       />
@@ -264,6 +259,8 @@ interface LightboxProps {
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
+  /** Jump directly to a specific media index (used by the filmstrip). */
+  onThumb: (i: number) => void;
   media: { path: string; name: string; type: "image" | "video" }[];
   accent: string;
 }
@@ -274,6 +271,7 @@ function Lightbox({
   onClose,
   onPrev,
   onNext,
+  onThumb,
   media,
   accent,
 }: LightboxProps) {
@@ -392,6 +390,46 @@ function Lightbox({
               </>
             )}
           </div>
+
+          {/* Thumbnail filmstrip — only when more than 1 piece */}
+          {total > 1 && (
+            <div
+              className="custom-scroll flex items-center gap-2 overflow-x-auto px-5 pb-4 pt-1 sm:px-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {media.map((m, i) => (
+                <button
+                  key={m.path}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onThumb(i);
+                  }}
+                  aria-label={`View ${m.name}`}
+                  aria-current={i === index ? "true" : undefined}
+                  className={cn(
+                    "relative h-12 w-16 shrink-0 overflow-hidden rounded border transition-all duration-200 sm:h-14 sm:w-20",
+                    i === index
+                      ? "border-white/80 ring-2 ring-white/30"
+                      : "border-white/15 opacity-55 hover:opacity-100",
+                  )}
+                >
+                  {m.type === "video" ? (
+                    <span className="flex h-full w-full items-center justify-center bg-white/10 text-[10px] font-mono text-white/70">
+                      VID
+                    </span>
+                  ) : (
+                    <img
+                      src={assetUrl(m.path)}
+                      alt=""
+                      className="h-full w-full object-cover"
+                      draggable={false}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

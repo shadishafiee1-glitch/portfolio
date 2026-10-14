@@ -6,6 +6,7 @@ import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 import { SmartImage } from "./smart-image";
+import { NotFoundView } from "./not-found-view";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -18,20 +19,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
   const cat = PORTFOLIO.find((c) => c.slug === categorySlug) ?? CATEGORY_MAP[categorySlug];
 
   if (!cat) {
-    return (
-      <div className="mx-auto max-w-3xl px-5 py-32 text-center">
-        <p className="text-sm uppercase tracking-widest text-muted-foreground">
-          404
-        </p>
-        <h1 className="display-text mt-4 text-4xl">Category not found</h1>
-        <button
-          onClick={() => navigate({ kind: "home" })}
-          className="mt-8 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm hover:bg-accent"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to index
-        </button>
-      </div>
-    );
+    return <NotFoundView label="Category" slug={categorySlug} navigate={navigate} />;
   }
 
   return (

@@ -5,6 +5,7 @@ import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { CursorPreview } from "./cursor-preview";
 import { PORTFOLIO, TOTAL_CATEGORIES, TOTAL_PROJECTS } from "@/data/portfolio";
+import { useRovingList } from "@/hooks/use-roving-list";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -18,6 +19,8 @@ export function HomeView({ navigate }: HomeViewProps) {
     src: string | null;
     accent: string;
   }>({ src: null, accent: "#1a1714" });
+
+  const { containerRef, onKeyDown } = useRovingList(PORTFOLIO.length);
 
   return (
     <>
@@ -120,10 +123,18 @@ export function HomeView({ navigate }: HomeViewProps) {
           </div>
           <p className="hidden max-w-[18rem] text-right text-xs leading-relaxed text-muted-foreground sm:block">
             Hover a discipline to preview · click to enter its archive
+            <br />
+            <span className="text-muted-foreground/70">
+              Keyboard: ↑ ↓ to move · Enter to open
+            </span>
           </p>
         </div>
 
-        <ul className="border-t border-border/60">
+        <ul
+          ref={containerRef}
+          className="border-t border-border/60"
+          role="list"
+        >
           {PORTFOLIO.map((cat, i) => {
             const index = String(i + 1).padStart(2, "0");
             return (
@@ -136,6 +147,8 @@ export function HomeView({ navigate }: HomeViewProps) {
               >
                 <button
                   type="button"
+                  data-roving-item
+                  onKeyDown={(e) => onKeyDown(e, i)}
                   onClick={() =>
                     navigate({ kind: "category", categorySlug: cat.slug })
                   }
@@ -149,7 +162,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                     setPreview({ src: cat.cover, accent: cat.accent })
                   }
                   onBlur={() => setPreview({ src: null, accent: cat.accent })}
-                  className="relative flex w-full items-center gap-4 py-6 text-left transition-colors duration-300 sm:py-8"
+                  className="relative flex w-full items-center gap-4 py-6 text-left outline-none transition-colors duration-300 focus-visible:z-10 focus-visible:shadow-[inset_0_0_0_2px_var(--accent)] sm:py-8"
                   style={{ ["--accent" as string]: cat.accent }}
                 >
                   {/* hover wash */}
