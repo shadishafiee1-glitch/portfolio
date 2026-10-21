@@ -62,7 +62,7 @@ export function HomeView({ navigate }: HomeViewProps) {
             <h2 className="display-script text-[clamp(2.2rem,5.5vw,4rem)] text-foreground/85">
               Shadi Shafiee
             </h2>
-            <span className="inline-flex items-center gap-2 rounded-full border border-foreground/30 px-3 py-1 font-mono text-xs text-foreground/60">
+            <span className="inline-flex items-center gap-2 rounded-full border border-foreground/30 px-3 py-1 font-sans text-xs text-foreground/60">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)]/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
@@ -108,12 +108,12 @@ export function HomeView({ navigate }: HomeViewProps) {
                     className="relative flex w-full items-center gap-3 py-5 text-left outline-none transition-colors duration-300 sm:py-6"
                   >
                     {/* index */}
-                    <span className="relative z-10 w-8 shrink-0 font-mono text-xs text-foreground/40 transition-colors duration-300 group-hover:text-[var(--accent)] sm:w-12 sm:text-sm">
+                    <span className="relative z-10 w-8 shrink-0 font-sans text-xs text-foreground/40 transition-colors duration-300 group-hover:text-[var(--accent)] sm:w-12 sm:text-sm">
                       {index}
                     </span>
                     {/* name — turns blue on hover */}
                     <span className="relative z-10 min-w-0 flex-1">
-                      <span className="block text-balance text-[clamp(1.5rem,5vw,3rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover:text-[var(--accent)] group-hover:translate-x-1.5">
+                      <span className="block text-balance text-[clamp(1.3rem,4vw,2.4rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover:text-[var(--accent)] group-hover:translate-x-1.5">
                         {cat.name}
                       </span>
                       <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/40">

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Sparkles, User } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -96,7 +95,7 @@ export function AboutSections() {
   return (
     <>
       {/* ── ABOUT ME ──────────────────────────────────────────────────── */}
-      <Section icon={<User className="h-4 w-4" />} title="About me">
+      <Section title="About me">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +123,7 @@ export function AboutSections() {
       </Section>
 
       {/* ── EDUCATION ─────────────────────────────────────────────────── */}
-      <Section icon={<GraduationCap className="h-4 w-4" />} title="Education">
+      <Section title="Education">
         <div className="grid gap-4 sm:grid-cols-2">
           {EDUCATION.map((e, i) => (
             <motion.div
@@ -135,7 +134,7 @@ export function AboutSections() {
               transition={{ duration: 0.6, ease, delay: 0.06 * i }}
               className="rounded-2xl border border-foreground/15 bg-card/70 p-5 backdrop-blur-sm"
             >
-              <p className="font-mono text-xs text-[var(--accent)]">{e.period}</p>
+              <p className="font-sans text-xs text-[var(--accent)]">{e.period}</p>
               <p className="mt-2 text-base font-semibold text-foreground">{e.title}</p>
               <p className="mt-1 text-sm text-muted-foreground">{e.place}</p>
             </motion.div>
@@ -144,7 +143,7 @@ export function AboutSections() {
       </Section>
 
       {/* ── WORK EXPERIENCE ───────────────────────────────────────────── */}
-      <Section icon={<Briefcase className="h-4 w-4" />} title="Work experience">
+      <Section title="Work experience">
         <div className="space-y-8">
           {EXPERIENCE.map((job, i) => (
             <motion.article
@@ -165,7 +164,7 @@ export function AboutSections() {
                   {job.role}
                   <span className="text-muted-foreground"> · {job.org}</span>
                 </h3>
-                <span className="font-mono text-xs text-muted-foreground">
+                <span className="font-sans text-xs text-muted-foreground">
                   {job.period ?? job.place}
                 </span>
               </div>
@@ -189,7 +188,7 @@ export function AboutSections() {
       </Section>
 
       {/* ── SKILLS ────────────────────────────────────────────────────── */}
-      <Section icon={<Sparkles className="h-4 w-4" />} title="Skills">
+      <Section title="Skills">
         <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
           {SKILLS.map((s, i) => (
             <motion.div
@@ -214,11 +213,9 @@ export function AboutSections() {
 }
 
 function Section({
-  icon,
   title,
   children,
 }: {
-  icon: React.ReactNode;
   title: string;
   children: React.ReactNode;
 }) {
@@ -231,12 +228,7 @@ function Section({
         transition={{ duration: 0.6, ease }}
         className="display-heavy mb-7 inline-block text-[clamp(1.6rem,4vw,2.6rem)] text-foreground"
       >
-        <span className="inline-flex items-baseline gap-2.5">
-          <span className="inline-flex translate-y-[-0.15em] text-[var(--accent)]">
-            {icon}
-          </span>
-          {title}
-        </span>
+        {title}
         {/* blue underline bar — sits directly beneath the title text only */}
         <span
           className="mt-2 block h-1.5 w-16 rounded-full bg-[var(--accent)]"
