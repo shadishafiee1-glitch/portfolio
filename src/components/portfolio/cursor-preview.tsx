@@ -57,10 +57,17 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
             className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl"
             style={{
-              /* The card has NO border/stroke. A faint blue tint + soft drop
-                 shadow give it depth without a hard edge. */
-              backgroundColor: "rgba(0, 128, 255, 0.12)",
-              boxShadow: "0 16px 40px -12px rgba(0,0,0,0.30)",
+              /* Glassmorphism card: the backdrop-filter blurs whatever is
+                 BEHIND the card (the page content — discipline titles, the
+                 blue arrow circle). The image sits on top, vivid and sharp,
+                 at near-full opacity so it stays colorful — but just
+                 transparent enough that the blurred page content reads
+                 through faintly. Like the weather-widget reference. */
+              backgroundColor: "rgba(255, 255, 255, 0.18)",
+              backdropFilter: "blur(14px) saturate(160%)",
+              WebkitBackdropFilter: "blur(14px) saturate(160%)",
+              boxShadow:
+                "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 16px 40px -12px rgba(0,0,0,0.30)",
             }}
           >
             <SmartImage
@@ -68,19 +75,10 @@ export function CursorPreview({ src }: CursorPreviewProps) {
               alt=""
               accent="var(--accent)"
               className="h-full w-full border-0"
-              /* Image stays SHARP (no blur), just slightly transparent so when
-                 the card passes over a discipline title or the blue arrow
-                 circle, that content faintly shows through from underneath. */
-              imgClassName="object-cover opacity-75"
-            />
-            {/* a very faint blue wash to tie it to the palette, not a frost */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 mix-blend-overlay"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(0,128,255,0.18) 0%, rgba(0,128,255,0.08) 50%, rgba(0,128,255,0.14) 100%)",
-              }}
+              /* Image stays vivid (NOT faded/pale), but slightly transparent
+                 so the frosted page content behind the card shows through
+                 when the card passes over a title or arrow. */
+              imgClassName="object-cover opacity-85"
             />
           </motion.div>
         ) : null}
