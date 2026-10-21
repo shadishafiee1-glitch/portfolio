@@ -55,13 +55,19 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             animate={{ opacity: 1, scale: 1, y: 0, rotate: -2 }}
             exit={{ opacity: 0, scale: 0.9, y: 8 }}
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
-            className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl ring-1 ring-white/30 backdrop-blur-md"
+            className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl"
             style={{
-              /* a translucent fill so the page background blurs through the
-                 card — true glassmorphism, the page shows from under the image */
-              backgroundColor: "rgba(255,255,255,0.18)",
+              /* The card itself is a frosted-glass surface: translucent white
+                 fill + a strong backdrop blur so whatever is BEHIND the card
+                 (the page) blurs and shows through. The image sits on top at
+                 reduced opacity so the page genuinely reads through it when the
+                 card moves. */
+              backgroundColor: "rgba(255,255,255,0.30)",
+              backdropFilter: "blur(18px) saturate(140%)",
+              WebkitBackdropFilter: "blur(18px) saturate(140%)",
               boxShadow:
-                "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 12px 36px -12px rgba(0,0,0,0.35)",
+                "inset 0 1px 0 0 rgba(255,255,255,0.6), 0 16px 40px -12px rgba(0,0,0,0.40)",
+              border: "1px solid rgba(255,255,255,0.35)",
             }}
           >
             <SmartImage
@@ -69,9 +75,19 @@ export function CursorPreview({ src }: CursorPreviewProps) {
               alt=""
               accent="var(--accent)"
               className="h-full w-full border-0"
-              /* slight transparency on the image itself so the frosted
-                 background reads through it when the card moves */
-              imgClassName="object-cover opacity-90"
+              /* The image is semi-transparent so the frosted page background
+                 bleeds through it — this is what makes it read as 'glass'
+                 rather than a solid photo card. */
+              imgClassName="object-cover opacity-55"
+            />
+            {/* a soft white frost wash over the image to push the glass feel */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.20) 100%)",
+              }}
             />
           </motion.div>
         ) : null}
