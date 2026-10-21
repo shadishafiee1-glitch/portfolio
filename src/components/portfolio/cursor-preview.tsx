@@ -16,8 +16,9 @@ interface CursorPreviewProps {
  * name summons its cover beside the pointer. Disabled on touch / coarse
  * pointers where there is no hover.
  *
- * Uses the portfolio's single accent (flame orange) for the frame — there is
- * no per-category accent anymore (3-color palette only).
+ * Styled as a frosted-glass card: no border stroke, rounded corners, a
+ * translucent backdrop-blur surface, and a soft drop shadow — matching the
+ * glassmorphism treatment used on the gallery image cards.
  */
 export function CursorPreview({ src }: CursorPreviewProps) {
   const x = useMotionValue(-1000);
@@ -54,19 +55,14 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             animate={{ opacity: 1, scale: 1, y: 0, rotate: -2 }}
             exit={{ opacity: 0, scale: 0.9, y: 8 }}
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
-            className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden border-2 border-foreground bg-card shadow-2xl"
+            className="glass absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl ring-1 ring-foreground/10"
           >
             <SmartImage
               src={src}
               alt=""
-              accent="var(--flame)"
+              accent="var(--accent)"
               className="h-full w-full border-0"
               imgClassName="object-cover"
-            />
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{ boxShadow: "inset 0 0 0 3px var(--flame)" }}
-              aria-hidden
             />
           </motion.div>
         ) : null}
