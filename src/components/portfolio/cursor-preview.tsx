@@ -57,17 +57,15 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
             className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl"
             style={{
-              /* The card itself is a frosted-glass surface: translucent white
-                 fill + a strong backdrop blur so whatever is BEHIND the card
-                 (the page) blurs and shows through. The image sits on top at
-                 reduced opacity so the page genuinely reads through it when the
-                 card moves. */
-              backgroundColor: "rgba(255,255,255,0.30)",
-              backdropFilter: "blur(18px) saturate(140%)",
-              WebkitBackdropFilter: "blur(18px) saturate(140%)",
+              /* frosted-blue-glass card surface: a translucent blue tint over
+                 the page so the background reads through, with a soft border
+                 and drop shadow for depth. */
+              backgroundColor: "rgba(0, 128, 255, 0.18)",
+              backdropFilter: "blur(8px) saturate(120%)",
+              WebkitBackdropFilter: "blur(8px) saturate(120%)",
               boxShadow:
-                "inset 0 1px 0 0 rgba(255,255,255,0.6), 0 16px 40px -12px rgba(0,0,0,0.40)",
-              border: "1px solid rgba(255,255,255,0.35)",
+                "inset 0 1px 0 0 rgba(255,255,255,0.4), 0 16px 40px -12px rgba(0,0,0,0.35)",
+              border: "1px solid rgba(0, 128, 255, 0.30)",
             }}
           >
             <SmartImage
@@ -75,18 +73,19 @@ export function CursorPreview({ src }: CursorPreviewProps) {
               alt=""
               accent="var(--accent)"
               className="h-full w-full border-0"
-              /* The image is semi-transparent so the frosted page background
-                 bleeds through it — this is what makes it read as 'glass'
-                 rather than a solid photo card. */
-              imgClassName="object-cover opacity-55"
+              /* The image is blurred (frosted glass) + a blue tint overlay sits
+                 on top — the reference 'frosted blue glass' look, not a white
+                 frost. */
+              imgClassName="object-cover opacity-80 blur-[3px] saturate-110"
             />
-            {/* a soft white frost wash over the image to push the glass feel */}
+            {/* cool blue tint wash over the image — the signature of the
+               reference glass effect (NOT white). */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0"
+              className="pointer-events-none absolute inset-0 mix-blend-screen"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.20) 100%)",
+                  "linear-gradient(135deg, rgba(0,128,255,0.38) 0%, rgba(0,128,255,0.20) 50%, rgba(0,128,255,0.32) 100%)",
               }}
             />
           </motion.div>
