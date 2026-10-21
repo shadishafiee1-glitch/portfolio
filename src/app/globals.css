@@ -72,7 +72,6 @@
   --secondary-foreground: var(--ink);
   --muted: var(--paper-deep);
   --muted-foreground: var(--ink-soft);
-  --accent: var(--accent);
   --accent-foreground: #FFFFFF;
   --destructive: #C0392B;
   --border: #D8DAE0;
@@ -114,7 +113,6 @@
   --secondary-foreground: var(--ink);
   --muted: #26262E;
   --muted-foreground: var(--ink-soft);
-  --accent: var(--accent);
   --accent-foreground: #FFFFFF;
   --destructive: #E74C3C;
   --border: #2A2A33;

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { CursorPreview } from "./cursor-preview";
+import { AboutSections } from "./about-sections";
 import { PORTFOLIO } from "@/data/portfolio";
 import { useRovingList } from "@/hooks/use-roving-list";
 import type { NavigateFn } from "@/hooks/use-hash-route";
@@ -119,9 +120,9 @@ export function HomeView({ navigate }: HomeViewProps) {
                         {cat.tagline}
                       </span>
                     </span>
-                    {/* arrow circle — turns blue on hover */}
+                    {/* arrow circle — always blue */}
                     <span className="relative z-10 flex shrink-0 items-center">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/60 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-white sm:h-11 sm:w-11">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)] text-white transition-all duration-300 group-hover:scale-110 sm:h-11 sm:w-11">
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
                       </span>
                     </span>
@@ -151,6 +152,15 @@ export function HomeView({ navigate }: HomeViewProps) {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ── ABOUT / EDUCATION / EXPERIENCE / SKILLS ─────────────────────
+          The full About content lives inline on the home page (after the
+          hero + discipline index), so visitors get the whole story without
+          navigating. Shared AboutSections component keeps it in sync with
+          the #/about deep-link view. */}
+      <section className="mx-auto max-w-[1000px] px-5 pb-24 sm:px-8">
+        <AboutSections />
       </section>
     </>
   );
