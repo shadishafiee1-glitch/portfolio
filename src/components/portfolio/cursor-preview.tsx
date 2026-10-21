@@ -57,15 +57,10 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
             className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl"
             style={{
-              /* frosted-blue-glass card surface: a translucent blue tint over
-                 the page so the background reads through, with a soft border
-                 and drop shadow for depth. */
-              backgroundColor: "rgba(0, 128, 255, 0.18)",
-              backdropFilter: "blur(8px) saturate(120%)",
-              WebkitBackdropFilter: "blur(8px) saturate(120%)",
-              boxShadow:
-                "inset 0 1px 0 0 rgba(255,255,255,0.4), 0 16px 40px -12px rgba(0,0,0,0.35)",
-              border: "1px solid rgba(0, 128, 255, 0.30)",
+              /* The card has NO border/stroke. A faint blue tint + soft drop
+                 shadow give it depth without a hard edge. */
+              backgroundColor: "rgba(0, 128, 255, 0.12)",
+              boxShadow: "0 16px 40px -12px rgba(0,0,0,0.30)",
             }}
           >
             <SmartImage
@@ -73,19 +68,18 @@ export function CursorPreview({ src }: CursorPreviewProps) {
               alt=""
               accent="var(--accent)"
               className="h-full w-full border-0"
-              /* The image is blurred (frosted glass) + a blue tint overlay sits
-                 on top — the reference 'frosted blue glass' look, not a white
-                 frost. */
-              imgClassName="object-cover opacity-80 blur-[3px] saturate-110"
+              /* Image stays SHARP (no blur), just slightly transparent so when
+                 the card passes over a discipline title or the blue arrow
+                 circle, that content faintly shows through from underneath. */
+              imgClassName="object-cover opacity-75"
             />
-            {/* cool blue tint wash over the image — the signature of the
-               reference glass effect (NOT white). */}
+            {/* a very faint blue wash to tie it to the palette, not a frost */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 mix-blend-screen"
+              className="pointer-events-none absolute inset-0 mix-blend-overlay"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(0,128,255,0.38) 0%, rgba(0,128,255,0.20) 50%, rgba(0,128,255,0.32) 100%)",
+                  "linear-gradient(135deg, rgba(0,128,255,0.18) 0%, rgba(0,128,255,0.08) 50%, rgba(0,128,255,0.14) 100%)",
               }}
             />
           </motion.div>
