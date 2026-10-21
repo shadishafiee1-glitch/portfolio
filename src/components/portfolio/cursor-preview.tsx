@@ -55,14 +55,23 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             animate={{ opacity: 1, scale: 1, y: 0, rotate: -2 }}
             exit={{ opacity: 0, scale: 0.9, y: 8 }}
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
-            className="glass absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl ring-1 ring-foreground/10"
+            className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl ring-1 ring-white/30 backdrop-blur-md"
+            style={{
+              /* a translucent fill so the page background blurs through the
+                 card — true glassmorphism, the page shows from under the image */
+              backgroundColor: "rgba(255,255,255,0.18)",
+              boxShadow:
+                "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 12px 36px -12px rgba(0,0,0,0.35)",
+            }}
           >
             <SmartImage
               src={src}
               alt=""
               accent="var(--accent)"
               className="h-full w-full border-0"
-              imgClassName="object-cover"
+              /* slight transparency on the image itself so the frosted
+                 background reads through it when the card moves */
+              imgClassName="object-cover opacity-90"
             />
           </motion.div>
         ) : null}

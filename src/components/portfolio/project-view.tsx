@@ -176,7 +176,7 @@ export function ProjectView({
             <button
               type="button"
               onClick={() => setLightbox(i)}
-              className="glass block w-full overflow-hidden rounded-2xl ring-1 ring-foreground/10"
+              className="block w-full overflow-hidden rounded-2xl ring-1 ring-foreground/10"
               aria-label={`Open ${m.name} in full screen`}
             >
               {m.type === "video" ? (

@@ -288,7 +288,7 @@ function ProjectCard({
       }
       className="block w-full text-left"
     >
-      <div className="glass relative aspect-[16/10] w-full overflow-hidden rounded-2xl ring-1 ring-foreground/10">
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl ring-1 ring-foreground/10">
         {project.cover && (
           <SmartImage
             src={project.cover}

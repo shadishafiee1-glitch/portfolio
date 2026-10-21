@@ -21,7 +21,7 @@ const EDUCATION = [
 const EXPERIENCE = [
   {
     role: "Graphic Designer",
-    org: "Proopco, part of Kifpool.me",
+    org: "Proopco, part of Kifepool.me",
     period: "August 2026 – Present",
     bullets: [
       "Manage end-to-end social media design, from creative ideation and concept development to final visual execution.",
@@ -60,7 +60,7 @@ const EXPERIENCE = [
   },
   {
     role: "Graphic Designer",
-    org: "Algorithm Sharq",
+    org: "Algorithm Shargh",
     period: "2019–2020",
     bullets: [
       "Designed social media campaigns, banners, and branded visuals for clients across multiple industries.",

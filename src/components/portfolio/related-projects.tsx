@@ -94,7 +94,7 @@ export function RelatedProjects({
             className="group text-left"
             style={{ ["--accent" as string]: "var(--flame)" }}
           >
-            <div className="glass relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-foreground/10">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-foreground/10">
               {p.cover && (
                 <img
                   src={assetUrl(p.cover)}
