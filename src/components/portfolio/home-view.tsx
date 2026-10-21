@@ -38,28 +38,27 @@ export function HomeView({ navigate }: HomeViewProps) {
             Graphic Designer
           </motion.p>
 
-          {/* "Portfolio" — the big artistic statement, Fraunces serif,
-              elegant + lighter than the heavy Anton. Title case, with the
-              accent-blue italic 'P' as the artistic initial flourish. */}
+          {/* "Portfolio" — Cormorant Garamond, thin elegant artistic serif.
+              The italic accent-blue 'P' initial is the artistic flourish. */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.05 }}
-            className="text-[clamp(3.5rem,13vw,11rem)] font-semibold leading-[0.88] tracking-[-0.03em] text-foreground"
-            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
+            className="display-heavy text-[clamp(3.5rem,13vw,11rem)] leading-[0.88] text-foreground"
           >
             <span className="italic font-normal text-[var(--accent)]">P</span>
             ortfolio
           </motion.h1>
 
-          {/* "Shadi Shafiee" — smaller, beneath, with the location + year tag */}
+          {/* "Shadi Shafiee" — Caveat handwriting script, smaller, beneath.
+              A personal, hand-made signature flourish. */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="mt-5 flex flex-wrap items-baseline gap-x-5 gap-y-2"
           >
-            <h2 className="display-text text-[clamp(1.8rem,4vw,3rem)] italic text-foreground/85">
+            <h2 className="display-script text-[clamp(2.2rem,5.5vw,4rem)] text-foreground/85">
               Shadi Shafiee
             </h2>
             <span className="inline-flex items-center gap-2 rounded-full border border-foreground/30 px-3 py-1 font-mono text-xs text-foreground/60">
@@ -74,10 +73,9 @@ export function HomeView({ navigate }: HomeViewProps) {
       </section>
 
       {/* ── DISCIPLINE INDEX ────────────────────────────────────────────
-          Numbered category rows, full-width, stacked one below the other
-          (like the very first output). Hairline borders, accent-tint hover
-          wash, cursor-following cover preview. No section heading — the
-          index speaks for itself. */}
+          Numbered category rows, full-width, stacked one below the other.
+          On hover: the discipline name + the arrow circle turn blue. No
+          section heading — the index speaks for itself. */}
       <section className="relative">
         <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
           <ul
@@ -108,25 +106,20 @@ export function HomeView({ navigate }: HomeViewProps) {
                     onBlur={() => setPreview({ src: null })}
                     className="relative flex w-full items-center gap-3 py-5 text-left outline-none transition-colors duration-300 sm:py-6"
                   >
-                    {/* hover wash — accent tint, soft */}
-                    <span
-                      aria-hidden
-                      className="absolute inset-0 -z-0 origin-left scale-x-0 bg-[var(--accent-tint)] opacity-0 transition-all duration-500 group-hover:scale-x-100 group-hover:opacity-100"
-                    />
                     {/* index */}
                     <span className="relative z-10 w-8 shrink-0 font-mono text-xs text-foreground/40 transition-colors duration-300 group-hover:text-[var(--accent)] sm:w-12 sm:text-sm">
                       {index}
                     </span>
-                    {/* name — title case, medium weight */}
+                    {/* name — turns blue on hover */}
                     <span className="relative z-10 min-w-0 flex-1">
-                      <span className="block text-balance text-[clamp(1.5rem,5vw,3rem)] font-semibold leading-[1] tracking-tight text-foreground transition-transform duration-500 group-hover:translate-x-1.5">
+                      <span className="block text-balance text-[clamp(1.5rem,5vw,3rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover:text-[var(--accent)] group-hover:translate-x-1.5">
                         {cat.name}
                       </span>
                       <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/40">
                         {cat.tagline}
                       </span>
                     </span>
-                    {/* arrow */}
+                    {/* arrow circle — turns blue on hover */}
                     <span className="relative z-10 flex shrink-0 items-center">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/60 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-white sm:h-11 sm:w-11">
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
@@ -157,61 +150,6 @@ export function HomeView({ navigate }: HomeViewProps) {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── ABOUT / CONTACT ───────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
-        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr] md:gap-16">
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease }}
-              className="mb-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground/50"
-            >
-              About
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease, delay: 0.05 }}
-              className="display-text text-balance text-[clamp(1.8rem,4.5vw,3rem)] leading-tight text-foreground"
-            >
-              Designing across print &amp; pixel,{" "}
-              <span className="italic text-[var(--accent)]">
-                from the first thumbnail to the final bleed.
-              </span>
-            </motion.h2>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease, delay: 0.1 }}
-            className="flex flex-col justify-between rounded-2xl border border-foreground/15 bg-card/80 p-7 backdrop-blur-sm sm:p-9"
-          >
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground/50">
-                Start a project
-              </p>
-              <p className="display-text mt-3 text-2xl italic text-foreground">
-                Have a brief in mind?
-              </p>
-            </div>
-            <div className="mt-8">
-              <a
-                href="mailto:hello@shadishafiee.com?subject=Project%20enquiry"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-[var(--accent)]"
-              >
-                hello@shadishafiee.com
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </a>
-            </div>
-          </motion.div>
         </div>
       </section>
     </>

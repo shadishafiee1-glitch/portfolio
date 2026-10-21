@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Fraunces } from "next/font/google";
+import { Geist, Geist_Mono, Cormorant_Garamond, Caveat } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -14,22 +14,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+// Cormorant Garamond — a refined, high-contrast display serif with thin,
+// elegant strokes. Used for the "Portfolio" hero word. More delicate and
+// artistic than Fraunces/Anton.
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
-// Fraunces — a modern artistic serif with high contrast and a lighter,
-// more elegant feel than the heavy Anton. Used for the "Portfolio" hero
-// word and the major display headlines. Variable axes (weight + softness)
-// give it a refined, designerly character.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Caveat — a flowing handwriting script for the "Shadi Shafiee" signature,
+// giving the hero a personal, hand-made artistic flourish.
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["400", "600", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -92,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${fraunces.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${caveat.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

@@ -8,8 +8,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
-  --font-display: var(--font-fraunces);
+  --font-serif: var(--font-cormorant);
+  --font-display: var(--font-cormorant);
+  --font-script: var(--font-caveat);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -139,8 +140,7 @@
   }
   body {
     @apply text-foreground;
-    /* NOTE: no background-color here — body::before paints the paper + blue
-       blobs so they read. Setting bg on body would cover the pseudo-element. */
+    background-color: var(--paper);
     position: relative;
     min-height: 100vh;
   }
@@ -167,79 +167,33 @@
 }
 
 /* ── Typography utilities ─────────────────────────────────────────────────
-   Fraunces — a modern artistic high-contrast serif — for the "Portfolio"
-   hero word and major display headlines. Lighter and more elegant than a
-   heavy grotesque; NOT forced uppercase. Instrument Serif italic remains
-   for editorial counterpoint. Body uses the clean Geist sans. */
+   Cormorant Garamond — a refined high-contrast display serif for the
+   "Portfolio" hero word and major display headlines. Thin, elegant,
+   artistic. NOT forced uppercase. Caveat handwriting script for the
+   "Shadi Shafiee" signature flourish. Body uses the clean Geist sans. */
 .display-heavy {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 0.92;
 }
 
 .display-text {
-  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   letter-spacing: -0.01em;
+}
+
+.display-script {
+  font-family: var(--font-caveat), "Segoe Script", cursive;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-/* ── Scattered soft-blue blobs + fine grain ──────────────────────────────
-   A fixed overlay layer so the blue actually reads over the paper.
-   Outside @layer base so it isn't stripped. z-index 0 with body content
-   raised above it. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-color: var(--paper);
-  background-image:
-    radial-gradient(
-      circle at 86% 4%,
-      rgba(0, 128, 255, 0.55) 0%,
-      rgba(0, 128, 255, 0.18) 20%,
-      transparent 46%
-    ),
-    radial-gradient(
-      circle at 6% 26%,
-      rgba(0, 128, 255, 0.40) 0%,
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 62% 64%,
-      rgba(0, 128, 255, 0.32) 0%,
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 16% 84%,
-      rgba(0, 128, 255, 0.42) 0%,
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 94% 92%,
-      rgba(0, 128, 255, 0.34) 0%,
-      transparent 28%
-    );
-  background-size: cover, cover, cover, cover, cover;
-  background-repeat: no-repeat;
-}
-/* Fine grain noise on top of the blobs (separate layer so blend works). */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-/* lift all real content above the texture overlay */
+/* lift all real content above any texture overlay */
 body > * {
   position: relative;
   z-index: 1;
