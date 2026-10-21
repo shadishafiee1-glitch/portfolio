@@ -70,7 +70,7 @@ export function GalleryProgress({ total, accent }: GalleryProgressProps) {
       ref={dotsRef}
     >
       <div className="inline-flex items-baseline gap-1 font-mono text-sm tabular-nums">
-        <span className="text-foreground" style={{ color: accent }}>
+        <span className="text-foreground" style={{ color: "var(--flame)" }}>
           {String(active + 1).padStart(2, "0")}
         </span>
         <span className="text-muted-foreground/60">/</span>

@@ -5,9 +5,8 @@ import { motion, useScroll, useSpring } from "framer-motion";
 /**
  * A thin reading-progress bar pinned to the top of the viewport.
  *
- * Uses framer-motion's scroll progress (0 → 1 over the whole document) smoothed
- * with a spring so it tracks the scroll position fluidly. Sits above the
- * header (z-[55]) and is pointer-events-none so it never intercepts clicks.
+ * Uses the flame accent (the portfolio's single color) over a black track so
+ * it reads as part of the bold 3-color system.
  */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -20,8 +19,10 @@ export function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 right-0 top-0 z-[55] h-[3px] origin-left bg-foreground/25 dark:bg-foreground/30"
+      className="pointer-events-none fixed left-0 right-0 top-0 z-[55] h-[3px] origin-left bg-foreground/15"
       style={{ scaleX }}
-    />
+    >
+      <div className="h-full w-full bg-[var(--flame)]" />
+    </motion.div>
   );
 }

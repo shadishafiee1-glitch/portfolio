@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Anton } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -19,6 +19,16 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
+});
+
+// Anton — a free Impact alternative, used for massive brutalist display
+// headlines across the portfolio (the bold typographic statement the brief
+// asked for). Heavy weight, tight tracking, uppercase by default.
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
 });
 
 // basePath is "" in dev, "/portfolio" in the static export (GitHub Pages).
@@ -80,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${anton.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

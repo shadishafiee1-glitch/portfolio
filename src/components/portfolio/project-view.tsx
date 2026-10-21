@@ -67,7 +67,7 @@ export function ProjectView({
       {/* Sticky back-to-category pill (fades in on long scrolls) */}
       <StickyBackNav
         label={cat.name}
-        accent={cat.accent}
+        accent="var(--flame)"
         onClick={() => navigate({ kind: "category", categorySlug: cat.slug })}
       />
 
@@ -88,7 +88,7 @@ export function ProjectView({
         <button
           onClick={() => navigate({ kind: "category", categorySlug: cat.slug })}
           className="font-medium text-foreground transition-colors hover:text-[color:var(--accent)]"
-          style={{ ["--accent" as string]: cat.accent }}
+          style={{ ["--accent" as string]: "var(--flame)" }}
         >
           {cat.name}
         </button>
@@ -97,13 +97,13 @@ export function ProjectView({
       </motion.div>
 
       {/* Header */}
-      <header className="mt-8 grid gap-8 border-b border-border/60 pb-10 md:grid-cols-[1.5fr_1fr]">
+      <header className="mt-8 grid gap-8 border-b-2 border-foreground pb-10 md:grid-cols-[1.5fr_1fr]">
         <div>
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="text-balance text-[clamp(2.2rem,7vw,4.8rem)] font-semibold leading-[0.96] tracking-[-0.03em]"
+            className="display-heavy text-balance text-[clamp(2.4rem,9vw,6rem)]"
           >
             {project.name}
           </motion.h1>
@@ -154,7 +154,7 @@ export function ProjectView({
             }`}
           />
           {/* Live gallery progress / scroll-spy (desktop only, multi-piece only) */}
-          <GalleryProgress total={project.media.length} accent={cat.accent} />
+          <GalleryProgress total={project.media.length} accent="var(--flame)" />
         </motion.dl>
       </header>
 
@@ -191,7 +191,7 @@ export function ProjectView({
                   src={m.path}
                   alt={m.name}
                   priority={i < 2}
-                  accent={cat.accent}
+                  accent="var(--flame)"
                   className="aspect-[16/10] w-full transition-transform duration-[900ms] ease-out group-hover:scale-[1.03] sm:aspect-[16/9]"
                   caption={String(i + 1).padStart(2, "0")}
                 />
@@ -204,7 +204,7 @@ export function ProjectView({
               <div className="flex items-center gap-3">
                 <span
                   className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
-                  style={{ color: cat.accent }}
+                  style={{ color: "var(--flame)" }}
                 >
                   View ↗
                 </span>
@@ -255,7 +255,7 @@ export function ProjectView({
             >
               <span
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 transition-all duration-300 group-hover:-translate-x-1 group-hover:border-[color:var(--accent)] group-hover:bg-[color:var(--accent)] group-hover:text-white"
-                style={{ ["--accent" as string]: cat.accent }}
+                style={{ ["--accent" as string]: "var(--flame)" }}
               >
                 <ChevronLeft className="h-4 w-4" />
               </span>
@@ -293,7 +293,7 @@ export function ProjectView({
               </span>
               <span
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 transition-all duration-300 group-hover:translate-x-1 group-hover:border-[color:var(--accent)] group-hover:bg-[color:var(--accent)] group-hover:text-white"
-                style={{ ["--accent" as string]: cat.accent }}
+                style={{ ["--accent" as string]: "var(--flame)" }}
               >
                 <ChevronRight className="h-4 w-4" />
               </span>
@@ -319,7 +319,7 @@ export function ProjectView({
         }
         onThumb={(i) => setLightbox(i)}
         media={project.media}
-        accent={cat.accent}
+        accent="var(--flame)"
       />
     </div>
   );
@@ -436,7 +436,7 @@ function Lightbox({
                     src={current.path}
                     alt={current.name}
                     priority
-                    accent={accent}
+                    accent="var(--flame)"
                     className="max-h-[82vh] max-w-[92vw] rounded-lg"
                     imgClassName="object-contain"
                   />
@@ -466,7 +466,7 @@ function Lightbox({
                   }}
                   aria-label="Next"
                   className="absolute right-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-white/90 transition-colors hover:bg-white/10 sm:right-6 sm:h-12 sm:w-12"
-                  style={{ color: accent }}
+                  style={{ color: "var(--flame)" }}
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>

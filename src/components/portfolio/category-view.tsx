@@ -79,14 +79,14 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
       </motion.button>
 
       {/* Heading */}
-      <header className="mt-8 border-b border-border/60 pb-10">
+      <header className="mt-8 border-b-2 border-foreground pb-10">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="max-w-2xl">
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
-              className="text-balance text-[clamp(2.4rem,8vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.03em]"
+              className="display-heavy text-balance text-[clamp(2.4rem,9vw,6rem)]"
             >
               {cat.name}
             </motion.h1>
@@ -99,23 +99,6 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
               {cat.description}
             </motion.p>
           </div>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.15 }}
-            className="flex shrink-0 flex-col items-end gap-1"
-          >
-            <span
-              className="display-text text-5xl leading-none"
-              style={{ color: cat.accent }}
-            >
-              {String(visibleProjects.length).padStart(2, "0")}
-            </span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              {visibleProjects.length === 1 ? "Project" : "Projects"}
-              {activeTag && " · filtered"}
-            </span>
-          </motion.div>
         </div>
       </header>
 
@@ -141,7 +124,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
               <FilterChip
                 key={t}
                 active={activeTag === t}
-                accent={cat.accent}
+                accent="var(--flame)"
                 onClick={() => setActiveTag((cur) => (cur === t ? null : t))}
               >
                 {t}
@@ -164,8 +147,8 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
 
           {/* View-mode toggle */}
           <div className="flex items-center gap-1 rounded-full border border-border/60 p-0.5" role="group" aria-label="View mode">
-            <ViewToggle mode="grid" active={viewMode === "grid"} onClick={() => setViewMode("grid")} accent={cat.accent} />
-            <ViewToggle mode="list" active={viewMode === "list"} onClick={() => setViewMode("list")} accent={cat.accent} />
+            <ViewToggle mode="grid" active={viewMode === "grid"} onClick={() => setViewMode("grid")} accent="var(--flame)" />
+            <ViewToggle mode="list" active={viewMode === "list"} onClick={() => setViewMode("list")} accent="var(--flame)" />
           </div>
         </motion.div>
       )}
@@ -217,7 +200,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
                   navigate({ kind: "project", categorySlug: cat.slug, projectSlug: project.slug })
                 }
                 className="flex w-full items-center gap-5 py-5 text-left transition-colors duration-300 sm:py-6"
-                style={{ ["--accent" as string]: cat.accent }}
+                style={{ ["--accent" as string]: "var(--flame)" }}
               >
                 {/* thumb */}
                 <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-md border border-border/60 sm:h-16 sm:w-24">
@@ -225,7 +208,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
                     <SmartImage
                       src={project.cover}
                       alt={project.name}
-                      accent={cat.accent}
+                      accent="var(--flame)"
                       className="absolute inset-0 h-full w-full"
                     />
                   )}
@@ -310,7 +293,7 @@ function ProjectCard({
           <SmartImage
             src={project.cover}
             alt={project.name}
-            accent={cat.accent}
+            accent="var(--flame)"
             className="absolute inset-0 h-full w-full transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
           />
         )}
@@ -325,7 +308,7 @@ function ProjectCard({
         </div>
         <span
           className="absolute left-3 top-3 h-2 w-2 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ backgroundColor: cat.accent }}
+          style={{ backgroundColor: "var(--flame)" }}
           aria-hidden
         />
       </div>

@@ -21,30 +21,20 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55"
+      className="sticky top-0 z-50 border-b-2 border-foreground bg-background/90 backdrop-blur-xl"
     >
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 sm:px-8">
-        {/* Wordmark */}
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:px-8">
+        {/* Wordmark — bold display */}
         <button
           type="button"
           onClick={() => navigate({ kind: "home" })}
-          className="group flex items-center gap-2.5 text-left"
+          className="display-heavy group flex items-center gap-2 text-left text-xl tracking-tight"
           aria-label="Back to home"
         >
-          <span
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background text-[13px] font-semibold tracking-tight transition-transform duration-300 group-hover:scale-105"
-            aria-hidden
-          >
+          <span className="flex h-7 w-7 items-center justify-center bg-foreground text-sm text-background transition-colors group-hover:bg-[var(--flame)]">
             S
           </span>
-          <span className="flex flex-col leading-none">
-            <span className="text-[15px] font-semibold tracking-tight">
-              Shadi Shafiee
-            </span>
-            <span className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Visual Designer
-            </span>
-          </span>
+          <span className="hidden sm:inline">SHAFIEE</span>
         </button>
 
         {/* Right cluster */}
@@ -54,11 +44,13 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
             type="button"
             onClick={onOpenSearch}
             aria-label="Search (press slash)"
-            className="group inline-flex h-9 items-center gap-2 rounded-full border border-border/70 pl-3 pr-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            className="group inline-flex h-9 items-center gap-2 border-2 border-foreground px-3 text-foreground transition-colors hover:bg-foreground hover:text-background"
           >
             <Search className="h-4 w-4" />
-            <span className="hidden text-[13px] sm:inline">Search</span>
-            <kbd className="hidden rounded border border-border/70 bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline">
+            <span className="hidden text-[11px] font-bold uppercase tracking-[0.14em] sm:inline">
+              Search
+            </span>
+            <kbd className="hidden rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline">
               /
             </kbd>
           </button>
@@ -66,10 +58,10 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
             type="button"
             onClick={() => navigate({ kind: "home" })}
             className={cn(
-              "hidden rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors lg:inline-flex",
+              "hidden border-2 border-foreground px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors lg:inline-block",
               onHome
-                ? "text-foreground"
-                : "text-muted-foreground hover:text-foreground",
+                ? "bg-foreground text-background"
+                : "bg-transparent text-foreground hover:bg-foreground hover:text-background",
             )}
           >
             Index
@@ -78,10 +70,10 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
             type="button"
             onClick={() => navigate({ kind: "about" })}
             className={cn(
-              "hidden rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors lg:inline-flex",
+              "hidden border-2 border-foreground px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors lg:inline-block",
               view.kind === "about"
-                ? "text-foreground"
-                : "text-muted-foreground hover:text-foreground",
+                ? "bg-foreground text-background"
+                : "bg-transparent text-foreground hover:bg-foreground hover:text-background",
             )}
           >
             About
@@ -91,7 +83,7 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub repository"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
+            className="inline-flex h-9 w-9 items-center justify-center border-2 border-foreground text-foreground transition-colors hover:bg-foreground hover:text-background"
           >
             <Github className="h-4 w-4" />
           </a>

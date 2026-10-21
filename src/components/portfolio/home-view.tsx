@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { CursorPreview } from "./cursor-preview";
-import { PORTFOLIO, TOTAL_CATEGORIES, TOTAL_PROJECTS } from "@/data/portfolio";
+import { PORTFOLIO } from "@/data/portfolio";
 import { useRovingList } from "@/hooks/use-roving-list";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 
@@ -17,133 +16,77 @@ interface HomeViewProps {
 export function HomeView({ navigate }: HomeViewProps) {
   const [preview, setPreview] = useState<{
     src: string | null;
-    accent: string;
-  }>({ src: null, accent: "#1a1714" });
+  }>({ src: null });
 
   const { containerRef, onKeyDown } = useRovingList(PORTFOLIO.length);
 
   return (
     <>
-      <CursorPreview src={preview.src} accent={preview.accent} />
+      <CursorPreview src={preview.src} />
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-[1400px] px-5 pb-16 pt-14 sm:px-8 sm:pt-20">
-          {/* eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
+      <section className="relative overflow-hidden border-b-2 border-foreground">
+        <div className="mx-auto max-w-[1400px] px-5 py-10 sm:px-8 sm:py-14">
+          {/* Name — massive bold display */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground"
+            className="display-heavy text-[clamp(4.5rem,17vw,15rem)] text-foreground"
           >
-            <span className="inline-flex items-center gap-2">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-600" />
-              </span>
-              Available for select projects · 2025
-            </span>
-            <span className="hidden text-border sm:inline">/</span>
-            <span className="hidden sm:inline">Tehran · Remote</span>
-          </motion.div>
-
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease, delay: 0.05 }}
-            className="mt-6 text-balance text-[clamp(2.9rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.03em]"
-          >
-            <span className="block">Shadi</span>
-            <span className="block">
-              <span className="display-text italic font-normal">Shafiee</span>
-              <span className="align-top text-[0.28em] font-medium tracking-[0.18em] text-muted-foreground">
-                {" "}
-                — designer
-              </span>
-            </span>
+            Shadi
+            <br />
+            Shafiee
           </motion.h1>
 
-          {/* Intro + stats */}
-          <div className="mt-10 grid gap-8 border-t border-border/60 pt-8 md:grid-cols-[1.4fr_1fr]">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease, delay: 0.18 }}
-              className="max-w-xl text-pretty text-base leading-relaxed text-foreground/85 sm:text-lg"
-            >
-              A visual designer working across{" "}
-              <span className="text-foreground">editorial, identity, print</span>{" "}
-              and digital painting. This is a living archive of selected work
-              across {TOTAL_CATEGORIES} disciplines — browse by craft below.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease, delay: 0.26 }}
-              className="flex flex-wrap gap-x-10 gap-y-4 md:justify-end"
-            >
-              <Stat value={String(TOTAL_CATEGORIES).padStart(2, "0")} label="Disciplines" />
-              <Stat value={String(TOTAL_PROJECTS).padStart(2, "0")} label="Projects" />
-              <Stat value="∞" label="Iterations" />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Marquee */}
-        <div className="marquee-pause relative border-y border-border/60 bg-foreground/[0.02] py-4">
-          <div className="flex w-max animate-marquee whitespace-nowrap will-change-transform">
-            {[0, 1].map((dup) => (
-              <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
-                {PORTFOLIO.map((c) => (
-                  <span key={`${dup}-${c.slug}`} className="flex items-center">
-                    <span className="display-text px-6 text-2xl italic text-foreground/85 sm:text-3xl">
-                      {c.name}
-                    </span>
-                    <span className="text-muted-foreground/50">✦</span>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
+          {/* role tag */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease, delay: 0.25 }}
+            className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-foreground/20 pt-4"
+          >
+            <span className="inline-flex items-center gap-2 bg-foreground px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-background">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--flame)]" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--flame)]" />
+              </span>
+              Visual Designer
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Tehran · Remote
+            </span>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── CATEGORY INDEX ────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-24">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-              (Selected Disciplines)
-            </p>
-            <h2 className="display-text mt-2 text-3xl sm:text-4xl">
-              Browse by craft
-            </h2>
-          </div>
-          <p className="hidden max-w-[18rem] text-right text-xs leading-relaxed text-muted-foreground sm:block">
-            Hover a discipline to preview · click to enter its archive
-            <br />
-            <span className="text-muted-foreground/70">
-              Keyboard: ↑ ↓ to move · Enter to open
-            </span>
-          </p>
-        </div>
+      {/* ── CONNECTED DISCIPLINE BLOCK ──────────────────────────────────
+          The disciplines flow as one connected typographic block — each name
+          bleeds into the next, separated only by a flame slash. Hovering a
+          name summons its cover beside the cursor. This is the index. */}
+      <section className="border-b-2 border-foreground">
+        <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-16">
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease, delay: 0.1 }}
+            className="mb-6 inline-block bg-[var(--flame)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-white"
+          >
+            Index — disciplines
+          </motion.p>
 
-        <ul
-          ref={containerRef}
-          className="border-t border-border/60"
-          role="list"
-        >
-          {PORTFOLIO.map((cat, i) => {
-            const index = String(i + 1).padStart(2, "0");
-            return (
-              <motion.li
+          <div
+            ref={containerRef as React.RefObject<HTMLDivElement>}
+            className="flex flex-wrap items-baseline gap-x-1 gap-y-2 sm:gap-y-1"
+            role="list"
+          >
+            {PORTFOLIO.map((cat, i) => (
+              <motion.div
                 key={cat.slug}
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease, delay: 0.05 * i }}
-                className="group relative border-b border-border/60"
+                transition={{ duration: 0.45, ease, delay: 0.05 * i }}
+                className="flex items-baseline"
               >
                 <button
                   type="button"
@@ -152,177 +95,101 @@ export function HomeView({ navigate }: HomeViewProps) {
                   onClick={() =>
                     navigate({ kind: "category", categorySlug: cat.slug })
                   }
-                  onMouseEnter={() =>
-                    setPreview({ src: cat.cover, accent: cat.accent })
-                  }
-                  onMouseLeave={() =>
-                    setPreview({ src: null, accent: cat.accent })
-                  }
-                  onFocus={() =>
-                    setPreview({ src: cat.cover, accent: cat.accent })
-                  }
-                  onBlur={() => setPreview({ src: null, accent: cat.accent })}
-                  className="relative flex w-full items-center gap-4 py-6 text-left outline-none transition-colors duration-300 focus-visible:z-10 focus-visible:shadow-[inset_0_0_0_2px_var(--accent)] sm:py-8"
-                  style={{ ["--accent" as string]: cat.accent }}
+                  onMouseEnter={() => setPreview({ src: cat.cover })}
+                  onMouseLeave={() => setPreview({ src: null })}
+                  onFocus={() => setPreview({ src: cat.cover })}
+                  onBlur={() => setPreview({ src: null })}
+                  className="display-heavy group inline-flex items-baseline text-[clamp(1.8rem,9vw,6rem)] leading-[0.92] text-foreground transition-colors duration-150 hover:text-[var(--flame)] focus-visible:text-[var(--flame)]"
+                  aria-label={`${cat.name} — ${cat.tagline}`}
                 >
-                  {/* hover wash */}
+                  {cat.name}
+                </button>
+                {/* flame slash separator — connects the disciplines */}
+                {i < PORTFOLIO.length - 1 && (
                   <span
                     aria-hidden
-                    className="absolute inset-0 -z-0 origin-left scale-x-0 opacity-0 transition-all duration-500 group-hover:scale-x-100 group-hover:opacity-100"
-                    style={{
-                      background: `linear-gradient(90deg, ${cat.accent}10, transparent 70%)`,
-                    }}
-                  />
-                  {/* index */}
-                  <span className="relative z-10 w-12 shrink-0 font-mono text-xs text-muted-foreground transition-colors duration-300 group-hover:text-[color:var(--accent)] sm:w-16 sm:text-sm">
-                    {index}
+                    className="display-heavy select-none px-1.5 text-[clamp(1.8rem,9vw,6rem)] leading-[0.92] text-[var(--flame)] sm:px-3"
+                  >
+                    /
                   </span>
-                  {/* name */}
-                  <span className="relative z-10 flex-1">
-                    <span className="block text-balance text-[clamp(1.8rem,6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.02em] transition-transform duration-500 group-hover:translate-x-1.5 sm:group-hover:translate-x-3">
-                      {cat.name}
-                    </span>
-                    <span className="mt-1.5 block text-[13px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                      {cat.tagline}
-                    </span>
-                  </span>
-                  {/* count + arrow */}
-                  <span className="relative z-10 flex shrink-0 items-center gap-4 sm:gap-6">
-                    <span className="hidden text-right text-xs text-muted-foreground sm:block">
-                      <span className="block font-mono text-base text-foreground/80">
-                        {String(cat.projectCount).padStart(2, "0")}
-                      </span>
-                      <span className="block">projects</span>
-                    </span>
-                    <span
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-border/70 text-foreground/70 transition-all duration-300 group-hover:scale-110 group-hover:border-[color:var(--accent)] group-hover:bg-[color:var(--accent)] group-hover:text-white sm:h-12 sm:w-12"
-                    >
-                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45 sm:h-5 sm:w-5" />
-                    </span>
-                  </span>
-                </button>
-              </motion.li>
-            );
-          })}
-        </ul>
-
-        {/* mobile hint */}
-        <p className="mt-6 text-center text-xs text-muted-foreground sm:hidden">
-          Tap a discipline to enter its archive
-        </p>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* ── ABOUT / CONTACT ──────────────────────────────────────────── */}
-      <section className="border-t border-border/60 bg-foreground/[0.015]">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 sm:py-28 md:grid-cols-[1.3fr_1fr] md:gap-16">
-          {/* Statement + bio */}
+      {/* ── MARQUEE STRIP ─────────────────────────────────────────────── */}
+      <section className="border-b-2 border-foreground bg-foreground text-background">
+        <div className="marquee-pause relative overflow-hidden py-4">
+          <div className="flex w-max animate-marquee whitespace-nowrap will-change-transform">
+            {[0, 1].map((dup) => (
+              <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
+                {PORTFOLIO.map((c) => (
+                  <span key={`${dup}-${c.slug}`} className="flex items-center">
+                    <span className="display-heavy px-6 text-2xl text-background sm:text-3xl">
+                      {c.name}
+                    </span>
+                    <span className="text-[var(--flame)]">✦</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ABOUT / CONTACT ───────────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr] md:gap-16">
           <div>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, ease }}
-              className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground"
+              className="mb-6 inline-block bg-[var(--flame)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-white"
             >
-              (About)
+              About
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, ease, delay: 0.05 }}
-              className="display-text mt-4 text-balance text-[clamp(1.8rem,4.5vw,3.2rem)] leading-[1.05]"
+              className="display-heavy text-balance text-[clamp(2.2rem,6vw,4.5rem)]"
             >
-              Designing across print &amp; pixel —{" "}
-              <span className="italic text-muted-foreground">
-                from the first thumbnail to the final bleed.
-              </span>
+              Designing across print &amp; pixel.
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease, delay: 0.12 }}
-              className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-foreground/80"
-            >
-              I&apos;m Shadi Shafiee, a visual designer working at the
-              intersection of editorial, identity and digital painting. This
-              archive collects selected work across {TOTAL_CATEGORIES}{" "}
-              disciplines — an evolving record of how each project moves from
-              rough sketch to finished craft.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease, delay: 0.18 }}
-              className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground"
-            >
-              <span className="inline-flex items-center gap-2">
-                <MapPin className="h-4 w-4" /> Tehran · Remote
-              </span>
-              <span className="text-border">/</span>
-              <span className="inline-flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600" />
-                </span>
-                Available for select projects
-              </span>
-            </motion.div>
           </div>
 
-          {/* Contact card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease, delay: 0.1 }}
-            className="flex flex-col justify-between rounded-2xl border border-border/60 bg-card p-7 sm:p-9"
+            className="flex flex-col justify-between border-2 border-foreground bg-card p-7 sm:p-9"
           >
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-muted-foreground">
                 Start a project
               </p>
-              <p className="display-text mt-3 text-2xl">
+              <p className="display-text mt-3 text-2xl italic">
                 Have a brief in mind?
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Editorial layouts, identity systems, social campaigns or a
-                canvas commission — tell me about it.
               </p>
             </div>
             <div className="mt-8">
               <a
                 href="mailto:hello@shadishafiee.com?subject=Project%20enquiry"
-                className="group inline-flex w-full items-center justify-between gap-3 rounded-full bg-foreground px-5 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.01]"
+                className="group inline-flex w-full items-center justify-center gap-2 bg-foreground px-5 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-background transition-colors hover:bg-[var(--flame)] hover:text-white"
               >
-                <span className="inline-flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  hello@shadishafiee.com
-                </span>
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+                hello@shadishafiee.com
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
-              <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70">
-                Replies within 48 hours
-              </p>
             </div>
           </motion.div>
         </div>
       </section>
     </>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex flex-col">
-      <span className="display-text text-4xl leading-none text-foreground">
-        {value}
-      </span>
-      <span className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-        {label}
-      </span>
-    </div>
   );
 }

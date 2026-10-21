@@ -92,7 +92,7 @@ export function RelatedProjects({
               navigate({ kind: "project", categorySlug: cat.slug, projectSlug: p.slug })
             }
             className="group text-left"
-            style={{ ["--accent" as string]: cat.accent }}
+            style={{ ["--accent" as string]: "var(--flame)" }}
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border/60">
               {p.cover && (
@@ -112,7 +112,7 @@ export function RelatedProjects({
               {/* discipline tag */}
               <span
                 className="absolute bottom-2 left-2 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white"
-                style={{ backgroundColor: `${cat.accent}cc` }}
+                style={{ backgroundColor: "var(--flame)" }}
               >
                 {cat.name}
               </span>

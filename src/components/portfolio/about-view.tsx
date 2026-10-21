@@ -53,7 +53,7 @@ export function AboutView({ navigate }: AboutViewProps) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.05 }}
-            className="mt-4 text-balance text-[clamp(2.6rem,7vw,5rem)] font-semibold leading-[0.95] tracking-[-0.03em]"
+            className="display-heavy mt-4 text-balance text-[clamp(2.6rem,9vw,7rem)]"
           >
             Shadi <span className="display-text italic font-normal">Shafiee</span>
           </motion.h1>

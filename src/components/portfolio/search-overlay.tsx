@@ -233,7 +233,7 @@ export function SearchOverlay({ open, onClose, navigate, recent }: SearchOverlay
                         {/* discipline pill */}
                         <span
                           className="hidden shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white sm:inline-flex"
-                          style={{ backgroundColor: `${entry.category.accent}cc` }}
+                          style={{ backgroundColor: "var(--flame)" }}
                         >
                           <Hash className="h-2.5 w-2.5" />
                           {entry.category.name}
@@ -337,7 +337,7 @@ function RecentRail({
               </div>
               <span
                 className="hidden shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white sm:inline-block"
-                style={{ backgroundColor: `${category.accent}cc` }}
+                style={{ backgroundColor: "var(--flame)" }}
               >
                 {category.name}
               </span>

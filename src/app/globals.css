@@ -9,6 +9,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-instrument-serif);
+  --font-display: var(--font-anton);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -44,81 +45,94 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ── Warm editorial palette ───────────────────────────────────────────────
-   A cream/paper light theme and a deep warm-charcoal dark theme.
-   Deliberately avoids cool blues/indigos in favour of ink, bone & clay. */
+/* ── Bold 3-color palette: void black, electric tangerine, cool white ────
+   Deliberately limited to THREE colors. Black is the structural spine,
+   orange is the single accent (hover/active/CTA), white is the paper.
+   No per-category rainbow — every surface uses only these three. */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.972 0.008 75);       /* warm paper / bone */
-  --foreground: oklch(0.22 0.012 50);        /* warm near-black ink */
-  --card: oklch(0.985 0.006 75);
-  --card-foreground: oklch(0.22 0.012 50);
-  --popover: oklch(0.985 0.006 75);
-  --popover-foreground: oklch(0.22 0.012 50);
-  --primary: oklch(0.22 0.012 50);
-  --primary-foreground: oklch(0.972 0.008 75);
-  --secondary: oklch(0.94 0.008 70);
-  --secondary-foreground: oklch(0.28 0.012 50);
-  --muted: oklch(0.94 0.008 70);
-  --muted-foreground: oklch(0.48 0.012 55);
-  --accent: oklch(0.9 0.02 70);
-  --accent-foreground: oklch(0.22 0.012 50);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.89 0.008 70);
-  --input: oklch(0.89 0.008 70);
-  --ring: oklch(0.48 0.012 55);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.006 75);
-  --sidebar-foreground: oklch(0.22 0.012 50);
-  --sidebar-primary: oklch(0.22 0.012 50);
-  --sidebar-primary-foreground: oklch(0.972 0.008 75);
-  --sidebar-accent: oklch(0.94 0.008 70);
-  --sidebar-accent-foreground: oklch(0.22 0.012 50);
-  --sidebar-border: oklch(0.89 0.008 70);
-  --sidebar-ring: oklch(0.48 0.012 55);
+  --ink: #0D0D0D;            /* void black — primary */
+  --flame: #FF6B35;          /* electric tangerine — accent */
+  --paper: #F4F4F9;          /* cool arctic white — background */
+  --radius: 0.5rem;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #FFFFFF;
+  --card-foreground: var(--ink);
+  --popover: #FFFFFF;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: #E8E8EF;
+  --secondary-foreground: var(--ink);
+  --muted: #E8E8EF;
+  --muted-foreground: #6B6B72;
+  --accent: var(--flame);
+  --accent-foreground: #FFFFFF;
+  --destructive: #C0392B;
+  --border: #0D0D0D;
+  --input: #0D0D0D;
+  --ring: var(--flame);
+  --chart-1: var(--flame);
+  --chart-2: var(--ink);
+  --chart-3: var(--paper);
+  --chart-4: var(--flame);
+  --chart-5: var(--ink);
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--flame);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: var(--ink);
+  --sidebar-ring: var(--flame);
 }
 
 .dark {
-  --background: oklch(0.165 0.008 55);       /* deep warm charcoal */
-  --foreground: oklch(0.955 0.006 75);
-  --card: oklch(0.21 0.008 55);
-  --card-foreground: oklch(0.955 0.006 75);
-  --popover: oklch(0.21 0.008 55);
-  --popover-foreground: oklch(0.955 0.006 75);
-  --primary: oklch(0.955 0.006 75);
-  --primary-foreground: oklch(0.165 0.008 55);
-  --secondary: oklch(0.27 0.008 55);
-  --secondary-foreground: oklch(0.955 0.006 75);
-  --muted: oklch(0.27 0.008 55);
-  --muted-foreground: oklch(0.7 0.008 60);
-  --accent: oklch(0.3 0.008 55);
-  --accent-foreground: oklch(0.955 0.006 75);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.6 0.008 60);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.008 55);
-  --sidebar-foreground: oklch(0.955 0.006 75);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.955 0.006 75);
-  --sidebar-accent: oklch(0.27 0.008 55);
-  --sidebar-accent-foreground: oklch(0.955 0.006 75);
-  --sidebar-border: oklch(1 0 0 / 9%);
-  --sidebar-ring: oklch(0.6 0.008 60);
+  --ink: #0D0D0D;
+  --flame: #FF6B35;
+  --paper: #F4F4F9;
+
+  --background: var(--ink);
+  --foreground: var(--paper);
+  --card: #1A1A1A;
+  --card-foreground: var(--paper);
+  --popover: #1A1A1A;
+  --popover-foreground: var(--paper);
+  --primary: var(--paper);
+  --primary-foreground: var(--ink);
+  --secondary: #2A2A2A;
+  --secondary-foreground: var(--paper);
+  --muted: #2A2A2A;
+  --muted-foreground: #9A9AA2;
+  --accent: var(--flame);
+  --accent-foreground: #FFFFFF;
+  --destructive: #E74C3C;
+  --border: var(--paper);
+  --input: var(--paper);
+  --ring: var(--flame);
+  --chart-1: var(--flame);
+  --chart-2: var(--paper);
+  --chart-3: var(--ink);
+  --chart-4: var(--flame);
+  --chart-5: var(--paper);
+  --sidebar: #1A1A1A;
+  --sidebar-foreground: var(--paper);
+  --sidebar-primary: var(--flame);
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: var(--flame);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: var(--paper);
+  --sidebar-ring: var(--flame);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    overflow-x: hidden;
   }
   html {
     -webkit-font-smoothing: antialiased;
@@ -126,11 +140,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "ss01", "cv11";
   }
   ::selection {
-    background: oklch(0.22 0.012 50 / 0.85);
-    color: oklch(0.972 0.008 75);
+    background: var(--flame);
+    color: #FFFFFF;
   }
 }
 
@@ -143,18 +156,26 @@
   background: transparent;
 }
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: oklch(0.6 0.012 55 / 0.35);
-  border-radius: 999px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
+  background: var(--ink);
+  border-radius: 0;
+  border: 3px solid var(--paper);
 }
-.custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.4 0.012 55 / 0.6);
-  background-clip: padding-box;
-  border: 3px solid transparent;
+.dark .custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--paper);
+  border-color: var(--ink);
 }
 
-/* ── Editorial display utilities ────────────────────────────────────────── */
+/* ── Bold display typography ─────────────────────────────────────────────
+   Anton (a free Impact-alternative) for massive brutalist headlines;
+   Instrument Serif italic for editorial counterpoint. */
+.display-heavy {
+  font-family: var(--font-display), "Anton", "Impact", var(--font-sans), sans-serif;
+  font-weight: 400; /* Anton is already heavy */
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 0.88;
+}
+
 .display-text {
   font-family: var(--font-serif), Georgia, serif;
   letter-spacing: -0.02em;
@@ -172,7 +193,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.05;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -183,19 +204,18 @@
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 32s linear infinite;
+  animation: marquee 38s linear infinite;
 }
 .marquee-pause:hover .animate-marquee {
   animation-play-state: paused;
 }
 
-/* ── Slow float for ambient hero accents ───────────────────────────────── */
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(1.5deg); }
+@keyframes marquee-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
-.animate-float-slow {
-  animation: float-slow 9s ease-in-out infinite;
+.animate-marquee-rev {
+  animation: marquee-rev 38s linear infinite;
 }
 
 @keyframes shimmer {
@@ -203,30 +223,13 @@
   100% { background-position: 200% 0; }
 }
 
-/* Hide native cursor on interactive areas that drive a custom preview */
-.cursor-none-interactive,
-.cursor-none-interactive * {
-  cursor: none;
-}
-
-/* ── Global focus-visible ring ────────────────────────────────────────────
-   A consistent, accessible focus indicator for keyboard users across the
-   site. Uses the foreground colour so it reads on both light & dark themes. */
+/* ── Global focus-visible ring ──────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--foreground);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-button:focus-visible,
-a:focus-visible,
-[role="button"]:focus-visible {
+  outline: 2px solid var(--flame);
   outline-offset: 3px;
 }
 
-/* ── Reduced motion ──────────────────────────────────────────────────────
-   Respect the OS-level "reduce motion" preference: disable the marquee,
-   float, shimmer, and ping animations, and shorten/disable framer-motion
-   transitions globally via the `motion-reduce` variant. */
+/* ── Reduced motion ────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -237,14 +240,12 @@ a:focus-visible,
     scroll-behavior: auto !important;
   }
   .animate-marquee,
-  .animate-float-slow {
+  .animate-marquee-rev {
     animation: none !important;
   }
 }
 
-/* ── Print ────────────────────────────────────────────────────────────────
-   A clean print stylesheet so the portfolio prints sensibly (project grids
-   collapse to a single column, fixed bars & overlays are hidden). */
+/* ── Print ──────────────────────────────────────────────────────────────── */
 @media print {
   header,
   footer,
@@ -261,3 +262,8 @@ a:focus-visible,
   }
 }
 
+/* Hide native cursor on interactive areas that drive a custom preview */
+.cursor-none-interactive,
+.cursor-none-interactive * {
+  cursor: none;
+}

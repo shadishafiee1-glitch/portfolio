@@ -7,18 +7,19 @@ import { SmartImage } from "./smart-image";
 interface CursorPreviewProps {
   /** Cover path (relative to public/) to show, or null to hide. */
   src: string | null;
-  /** Accent color used for the thin frame glow. */
-  accent?: string;
 }
 
 /**
  * A floating image that trails the cursor with spring physics.
  *
- * This is the signature interaction of the home index — hovering a category
- * row summons its cover next to the pointer. Disabled on touch / coarse
+ * This is the signature interaction of the home index — hovering a discipline
+ * name summons its cover beside the pointer. Disabled on touch / coarse
  * pointers where there is no hover.
+ *
+ * Uses the portfolio's single accent (flame orange) for the frame — there is
+ * no per-category accent anymore (3-color palette only).
  */
-export function CursorPreview({ src, accent = "#1a1714" }: CursorPreviewProps) {
+export function CursorPreview({ src }: CursorPreviewProps) {
   const x = useMotionValue(-1000);
   const y = useMotionValue(-1000);
   const springX = useSpring(x, { stiffness: 350, damping: 32, mass: 0.6 });
@@ -53,21 +54,19 @@ export function CursorPreview({ src, accent = "#1a1714" }: CursorPreviewProps) {
             animate={{ opacity: 1, scale: 1, y: 0, rotate: -2 }}
             exit={{ opacity: 0, scale: 0.9, y: 8 }}
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
-            className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-md border bg-card shadow-2xl"
-            style={{
-              boxShadow: `0 30px 60px -20px rgba(0,0,0,0.45), 0 0 0 1px ${accent}22`,
-            }}
+            className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden border-2 border-foreground bg-card shadow-2xl"
           >
             <SmartImage
               src={src}
               alt=""
-              accent={accent}
+              accent="var(--flame)"
               className="h-full w-full border-0"
               imgClassName="object-cover"
             />
             <div
-              className="pointer-events-none absolute inset-0 ring-1 ring-inset"
-              style={{ boxShadow: `inset 0 0 0 2px ${accent}30` }}
+              className="pointer-events-none absolute inset-0"
+              style={{ boxShadow: "inset 0 0 0 3px var(--flame)" }}
+              aria-hidden
             />
           </motion.div>
         ) : null}
