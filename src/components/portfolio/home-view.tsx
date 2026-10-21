@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { CursorPreview } from "./cursor-preview";
 import { PORTFOLIO } from "@/data/portfolio";
@@ -60,62 +61,94 @@ export function HomeView({ navigate }: HomeViewProps) {
         </div>
       </section>
 
-      {/* ── CONNECTED DISCIPLINE BLOCK ──────────────────────────────────
-          The disciplines flow as one connected typographic block — each name
-          bleeds into the next, separated only by a flame slash. Hovering a
-          name summons its cover beside the cursor. This is the index. */}
+      {/* ── DISCIPLINE INDEX ─────────────────────────────────────────────
+          Numbered category rows with a hover wash + cursor-following cover
+          preview. Laid out as a 2-column grid on desktop so disciplines sit
+          adjacent (Magazine next to Design, Catalog next to Logo, …) rather
+          than as separated full-width rows. The original editorial shape,
+          restored — just packed back-to-back as requested. */}
       <section className="border-b-2 border-foreground">
         <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-16">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease, delay: 0.1 }}
-            className="mb-6 inline-block bg-[var(--flame)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-white"
+            className="mb-8 flex items-end justify-between gap-4"
           >
-            Index — disciplines
-          </motion.p>
+            <div>
+              <p className="inline-block bg-[var(--flame)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-white">
+                Selected disciplines
+              </p>
+              <h2 className="display-heavy mt-3 text-2xl sm:text-3xl">
+                Browse by craft
+              </h2>
+            </div>
+            <p className="hidden max-w-[16rem] text-right text-xs leading-relaxed text-muted-foreground sm:block">
+              Hover a discipline to preview · click to enter its archive
+              <br />
+              <span className="text-muted-foreground/70">
+                Keyboard: ↑ ↓ to move · Enter to open
+              </span>
+            </p>
+          </motion.div>
 
-          <div
-            ref={containerRef as React.RefObject<HTMLDivElement>}
-            className="flex flex-wrap items-baseline gap-x-1 gap-y-2 sm:gap-y-1"
+          <ul
+            ref={containerRef}
+            className="grid grid-cols-1 border-t-2 border-foreground sm:grid-cols-2"
             role="list"
           >
-            {PORTFOLIO.map((cat, i) => (
-              <motion.div
-                key={cat.slug}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, ease, delay: 0.05 * i }}
-                className="flex items-baseline"
-              >
-                <button
-                  type="button"
-                  data-roving-item
-                  onKeyDown={(e) => onKeyDown(e, i)}
-                  onClick={() =>
-                    navigate({ kind: "category", categorySlug: cat.slug })
-                  }
-                  onMouseEnter={() => setPreview({ src: cat.cover })}
-                  onMouseLeave={() => setPreview({ src: null })}
-                  onFocus={() => setPreview({ src: cat.cover })}
-                  onBlur={() => setPreview({ src: null })}
-                  className="display-heavy group inline-flex items-baseline text-[clamp(1.8rem,9vw,6rem)] leading-[0.92] text-foreground transition-colors duration-150 hover:text-[var(--flame)] focus-visible:text-[var(--flame)]"
-                  aria-label={`${cat.name} — ${cat.tagline}`}
+            {PORTFOLIO.map((cat, i) => {
+              const index = String(i + 1).padStart(2, "0");
+              return (
+                <motion.li
+                  key={cat.slug}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease, delay: 0.05 * i }}
+                  className="group relative border-b-2 border-foreground sm:[&:nth-child(odd)]:border-r-2"
                 >
-                  {cat.name}
-                </button>
-                {/* flame slash separator — connects the disciplines */}
-                {i < PORTFOLIO.length - 1 && (
-                  <span
-                    aria-hidden
-                    className="display-heavy select-none px-1.5 text-[clamp(1.8rem,9vw,6rem)] leading-[0.92] text-[var(--flame)] sm:px-3"
+                  <button
+                    type="button"
+                    data-roving-item
+                    onKeyDown={(e) => onKeyDown(e, i)}
+                    onClick={() =>
+                      navigate({ kind: "category", categorySlug: cat.slug })
+                    }
+                    onMouseEnter={() => setPreview({ src: cat.cover })}
+                    onMouseLeave={() => setPreview({ src: null })}
+                    onFocus={() => setPreview({ src: cat.cover })}
+                    onBlur={() => setPreview({ src: null })}
+                    className="relative flex w-full items-center gap-3 py-5 text-left outline-none transition-colors duration-300 focus-visible:z-10 focus-visible:bg-foreground focus-visible:text-background sm:py-7"
                   >
-                    /
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
+                    {/* hover wash */}
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 -z-0 origin-left scale-x-0 bg-foreground opacity-0 transition-all duration-500 group-hover:scale-x-100 group-hover:opacity-[0.04]"
+                    />
+                    {/* index */}
+                    <span className="relative z-10 w-10 shrink-0 font-mono text-xs text-muted-foreground transition-colors duration-300 group-hover:text-[var(--flame)] sm:w-12 sm:text-sm">
+                      {index}
+                    </span>
+                    {/* name */}
+                    <span className="relative z-10 min-w-0 flex-1">
+                      <span className="display-heavy block text-balance text-[clamp(1.5rem,4.5vw,2.6rem)] leading-[0.92] transition-transform duration-500 group-hover:translate-x-1.5">
+                        {cat.name}
+                      </span>
+                      <span className="mt-1.5 block text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                        {cat.tagline}
+                      </span>
+                    </span>
+                    {/* arrow */}
+                    <span className="relative z-10 flex shrink-0 items-center gap-3">
+                      <span className="flex h-9 w-9 items-center justify-center border-2 border-foreground text-foreground transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--flame)] group-hover:border-[var(--flame)] group-hover:text-white sm:h-11 sm:w-11">
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
+                      </span>
+                    </span>
+                  </button>
+                </motion.li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
