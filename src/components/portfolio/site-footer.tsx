@@ -17,23 +17,20 @@ const SOCIAL = [
   { label: "Behance", href: "#" },
 ];
 
-export function SiteFooter({ totalCategories: _tc, totalProjects: _tp }: SiteFooterProps) {
+export function SiteFooter({
+  totalCategories: _tc,
+  totalProjects: _tp,
+}: SiteFooterProps) {
   return (
-    <footer className="mt-auto border-t-2 border-foreground bg-background">
-      {/* Big wordmark strip */}
-      <div className="border-b-2 border-foreground/20 bg-foreground py-6 text-background">
-        <p className="display-heavy mx-auto max-w-[1400px] px-5 text-center text-[clamp(2rem,8vw,5rem)] sm:px-8">
-          Let&apos;s make something
-        </p>
-      </div>
-
-      <div className="mx-auto max-w-[1400px] px-5 py-10 sm:px-8">
+    <footer className="mt-auto border-t border-foreground/15 bg-background/50">
+      <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr]">
           {/* Identity */}
           <div>
-            <p className="display-heavy text-3xl">SHADI</p>
-            <p className="display-heavy -mt-1 text-3xl text-[var(--flame)]">SHAFIEE</p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            <p className="display-text text-2xl italic text-foreground">
+              Shadi Shafiee
+            </p>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-foreground/55">
               A working archive of editorial, identity, print and digital
               painting projects.
             </p>
@@ -41,7 +38,7 @@ export function SiteFooter({ totalCategories: _tc, totalProjects: _tp }: SiteFoo
 
           {/* Social / contact */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground/45">
               Elsewhere
             </p>
             <ul className="mt-4 space-y-2.5">
@@ -51,11 +48,13 @@ export function SiteFooter({ totalCategories: _tc, totalProjects: _tp }: SiteFoo
                     href={s.href}
                     target={s.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-[var(--flame)]"
+                    className="group inline-flex items-center gap-2 text-sm font-medium text-foreground/75 transition-colors hover:text-[var(--accent)]"
                   >
-                    <span className="h-1.5 w-1.5 bg-[var(--flame)] transition-transform group-hover:scale-150" />
+                    <span className="h-1 w-1 rounded-full bg-foreground/30 transition-colors group-hover:bg-[var(--accent)]" />
                     {s.label}
-                    <span className="opacity-0 transition-opacity group-hover:opacity-100">↗</span>
+                    <span className="opacity-0 transition-opacity group-hover:opacity-100">
+                      ↗
+                    </span>
                   </a>
                 </li>
               ))}
@@ -64,19 +63,19 @@ export function SiteFooter({ totalCategories: _tc, totalProjects: _tp }: SiteFoo
 
           {/* Back to top */}
           <div className="flex flex-col items-start gap-4 sm:items-end">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground/45">
               Colophon
             </p>
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group inline-flex items-center gap-2 border-2 border-foreground px-4 py-2 text-sm font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background"
+              className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 px-4 py-2 text-xs font-medium transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               <ArrowUp className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5" />
-              Top
+              Back to top
             </button>
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} · Next.js
+            <p className="text-xs text-foreground/40">
+              © {new Date().getFullYear()} · Built with Next.js
             </p>
           </div>
         </div>
