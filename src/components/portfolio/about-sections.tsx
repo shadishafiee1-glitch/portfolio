@@ -224,16 +224,25 @@ function Section({
 }) {
   return (
     <section className="mt-16 border-b border-foreground/15 pb-12">
-      <motion.div
+      <motion.h3
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease }}
-        className="mb-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground/50"
+        className="display-heavy mb-7 inline-block text-[clamp(1.6rem,4vw,2.6rem)] text-foreground"
       >
-        {icon}
-        {title}
-      </motion.div>
+        <span className="inline-flex items-baseline gap-2.5">
+          <span className="inline-flex translate-y-[-0.15em] text-[var(--accent)]">
+            {icon}
+          </span>
+          {title}
+        </span>
+        {/* blue underline bar — sits directly beneath the title text only */}
+        <span
+          className="mt-2 block h-1.5 w-16 rounded-full bg-[var(--accent)]"
+          aria-hidden
+        />
+      </motion.h3>
       {children}
     </section>
   );
