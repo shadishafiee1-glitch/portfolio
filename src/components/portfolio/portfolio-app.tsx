@@ -67,7 +67,7 @@ export function PortfolioApp() {
   }, [view, record]);
 
   return (
-    <div className="grain flex min-h-screen flex-col bg-background">
+    <div className="grain flex min-h-screen flex-col">
       <ScrollProgress />
       <SiteHeader
         view={view}

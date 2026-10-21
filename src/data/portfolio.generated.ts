@@ -9,13 +9,34 @@ import type { Category } from "@/lib/types";
 export const PORTFOLIO: Category[] = [
   {
     "slug": "magazine",
-    "name": "Magazine",
-    "tagline": "Editorial & Layout",
-    "description": "Editorial design and magazine spreads — typography, rhythm and the choreography of print pages.",
-    "accent": "#b45309",
-    "cover": "resources/magazine/cover-story/01-cover.png",
-    "projectCount": 2,
+    "name": "Magazine Design",
+    "tagline": "Editorial · Layout · Brand",
+    "description": "Editorial design, magazine spreads and brand explorations — typography, rhythm, identity and the choreography of print pages.",
+    "accent": "#0080FF",
+    "cover": "resources/magazine/brand-explorations/01-sheet.png",
+    "projectCount": 4,
     "projects": [
+      {
+        "slug": "brand-explorations",
+        "name": "Brand Explorations",
+        "description": "An identity exploration sheet — logo lockups, palette swatches and typographic voice tested across a small system.",
+        "year": "2024",
+        "client": "Studio Practice",
+        "tags": [
+          "identity",
+          "branding",
+          "layout"
+        ],
+        "cover": "resources/magazine/brand-explorations/01-sheet.png",
+        "media": [
+          {
+            "path": "resources/magazine/brand-explorations/01-sheet.png",
+            "name": "01-sheet",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
       {
         "slug": "cover-story",
         "name": "Cover Story",
@@ -32,6 +53,27 @@ export const PORTFOLIO: Category[] = [
           {
             "path": "resources/magazine/cover-story/01-cover.png",
             "name": "01-cover",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
+      {
+        "slug": "design-featured",
+        "name": "Graphic Studies",
+        "description": "Brand and layout explorations — grids, wordmarks and composition studies across a small identity system.",
+        "year": "2024",
+        "client": "Studio Practice",
+        "tags": [
+          "identity",
+          "layout",
+          "branding"
+        ],
+        "cover": "resources/magazine/design-featured/design.png",
+        "media": [
+          {
+            "path": "resources/magazine/design-featured/design.png",
+            "name": "design",
             "type": "image",
             "ext": ".png"
           }
@@ -59,59 +101,6 @@ export const PORTFOLIO: Category[] = [
           {
             "path": "resources/magazine/featured/02-spread-detail.png",
             "name": "02-spread-detail",
-            "type": "image",
-            "ext": ".png"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "design",
-    "name": "Design",
-    "tagline": "Graphic & Brand",
-    "description": "Graphic design explorations across identity, layout and composition — the craft of visual communication.",
-    "accent": "#0f766e",
-    "cover": "resources/design/brand-explorations/01-sheet.png",
-    "projectCount": 2,
-    "projects": [
-      {
-        "slug": "brand-explorations",
-        "name": "Brand Explorations",
-        "description": "An identity exploration sheet — logo lockups, palette swatches and typographic voice tested across a small system.",
-        "year": "2024",
-        "client": "Studio Practice",
-        "tags": [
-          "identity",
-          "branding",
-          "layout"
-        ],
-        "cover": "resources/design/brand-explorations/01-sheet.png",
-        "media": [
-          {
-            "path": "resources/design/brand-explorations/01-sheet.png",
-            "name": "01-sheet",
-            "type": "image",
-            "ext": ".png"
-          }
-        ]
-      },
-      {
-        "slug": "featured",
-        "name": "Graphic Studies",
-        "description": "Brand and layout explorations — grids, wordmarks and composition studies across a small identity system.",
-        "year": "2024",
-        "client": "Studio Practice",
-        "tags": [
-          "identity",
-          "layout",
-          "branding"
-        ],
-        "cover": "resources/design/featured/design.png",
-        "media": [
-          {
-            "path": "resources/design/featured/design.png",
-            "name": "design",
             "type": "image",
             "ext": ".png"
           }
@@ -440,4 +429,4 @@ export const PORTFOLIO: Category[] = [
 ] as Category[];
 
 export const TOTAL_PROJECTS = 16;
-export const TOTAL_CATEGORIES = 8;
+export const TOTAL_CATEGORIES = 7;

@@ -29,19 +29,11 @@ export interface CategoryConfig {
 export const CATEGORIES: CategoryConfig[] = [
   {
     slug: "magazine",
-    name: "Magazine",
-    tagline: "Editorial & Layout",
+    name: "Magazine Design",
+    tagline: "Editorial · Layout · Brand",
     description:
-      "Editorial design and magazine spreads — typography, rhythm and the choreography of print pages.",
-    accent: "#b45309",
-  },
-  {
-    slug: "design",
-    name: "Design",
-    tagline: "Graphic & Brand",
-    description:
-      "Graphic design explorations across identity, layout and composition — the craft of visual communication.",
-    accent: "#0f766e",
+      "Editorial design, magazine spreads and brand explorations — typography, rhythm, identity and the choreography of print pages.",
+    accent: "#0080FF",
   },
   {
     slug: "catalog-brochure",

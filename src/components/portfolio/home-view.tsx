@@ -38,20 +38,21 @@ export function HomeView({ navigate }: HomeViewProps) {
             Graphic Designer
           </motion.p>
 
-          {/* "Portfolio" — the big bold statement, title-case, mixed type */}
+          {/* "Portfolio" — the big artistic statement, Fraunces serif,
+              elegant + lighter than the heavy Anton. Title case, with the
+              accent-blue italic 'P' as the artistic initial flourish. */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.05 }}
-            className="text-[clamp(4rem,15vw,13rem)] font-black leading-[0.85] tracking-[-0.03em] text-foreground"
+            className="text-[clamp(3.5rem,13vw,11rem)] font-semibold leading-[0.88] tracking-[-0.03em] text-foreground"
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
-            <span className="display-text italic font-normal text-[var(--accent)]">
-              P
-            </span>
+            <span className="italic font-normal text-[var(--accent)]">P</span>
             ortfolio
           </motion.h1>
 
-          {/* "Shadi Shafiee" — smaller, beneath, with the year tag */}
+          {/* "Shadi Shafiee" — smaller, beneath, with the location + year tag */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,41 +67,22 @@ export function HomeView({ navigate }: HomeViewProps) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)]/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
               </span>
-              Tehran · 2025
+              Tehran, Mashhad · 2026
             </span>
           </motion.div>
         </div>
       </section>
 
       {/* ── DISCIPLINE INDEX ────────────────────────────────────────────
-          Numbered category rows in a 2-column grid so disciplines sit
-          adjacent (Magazine next to Design). Lightened: thin hairline
-          borders instead of heavy black, no fills — feels editorial, not
-          brutalist. Hover washes in the accent tint. */}
+          Numbered category rows, full-width, stacked one below the other
+          (like the very first output). Hairline borders, accent-tint hover
+          wash, cursor-following cover preview. No section heading — the
+          index speaks for itself. */}
       <section className="relative">
         <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease, delay: 0.1 }}
-            className="mb-8 flex items-end justify-between gap-4"
-          >
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground/50">
-                Selected disciplines
-              </p>
-              <h2 className="display-text mt-2 text-2xl text-foreground sm:text-3xl">
-                Browse by craft
-              </h2>
-            </div>
-            <p className="hidden max-w-[16rem] text-right text-xs leading-relaxed text-foreground/45 sm:block">
-              Hover a discipline to preview · click to enter its archive
-            </p>
-          </motion.div>
-
           <ul
             ref={containerRef}
-            className="grid grid-cols-1 border-t border-foreground/15 sm:grid-cols-2"
+            className="border-t border-foreground/15"
             role="list"
           >
             {PORTFOLIO.map((cat, i) => {
@@ -111,7 +93,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease, delay: 0.04 * i }}
-                  className="group relative border-b border-foreground/15 sm:[&:nth-child(odd)]:border-r"
+                  className="group relative border-b border-foreground/15"
                 >
                   <button
                     type="button"
@@ -132,12 +114,12 @@ export function HomeView({ navigate }: HomeViewProps) {
                       className="absolute inset-0 -z-0 origin-left scale-x-0 bg-[var(--accent-tint)] opacity-0 transition-all duration-500 group-hover:scale-x-100 group-hover:opacity-100"
                     />
                     {/* index */}
-                    <span className="relative z-10 w-8 shrink-0 font-mono text-xs text-foreground/40 transition-colors duration-300 group-hover:text-[var(--accent)] sm:w-10">
+                    <span className="relative z-10 w-8 shrink-0 font-mono text-xs text-foreground/40 transition-colors duration-300 group-hover:text-[var(--accent)] sm:w-12 sm:text-sm">
                       {index}
                     </span>
-                    {/* name — title case, medium weight, not huge */}
+                    {/* name — title case, medium weight */}
                     <span className="relative z-10 min-w-0 flex-1">
-                      <span className="block text-balance text-[clamp(1.3rem,3.5vw,2rem)] font-semibold leading-[1] tracking-tight text-foreground transition-transform duration-500 group-hover:translate-x-1">
+                      <span className="block text-balance text-[clamp(1.5rem,5vw,3rem)] font-semibold leading-[1] tracking-tight text-foreground transition-transform duration-500 group-hover:translate-x-1.5">
                         {cat.name}
                       </span>
                       <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/40">
@@ -146,7 +128,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                     </span>
                     {/* arrow */}
                     <span className="relative z-10 flex shrink-0 items-center">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/60 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-white">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/60 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-white sm:h-11 sm:w-11">
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
                       </span>
                     </span>

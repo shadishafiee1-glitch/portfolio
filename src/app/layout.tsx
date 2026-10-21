@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Anton } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -21,13 +21,15 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-// Anton — a free Impact alternative, used for massive brutalist display
-// headlines across the portfolio (the bold typographic statement the brief
-// asked for). Heavy weight, tight tracking, uppercase by default.
-const anton = Anton({
-  variable: "--font-anton",
+// Fraunces — a modern artistic serif with high contrast and a lighter,
+// more elegant feel than the heavy Anton. Used for the "Portfolio" hero
+// word and the major display headlines. Variable axes (weight + softness)
+// give it a refined, designerly character.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600", "900"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -90,7 +92,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${anton.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${fraunces.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
