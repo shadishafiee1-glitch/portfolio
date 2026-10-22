@@ -239,6 +239,17 @@ body > * {
   animation-play-state: paused;
 }
 
+@keyframes marquee-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee-rev {
+  animation: marquee-rev 38s linear infinite;
+}
+.marquee-pause:hover .animate-marquee-rev {
+  animation-play-state: paused;
+}
+
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }

@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CursorPreview } from "./cursor-preview";
 import { AboutSections } from "./about-sections";
+import { WorksShowcase } from "./works-showcase";
 import { PORTFOLIO } from "@/data/portfolio";
 import { useRovingList } from "@/hooks/use-roving-list";
 import type { NavigateFn } from "@/hooks/use-hash-route";
@@ -15,12 +16,27 @@ interface HomeViewProps {
   navigate: NavigateFn;
 }
 
+/** Read ?showcase=a|b|c from the URL so each option is previewable live.
+ *  Defaults to "a" on both server + first client render (no hydration
+ *  mismatch), then syncs to the param after mount. */
+function useShowcaseOption(): "a" | "b" | "c" {
+  const [opt, setOpt] = useState<"a" | "b" | "c">("a");
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const v = new URLSearchParams(window.location.search).get("showcase");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (v === "b" || v === "c") setOpt(v);
+  }, []);
+  return opt;
+}
+
 export function HomeView({ navigate }: HomeViewProps) {
   const [preview, setPreview] = useState<{ src: string | null }>({
     src: null,
   });
 
   const { containerRef, onKeyDown } = useRovingList(PORTFOLIO.length);
+  const opt = useShowcaseOption();
 
   return (
     <>
@@ -77,7 +93,13 @@ export function HomeView({ navigate }: HomeViewProps) {
           Numbered category rows, full-width, stacked one below the other.
           On hover: the discipline name + the arrow circle turn blue. No
           section heading — the index speaks for itself. */}
-      <section className="relative">
+      {/* ── WORKS SHOWCASE (previewable: ?showcase=a|b|c) ─────────────────
+          A rich, image-forward showcase above the discipline index. Pick
+          a layout via the `showcase` query param: a = mosaic, b = marquee,
+          c = editorial cards. Default is the mosaic (a). */}
+      <WorksShowcase a={opt === "a"} b={opt === "b"} c={opt === "c"} navigate={navigate} />
+
+      <section id="discipline-index" className="relative scroll-mt-20">
         <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
           <ul
             ref={containerRef}
