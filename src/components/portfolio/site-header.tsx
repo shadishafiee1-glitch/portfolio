@@ -21,13 +21,16 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-50 relative border-b border-foreground/10 backdrop-blur-xl"
+      className="sticky top-0 z-50 relative border-b border-white/20"
       style={{
-        /* Cool gradient header: a soft diagonal blend from the accent blue
-           tint into the paper, so the bar feels airy and luminous rather
-           than a flat strip. Translucent so page content still reads through. */
+        /* Sticky glass header: strong backdrop blur + saturation so scrolling
+           content frosts through clearly. Translucent blue-tinted fill (not
+           opaque) so the blur is visible. */
         background:
-          "linear-gradient(115deg, rgba(0,128,255,0.18) 0%, rgba(0,128,255,0.06) 28%, rgba(244,245,247,0.85) 60%, rgba(244,245,247,0.90) 100%)",
+          "linear-gradient(115deg, rgba(0,128,255,0.22) 0%, rgba(0,128,255,0.10) 30%, rgba(244,245,247,0.55) 65%, rgba(244,245,247,0.60) 100%)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.4)",
       }}
     >
       <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:px-8">
