@@ -101,10 +101,35 @@ export function HomeView({ navigate }: HomeViewProps) {
 
       <section id="discipline-index" className="relative scroll-mt-20">
         <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
+          {/* Section header title — separates this block from the showcase above */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease }}
+            className="mb-8 flex flex-wrap items-end justify-between gap-4 border-t border-foreground/15 pt-8"
+          >
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                Disciplines
+              </p>
+              <h2 className="display-heavy mt-2 text-[clamp(1.8rem,5vw,3rem)] text-foreground">
+                Browse by craft
+              </h2>
+            </div>
+            <p className="hidden max-w-[16rem] text-right text-xs leading-relaxed text-foreground/45 sm:block">
+              Hover a discipline to preview · click to enter its archive
+            </p>
+          </motion.div>
+
+          {/* The list: hovering a row adds `is-hovering` to the parent, which
+              dims + blurs ALL rows. The hovered row itself opts back to full
+              opacity + crisp via the `is-active` class. */}
           <ul
             ref={containerRef}
-            className="border-t border-foreground/15"
+            className="discipline-list border-t border-foreground/15"
             role="list"
+            data-discipline-list
           >
             {PORTFOLIO.map((cat, i) => {
               const index = String(i + 1).padStart(2, "0");
@@ -114,7 +139,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease, delay: 0.04 * i }}
-                  className="group relative border-b border-foreground/15"
+                  className="discipline-row group/row relative border-b border-foreground/15 transition-all duration-300"
                 >
                   <button
                     type="button"
@@ -123,19 +148,29 @@ export function HomeView({ navigate }: HomeViewProps) {
                     onClick={() =>
                       navigate({ kind: "category", categorySlug: cat.slug })
                     }
-                    onMouseEnter={() => setPreview({ src: cat.cover })}
-                    onMouseLeave={() => setPreview({ src: null })}
+                    onMouseEnter={(e) => {
+                      setPreview({ src: cat.cover });
+                      const list = e.currentTarget.closest("[data-discipline-list]");
+                      list?.classList.add("is-hovering");
+                      e.currentTarget.closest(".discipline-row")?.classList.add("is-active");
+                    }}
+                    onMouseLeave={(e) => {
+                      setPreview({ src: null });
+                      const list = e.currentTarget.closest("[data-discipline-list]");
+                      list?.classList.remove("is-hovering");
+                      e.currentTarget.closest(".discipline-row")?.classList.remove("is-active");
+                    }}
                     onFocus={() => setPreview({ src: cat.cover })}
                     onBlur={() => setPreview({ src: null })}
                     className="relative flex w-full items-center gap-3 py-5 text-left outline-none transition-colors duration-300 sm:py-6"
                   >
                     {/* index */}
-                    <span className="relative z-10 w-8 shrink-0 font-sans text-xs text-foreground/40 transition-colors duration-300 group-hover:text-[var(--accent)] sm:w-12 sm:text-sm">
+                    <span className="relative z-10 w-8 shrink-0 font-sans text-xs text-foreground/40 transition-colors duration-300 group-hover/row:text-[var(--accent)] sm:w-12 sm:text-sm">
                       {index}
                     </span>
                     {/* name — turns blue on hover */}
                     <span className="relative z-10 min-w-0 flex-1">
-                      <span className="block text-balance text-[clamp(1.3rem,4vw,2.4rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover:text-[var(--accent)] group-hover:translate-x-1.5">
+                      <span className="block text-balance text-[clamp(1.3rem,4vw,2.4rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover/row:text-[var(--accent)] group-hover/row:translate-x-1.5">
                         {cat.name}
                       </span>
                       <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/40">
@@ -144,8 +179,8 @@ export function HomeView({ navigate }: HomeViewProps) {
                     </span>
                     {/* arrow circle — always blue */}
                     <span className="relative z-10 flex shrink-0 items-center">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)] text-white transition-all duration-300 group-hover:scale-110 sm:h-11 sm:w-11">
-                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)] text-white transition-all duration-300 group-hover/row:scale-110 sm:h-11 sm:w-11">
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/row:rotate-45" />
                       </span>
                     </span>
                   </button>
