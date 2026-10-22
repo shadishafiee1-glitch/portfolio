@@ -17,7 +17,7 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
   const onHome = view.kind === "home";
 
   return (
-    <div className="sticky top-0 z-50 w-full px-3 pt-3 sm:px-5 sm:pt-4">
+    <div className="fixed top-0 left-0 right-0 z-50 w-full px-3 pt-3 sm:px-5 sm:pt-4">
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

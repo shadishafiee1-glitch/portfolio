@@ -75,7 +75,7 @@ export function PortfolioApp() {
         onOpenSearch={() => setSearchOpen(true)}
       />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-[72px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={viewKey(view)}
