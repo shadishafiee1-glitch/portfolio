@@ -122,14 +122,12 @@ export function HomeView({ navigate }: HomeViewProps) {
             </p>
           </motion.div>
 
-          {/* The list: hovering a row adds `is-hovering` to the parent, which
-              dims + blurs ALL rows. The hovered row itself opts back to full
-              opacity + crisp via the `is-active` class. */}
+          {/* The numbered discipline list — hover a row to preview its cover
+              (cursor preview) + turn the name blue. No dim/blur of siblings. */}
           <ul
             ref={containerRef}
-            className="discipline-list border-t border-foreground/15"
+            className="border-t border-foreground/15"
             role="list"
-            data-discipline-list
           >
             {PORTFOLIO.map((cat, i) => {
               const index = String(i + 1).padStart(2, "0");
@@ -139,7 +137,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease, delay: 0.04 * i }}
-                  className="discipline-row group/row relative border-b border-foreground/15 transition-all duration-300"
+                  className="group/row relative border-b border-foreground/15"
                 >
                   <button
                     type="button"
@@ -148,18 +146,8 @@ export function HomeView({ navigate }: HomeViewProps) {
                     onClick={() =>
                       navigate({ kind: "category", categorySlug: cat.slug })
                     }
-                    onMouseEnter={(e) => {
-                      setPreview({ src: cat.cover });
-                      const list = e.currentTarget.closest("[data-discipline-list]");
-                      list?.classList.add("is-hovering");
-                      e.currentTarget.closest(".discipline-row")?.classList.add("is-active");
-                    }}
-                    onMouseLeave={(e) => {
-                      setPreview({ src: null });
-                      const list = e.currentTarget.closest("[data-discipline-list]");
-                      list?.classList.remove("is-hovering");
-                      e.currentTarget.closest(".discipline-row")?.classList.remove("is-active");
-                    }}
+                    onMouseEnter={() => setPreview({ src: cat.cover })}
+                    onMouseLeave={() => setPreview({ src: null })}
                     onFocus={() => setPreview({ src: cat.cover })}
                     onBlur={() => setPreview({ src: null })}
                     className="relative flex w-full items-center gap-3 py-5 text-left outline-none transition-colors duration-300 sm:py-6"

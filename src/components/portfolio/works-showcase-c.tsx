@@ -4,20 +4,22 @@ import { motion } from "framer-motion";
 import { ArrowRight, Plus } from "lucide-react";
 import { PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
-import type { NavigateFn } from "@/hooks/use-hash-route";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Option C — "Editorial Cards"
+ * Option C — "Editorial Cards Vitrin"
  * Big, magazine-style cards — one per category — each showing its cover +
- * project count + a preview stack. A bold heading and a single CTA sit
- * above. Clicking a card enters that discipline.
+ * project count. A pure display vitrin — NOT clickable. A bold heading and
+ * a single CTA sit above.
  *
  * Vibe: curated, spacious, editorial — fewer-but-bigger images, each a
  * chapter cover.
  */
-export function WorksShowcaseC({ navigate }: { navigate: NavigateFn }) {
+export function WorksShowcaseC() {
+  // limit to 6 categories for the vitrin
+  const cats = PORTFOLIO.slice(0, 6);
+
   return (
     <section className="border-t border-foreground/15">
       <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
@@ -36,29 +38,23 @@ export function WorksShowcaseC({ navigate }: { navigate: NavigateFn }) {
               Disciplines &amp; projects
             </h2>
           </div>
-          <button
-            type="button"
-            onClick={() =>
-              document
-                .getElementById("discipline-index")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+          <a
+            href="#discipline-index"
             className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-[var(--accent)]"
           >
             Explore all work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          </a>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {PORTFOLIO.map((cat, i) => (
-            <motion.button
+          {cats.map((cat, i) => (
+            <motion.div
               key={cat.slug}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, ease, delay: 0.05 * Math.min(i, 6) }}
-              onClick={() => navigate({ kind: "category", categorySlug: cat.slug })}
               className="group relative flex flex-col overflow-hidden rounded-2xl text-left ring-1 ring-foreground/10"
             >
               {/* cover image */}
@@ -90,7 +86,7 @@ export function WorksShowcaseC({ navigate }: { navigate: NavigateFn }) {
                   <Plus className="h-4 w-4" />
                 </span>
               </div>
-            </motion.button>
+            </motion.div>
           ))}
         </div>
       </div>

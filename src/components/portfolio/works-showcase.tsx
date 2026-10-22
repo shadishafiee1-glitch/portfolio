@@ -8,20 +8,21 @@ import { WorksShowcaseC } from "./works-showcase-c";
 /**
  * Wrapper that renders one of the three works-showcase options based on
  * which boolean is true. Lets the home view switch layouts via a query
- * param (?showcase=a|b|c) for previewing.
+ * param (?showcase=a|b|c) for previewing. The showcase is now a pure
+ * display vitrin (non-clickable), so navigate is only used by B/C if they
+ * still wire clicks — kept for backward compat.
  */
 export function WorksShowcase({
   a,
   b,
   c,
-  navigate,
 }: {
   a: boolean;
   b: boolean;
   c: boolean;
   navigate: NavigateFn;
 }) {
-  if (b) return <WorksShowcaseB navigate={navigate} />;
-  if (c) return <WorksShowcaseC navigate={navigate} />;
-  return <WorksShowcaseA navigate={navigate} />;
+  if (b) return <WorksShowcaseB />;
+  if (c) return <WorksShowcaseC />;
+  return <WorksShowcaseA />;
 }

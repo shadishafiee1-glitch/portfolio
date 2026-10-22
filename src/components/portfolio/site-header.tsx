@@ -17,23 +17,24 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
   const onHome = view.kind === "home";
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-50 relative border-b border-white/20"
-      style={{
-        /* Sticky glass header: strong backdrop blur + saturation so scrolling
-           content frosts through clearly. Translucent blue-tinted fill (not
-           opaque) so the blur is visible. */
-        background:
-          "linear-gradient(115deg, rgba(0,128,255,0.22) 0%, rgba(0,128,255,0.10) 30%, rgba(244,245,247,0.55) 65%, rgba(244,245,247,0.60) 100%)",
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
-        boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.4)",
-      }}
-    >
-      <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:px-8">
+    <div className="sticky top-0 z-50 w-full px-3 pt-3 sm:px-5 sm:pt-4">
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mx-auto flex h-14 max-w-[1100px] items-center justify-between rounded-2xl border border-white/30 px-4 sm:px-6"
+        style={{
+          /* Floating island glass: strong backdrop blur + saturation so
+             scrolling content frosts through clearly. Translucent blue-tinted
+             fill (not opaque) + a soft drop shadow lifts it off the page. */
+          background:
+            "linear-gradient(115deg, rgba(0,128,255,0.20) 0%, rgba(0,128,255,0.08) 30%, rgba(244,245,247,0.60) 65%, rgba(244,245,247,0.65) 100%)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          boxShadow:
+            "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 8px 30px -8px rgba(0,0,0,0.18)",
+        }}
+      >
         {/* Wordmark — small, clean */}
         <button
           type="button"
@@ -98,16 +99,7 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
           </a>
           <ThemeToggle />
         </nav>
-      </div>
-      {/* gradient accent line at the bottom edge of the header */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, rgba(0,128,255,0.0) 8%, rgba(0,128,255,0.55) 50%, rgba(0,128,255,0.0) 92%, transparent 100%)",
-        }}
-      />
-    </motion.header>
+      </motion.header>
+    </div>
   );
 }

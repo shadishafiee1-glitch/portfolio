@@ -4,32 +4,31 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
-import type { NavigateFn } from "@/hooks/use-hash-route";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Option A — "Mosaic Gallery"
- * A dense, asymmetric mosaic of many project covers (varying sizes) with a
- * bold heading + a single "View all work" CTA. Clicking any tile navigates to
- * that project; the CTA scrolls to the numbered discipline index below.
+ * Option A — "Mosaic Vitrin"
+ * A pure display mosaic of a curated set of project covers (6 tiles, varying
+ * sizes) — NOT clickable, just a visual vitrin. A bold heading + a single
+ * "View all work" CTA scrolls down to the numbered discipline index where
+ * the actual navigation lives.
  *
  * Vibe: gallery wall, image-rich, modern editorial.
  */
-export function WorksShowcaseA({ navigate }: { navigate: NavigateFn }) {
-  // flatten all projects into a tile list, carry category for navigation
-  const tiles = PORTFOLIO.flatMap((cat) =>
+export function WorksShowcaseA() {
+  // flatten all projects, then pick a curated 6 for the vitrin
+  const all = PORTFOLIO.flatMap((cat) =>
     cat.projects.map((p) => ({ cat, project: p })),
   );
+  const tiles = all.slice(0, 6);
 
   // a hand-picked size pattern for visual rhythm (spans the 4-col grid)
   const spans = [
     "sm:col-span-2 sm:row-span-2", // big
-    "", "", "",
+    "", "",
     "sm:col-span-2", // wide
     "", "",
-    "sm:row-span-2", // tall
-    "", "", "", "", "",
   ];
 
   return (
@@ -50,35 +49,23 @@ export function WorksShowcaseA({ navigate }: { navigate: NavigateFn }) {
               A look at the work
             </h2>
           </div>
-          <button
-            type="button"
-            onClick={() =>
-              document
-                .getElementById("discipline-index")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+          <a
+            href="#discipline-index"
             className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-[var(--accent)]"
           >
             View all work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          </a>
         </motion.div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {tiles.map((t, i) => (
-            <motion.button
+            <motion.div
               key={`${t.cat.slug}/${t.project.slug}`}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease, delay: 0.03 * Math.min(i, 10) }}
-              onClick={() =>
-                navigate({
-                  kind: "project",
-                  categorySlug: t.cat.slug,
-                  projectSlug: t.project.slug,
-                })
-              }
+              transition={{ duration: 0.5, ease, delay: 0.03 * i }}
               className={`group relative overflow-hidden rounded-2xl ring-1 ring-foreground/10 ${
                 spans[i % spans.length]
               }`}
@@ -91,7 +78,7 @@ export function WorksShowcaseA({ navigate }: { navigate: NavigateFn }) {
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               )}
-              {/* gradient + label on hover */}
+              {/* gradient + label on hover (display-only, not clickable) */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-white/70">
@@ -101,7 +88,7 @@ export function WorksShowcaseA({ navigate }: { navigate: NavigateFn }) {
                   {t.project.name}
                 </p>
               </div>
-            </motion.button>
+            </motion.div>
           ))}
         </div>
       </div>

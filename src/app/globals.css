@@ -216,25 +216,6 @@ body > * {
   z-index: 1;
 }
 
-/* ── Discipline list hover dim/blur ────────────────────────────────────────
-   When hovering any row, the parent list gets `.is-hovering` and every row
-   dims + blurs (glassy) EXCEPT the active row (`.is-active`), which stays
-   crisp. This gives the "focus one, frost the rest" effect the brief asked
-   for — you can clearly see where you're hovering. `!important` is needed
-   on opacity because framer-motion sets an inline opacity on the <li>. */
-.discipline-list.is-hovering .discipline-row {
-  opacity: 0.35 !important;
-  filter: blur(1.5px);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-}
-.discipline-list.is-hovering .discipline-row.is-active {
-  opacity: 1 !important;
-  filter: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
 /* Soft grain overlay for sections that should feel printed (optional) */
 .grain::after {
   content: "";
