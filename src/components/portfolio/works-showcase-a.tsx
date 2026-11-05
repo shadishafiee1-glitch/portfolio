@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+
 import { PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
 
@@ -9,19 +9,19 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
  * Option A — "Mosaic Vitrin"
- * A pure display mosaic of a curated set of project covers (6 tiles, varying
- * sizes) — NOT clickable, just a visual vitrin. A bold heading + a single
- * "View all work" CTA scrolls down to the numbered discipline index where
+ * A pure display mosaic of a curated set of project covers (7 tiles, varying
+ * sizes) — display-only, with a wide final tile filling the bottom row.
+ * The numbered discipline index below the mosaic is where
  * the actual navigation lives.
  *
  * Vibe: gallery wall, image-rich, modern editorial.
  */
 export function WorksShowcaseA() {
-  // flatten all projects, then pick a curated 6 for the vitrin
+  // flatten all projects, then pick a curated 7 for the vitrin
   const all = PORTFOLIO.flatMap((cat) =>
     cat.projects.map((p) => ({ cat, project: p })),
   );
-  const tiles = all.slice(0, 6);
+  const tiles = all.filter((tile) => tile.project.cover).slice(0, 7);
 
   // a hand-picked size pattern for visual rhythm (spans the 4-col grid)
   const spans = [
@@ -29,34 +29,13 @@ export function WorksShowcaseA() {
     "", "",
     "sm:col-span-2", // wide
     "", "",
+    "col-span-2", // fill the final wide space with another project cover
   ];
 
   return (
     <section className="border-t border-foreground/15">
       <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease }}
-          className="mb-8 flex flex-wrap items-end justify-between gap-4"
-        >
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-              Selected work
-            </p>
-            <h2 className="display-heavy mt-2 text-[clamp(2rem,5vw,3.5rem)] text-foreground">
-              A look at the work
-            </h2>
-          </div>
-          <a
-            href="#discipline-index"
-            className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-[var(--accent)]"
-          >
-            View all work
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
-        </motion.div>
+        <h2 className="sr-only">Selected work</h2>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {tiles.map((t, i) => (

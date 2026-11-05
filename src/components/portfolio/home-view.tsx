@@ -17,10 +17,10 @@ interface HomeViewProps {
 }
 
 /** Read ?showcase=a|b|c from the URL so each option is previewable live.
- *  Defaults to "a" on both server + first client render (no hydration
+ *  Defaults to "b" on both server + first client render (no hydration
  *  mismatch), then syncs to the param after mount. */
 function useShowcaseOption(): "a" | "b" | "c" {
-  const [opt, setOpt] = useState<"a" | "b" | "c">("a");
+  const [opt, setOpt] = useState<"a" | "b" | "c">("b");
   useEffect(() => {
     if (typeof window === "undefined") return;
     const v = new URLSearchParams(window.location.search).get("showcase");
@@ -50,9 +50,9 @@ export function HomeView({ navigate }: HomeViewProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
-            className="mb-4 text-sm font-medium tracking-wide text-foreground/60"
+            className="mb-1 text-lg font-medium tracking-wide text-foreground/60 sm:text-xl"
           >
-            Graphic Designer
+            Graphic Design
           </motion.p>
 
           {/* "Portfolio" — Cormorant Garamond, thin elegant artistic serif.
@@ -64,7 +64,9 @@ export function HomeView({ navigate }: HomeViewProps) {
             className="display-heavy text-[clamp(3.5rem,13vw,11rem)] leading-[0.88] text-foreground"
           >
             <span className="italic font-normal text-[var(--accent)]">P</span>
-            ortfolio
+            ortfolio<span className="relative top-[0.4em] z-10 -ml-[1.08em] inline-block -rotate-6 align-middle bg-[var(--accent)] px-[0.35em] py-[0.12em] font-sans text-[0.14em] font-light leading-none tracking-tight text-white shadow-sm sm:text-[0.17em]">
+              2026
+            </span>
           </motion.h1>
 
           {/* "Shadi Shafiee" — Caveat handwriting script, smaller, beneath.
@@ -73,17 +75,17 @@ export function HomeView({ navigate }: HomeViewProps) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.2 }}
-            className="mt-5 flex flex-wrap items-baseline gap-x-5 gap-y-2"
+            className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2"
           >
             <h2 className="display-script text-[clamp(2.2rem,5.5vw,4rem)] text-foreground/85">
               Shadi Shafiee
             </h2>
-            <span className="inline-flex items-center gap-2 rounded-full border border-foreground/30 px-3 py-1 font-sans text-xs text-foreground/60">
+            <span className="relative top-1 inline-flex items-center gap-2 rounded-full border border-foreground/30 px-3 py-1 font-sans text-xs text-foreground/60">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)]/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
               </span>
-              Tehran, Mashhad · 2026
+              Tehran, Mashhad
             </span>
           </motion.div>
         </div>
@@ -96,31 +98,12 @@ export function HomeView({ navigate }: HomeViewProps) {
       {/* ── WORKS SHOWCASE (previewable: ?showcase=a|b|c) ─────────────────
           A rich, image-forward showcase above the discipline index. Pick
           a layout via the `showcase` query param: a = mosaic, b = marquee,
-          c = editorial cards. Default is the mosaic (a). */}
+          c = editorial cards. Default is the moving ribbons (b). */}
       <WorksShowcase a={opt === "a"} b={opt === "b"} c={opt === "c"} navigate={navigate} />
 
       <section id="discipline-index" className="relative scroll-mt-20">
         <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
-          {/* Section header title — separates this block from the showcase above */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease }}
-            className="mb-8 flex flex-wrap items-end justify-between gap-4 border-t border-foreground/15 pt-8"
-          >
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-                Disciplines
-              </p>
-              <h2 className="display-heavy mt-2 text-[clamp(1.8rem,5vw,3rem)] text-foreground">
-                Browse by craft
-              </h2>
-            </div>
-            <p className="hidden max-w-[16rem] text-right text-xs leading-relaxed text-foreground/45 sm:block">
-              Hover a discipline to preview · click to enter its archive
-            </p>
-          </motion.div>
+          <h2 className="display-heavy mb-7 inline-block text-[clamp(2.2rem,5vw,3.5rem)] text-foreground">Selected Works<span aria-hidden="true" className="mt-3 block h-2 w-24 rounded-full bg-[var(--accent)]" /></h2>
 
           {/* The numbered discipline list — hover a row to preview its cover
               (cursor preview) + turn the name blue. No dim/blur of siblings. */}

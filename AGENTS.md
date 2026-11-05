@@ -448,3 +448,46 @@ currently point at the same commit.
 ### 2026-11-05 — Fix glass backdrop rendering
 - Rendered the fixed header through a body portal, outside the page compositing context; retained original gradient and dimensions. Removed entrance animation from the glass surface.
 - Hide header while search is open to preserve overlay interaction. Verified title overlap visually: underlying lettering is blurred only within the glass.
+
+### 2026-11-05 — Header alignment and category heading cleanup
+- Matched glass outer edges to the 1400px content container inner edges (20px mobile / 32px desktop gutters, 1336px maximum surface width).
+- Removed the visible Disciplines / Browse by craft heading and hover instructions; retained an accessible section heading.
+
+### 2026-11-05 — Hero role and year sticker
+- Changed hero eyebrow to Graphic Design and increased it to 18px / 20px.
+- Added a slightly rotated 2026 sticker at the end of Portfolio using the site's accent blue and responsive sizing.
+
+### 2026-11-05 — Hero spacing refinement
+- Reduced eyebrow bottom spacing to 4px and made the year sticker smaller with a negative margin to overlap the final o.
+
+### 2026-11-05 — Year sticker adjustment
+- Slightly reduced the year sticker and shifted it further left; removed the year from the location badge.
+
+### 2026-11-05 — Smaller, lower year sticker
+- Reduced the year sticker size and lowered it slightly while maintaining overlap with the final o.
+
+### 2026-11-05 — Hero and mosaic cleanup
+- Slightly reduced/lowered the year sticker and vertically centered the location badge with the signature.
+- Removed the visible showcase heading and CTA. Added a seventh project cover spanning the two empty cells at the bottom of the mosaic.
+
+### 2026-11-05 — Moving image ribbons
+- Switched the default showcase to three non-clickable, continuously looping image rows with alternating directions and different speeds.
+- Preserved shared page gutters, removed showcase headings/buttons, and matched group spacing for seamless loops. Motion pauses on hover and respects reduced-motion preferences.
+
+### 2026-11-05 — Work Categories heading
+- Added a visible accent-blue Work Categories heading above the category list, below the image ribbons.
+
+### 2026-11-05 — Match category heading to About style
+- Matched Work Categories typography and short rounded blue underline to the About section headings.
+
+### 2026-11-05 — Rename category heading
+- Changed the visible heading to selected works, preserving its serif typography and blue underline.
+
+### 2026-11-05 — Enlarge selected works heading
+- Increased heading size to a responsive 2.2–3.5rem and the blue underline to 96px wide by 8px high.
+
+### 2026-11-05 — Heading capitalization and location position
+- Capitalized Selected Works and lowered the location badge by 2px.
+
+### 2026-11-05 — Location badge offset
+- Lowered the location badge another 2px, for a total 4px offset.

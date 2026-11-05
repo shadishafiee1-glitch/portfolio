@@ -25,7 +25,7 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
   return createPortal(
     <>
       <header
-        className="fixed top-3 sm:top-4 left-3 right-3 sm:left-5 sm:right-5 z-50 mx-auto flex h-14 max-w-[1100px] items-center justify-between rounded-2xl border border-white/30 px-4 sm:px-6"
+        className="fixed top-3 sm:top-4 left-5 right-5 sm:left-8 sm:right-8 z-50 mx-auto flex h-14 max-w-[1336px] items-center justify-between rounded-2xl border border-white/30 px-4 sm:px-6"
         style={{ position: "fixed", zIndex: 50, transform: "translateZ(0)",
           /* Preserve the original blue glass tint; blur the scrolling scene so
              underlying lettering dissolves into soft shapes. Translucent blue-tinted
