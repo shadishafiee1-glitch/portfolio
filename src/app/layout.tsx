@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cormorant_Garamond, Caveat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+
+const purgatory = localFont({ src: "./fonts/Purgatory.ttf", variable: "--font-purgatory", display: "swap", weight: "400" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,7 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${caveat.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${caveat.variable} ${purgatory.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

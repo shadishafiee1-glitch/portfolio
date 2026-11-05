@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { assetUrl } from "@/lib/assets";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -20,7 +21,7 @@ const EDUCATION = [
 const EXPERIENCE = [
   {
     role: "Graphic Designer",
-    org: "Proopco, part of Kifepool.me",
+    org: "Proopco, part of Kifpool.me",
     period: "August 2026 – Present",
     bullets: [
       "Manage end-to-end social media design, from creative ideation and concept development to final visual execution.",
@@ -162,7 +163,32 @@ export function AboutSections() {
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="text-lg font-semibold text-foreground">
                   {job.role}
-                  <span className="text-muted-foreground"> · {job.org}</span>
+                  <span className="text-muted-foreground">
+                    {" · "}
+                    {job.org === "Proopco, part of Kifpool.me" ? (
+                      <>
+                        Proopco, part of{" "}
+                        <span
+                          tabIndex={0}
+                          className="group/kifpool relative inline-block cursor-default outline-none hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]"
+                        >
+                          Kifpool.me
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 block h-16 w-16 -translate-x-1/2 translate-y-1 opacity-0 transition-[opacity,transform] duration-200 group-hover/kifpool:translate-y-0 group-hover/kifpool:opacity-100 group-focus-visible/kifpool:translate-y-0 group-focus-visible/kifpool:opacity-100"
+                          >
+                            <img
+                              src={assetUrl("images/kifpool-logo-transparent.png")}
+                              alt=""
+                              width={64}
+                              height={64}
+                              className="h-full w-full object-contain"
+                            />
+                          </span>
+                        </span>
+                      </>
+                    ) : job.org}
+                  </span>
                 </h3>
                 <span className="font-sans text-xs text-muted-foreground">
                   {job.period ?? job.place}

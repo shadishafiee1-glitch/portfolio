@@ -24,12 +24,15 @@ export interface CategoryConfig {
   description: string;
   /** Accent color (hex) used for hover states, progress bars, focus rings */
   accent: string;
+  /** Optional image for the home category hover preview. */
+  previewImage?: string;
 }
 
 export const CATEGORIES: CategoryConfig[] = [
   {
     slug: "magazine",
     name: "Magazine Design",
+    previewImage: "images/magazine-preview.jpg",
     tagline: "Editorial · Layout · Brand",
     description:
       "Editorial design, magazine spreads and brand explorations — typography, rhythm, identity and the choreography of print pages.",
@@ -37,7 +40,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "catalog-brochure",
-    name: "Catalog & Brochure",
+    name: "Catalog & Brochure Design",
     tagline: "Print & Folio",
     description:
       "Catalogs, brochures and multi-page folios built for clarity, hierarchy and tactile print quality.",
@@ -45,6 +48,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "logo-design",
+    previewImage: "images/logo-preview-v3.jpg",
     name: "Logo Design",
     tagline: "Identity & Marks",
     description:
@@ -53,6 +57,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "banner-design",
+    previewImage: "images/banner-preview.jpg",
     name: "Banner Design",
     tagline: "Web & Display",
     description:
@@ -61,6 +66,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "social-media-design",
+    previewImage: "images/social-preview.jpg",
     name: "Social Media Design",
     tagline: "Social & Content",
     description:
@@ -69,6 +75,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "poster-design",
+    previewImage: "images/poster-preview.jpg",
     name: "Poster Design",
     tagline: "Posters & Print",
     description:
@@ -77,6 +84,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "digital-painting",
+    previewImage: "images/painting-preview.jpg",
     name: "Digital Painting",
     tagline: "Painting & Illustration",
     description:

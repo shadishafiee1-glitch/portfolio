@@ -491,3 +491,64 @@ currently point at the same commit.
 
 ### 2026-11-05 — Location badge offset
 - Lowered the location badge another 2px, for a total 4px offset.
+
+### 2026-11-05 — Align selected works with biography sections
+- Matched the Selected Works container to the 1000px About/Education/Experience container with identical responsive gutters.
+
+### 2026-11-05 — Widen aligned content sections
+- Expanded both Selected Works and the biography sections to the shared 1400px page container, preserving matching gutters and alignment closer to the page edges.
+
+### 2026-11-05 — Narrow biography content
+- Reduced the home biography sections maximum width from 1400px to 1200px; Selected Works retains its wider layout.
+
+### 2026-11-05 — Further narrow biography sections
+- Reduced the biography container maximum width to 1000px.
+
+### 2026-11-05 — Correct employer spelling
+- Corrected Kifepool.me to Kifpool.me in Work experience.
+
+### 2026-11-05 — Kifpool logo hover
+- Added the supplied Kifpool logo as a local asset. Hovering or keyboard-focusing Kifpool.me makes the name bold/blue and reveals a small 64px logo above it, without shifting surrounding content vertically.
+- Uses assetUrl for GitHub Pages compatibility.
+
+### 2026-11-05 — Transparent Kifpool hover logo
+- Removed the hover logo border, shadow and card clipping; switched to a transparent PNG made with built-in imagegen.
+- Edit prompt: remove pale background and preserve blue wallet, rear flap and gold circle; transparent alpha, no border or shadow.
+
+### 2026-11-06 — Priestacy signature font
+- Applied local Priestacy to the hero signature. Downloaded personal-use demo for local preview; commercial/web licensing must be resolved before public deployment. Source: https://www.dafont.com/priestacy.font
+
+### 2026-11-06 — Preview Cintarini signature
+- Switched the hero signature to local Cintarini for comparison. Personal-use demo from https://befonts.com/cintarini-handwritten-font.html; resolve web/commercial licensing before deployment.
+
+### 2026-11-06 — Smaller signature
+- Reduced the Cintarini hero signature from 2.2–4rem to 1.8–3.2rem.
+
+### 2026-11-06 — Purgatory signature preview
+- Changed the hero signature to Basnistudio's Purgatory, retaining its reduced size. Personal-use demo from https://www.1001fonts.com/purgatory-font.html; resolve licensing before publication.
+
+### 2026-11-06 — User supplied Purgatory archive
+- Replaced Purgatory.ttf with the font from the user's downloaded archive and preserved its accompanying license file.
+
+### 2026-11-06 — Catalog label and magazine preview
+- Renamed Catalog & Brochure to Catalog & Brochure Design and regenerated the manifest.
+- Added a category-config previewImage override and used the supplied magazine image for mouse/keyboard previews without replacing project covers.
+
+### 2026-11-06 — Vivid hover previews and logo artwork
+- Removed the preview image opacity override so SmartImage fades to full opacity; added a modest 10% brightness and 15% saturation lift to hover previews only.
+- Set the supplied logo 2.jpg as the Logo Design preview using the category previewImage override.
+
+### 2026-11-06 — Social and poster hover images
+- Assigned the user-provided social 2.jpg and poster 2.jpg to their respective category hover previews.
+
+### 2026-11-06 — Banner preview and brightness adjustment
+- Assigned the supplied banner 2.jpg to Banner Design hover preview.
+- Reduced hover preview brightness from 110% to 100%, retaining full opacity and the existing saturation adjustment.
+
+### 2026-11-06 — Replace logo preview
+- Replaced the Logo Design hover preview with the supplied logo 3.jpg, using a new asset filename to avoid stale browser caching.
+
+### 2026-11-06 — Digital painting preview and publish
+- Assigned the supplied painting 2.jpg as the Digital Painting hover preview.
+- Prepared accumulated typography, biography, employer logo and category preview updates for GitHub push at the user's request.
+- Production validation exposed a scaffold /api route incompatible with static export; marked its constant response force-static.

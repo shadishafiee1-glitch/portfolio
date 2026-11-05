@@ -110,7 +110,7 @@ export const PORTFOLIO: Category[] = [
   },
   {
     "slug": "catalog-brochure",
-    "name": "Catalog & Brochure",
+    "name": "Catalog & Brochure Design",
     "tagline": "Print & Folio",
     "description": "Catalogs, brochures and multi-page folios built for clarity, hierarchy and tactile print quality.",
     "accent": "#9333ea",

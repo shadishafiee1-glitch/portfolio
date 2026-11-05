@@ -7,6 +7,7 @@ import { CursorPreview } from "./cursor-preview";
 import { AboutSections } from "./about-sections";
 import { WorksShowcase } from "./works-showcase";
 import { PORTFOLIO } from "@/data/portfolio";
+import { CATEGORY_MAP } from "@/data/categories";
 import { useRovingList } from "@/hooks/use-roving-list";
 import type { NavigateFn } from "@/hooks/use-hash-route";
 
@@ -77,7 +78,7 @@ export function HomeView({ navigate }: HomeViewProps) {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2"
           >
-            <h2 className="display-script text-[clamp(2.2rem,5.5vw,4rem)] text-foreground/85">
+            <h2 style={{ fontFamily: "var(--font-purgatory)", fontWeight: 400 }} className="display-script text-[clamp(1.8rem,4.5vw,3.2rem)] text-foreground/85">
               Shadi Shafiee
             </h2>
             <span className="relative top-1 inline-flex items-center gap-2 rounded-full border border-foreground/30 px-3 py-1 font-sans text-xs text-foreground/60">
@@ -129,9 +130,9 @@ export function HomeView({ navigate }: HomeViewProps) {
                     onClick={() =>
                       navigate({ kind: "category", categorySlug: cat.slug })
                     }
-                    onMouseEnter={() => setPreview({ src: cat.cover })}
+                    onMouseEnter={() => setPreview({ src: CATEGORY_MAP[cat.slug]?.previewImage ?? cat.cover })}
                     onMouseLeave={() => setPreview({ src: null })}
-                    onFocus={() => setPreview({ src: cat.cover })}
+                    onFocus={() => setPreview({ src: CATEGORY_MAP[cat.slug]?.previewImage ?? cat.cover })}
                     onBlur={() => setPreview({ src: null })}
                     className="relative flex w-full items-center gap-3 py-5 text-left outline-none transition-colors duration-300 sm:py-6"
                   >
@@ -187,7 +188,7 @@ export function HomeView({ navigate }: HomeViewProps) {
           hero + discipline index), so visitors get the whole story without
           navigating. Shared AboutSections component keeps it in sync with
           the #/about deep-link view. */}
-      <section className="mx-auto max-w-[1000px] px-5 pb-24 sm:px-8">
+      <section className="mx-auto w-full max-w-[1000px] px-5 pb-24 sm:px-8">
         <AboutSections />
       </section>
     </>

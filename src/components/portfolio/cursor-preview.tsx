@@ -57,12 +57,7 @@ export function CursorPreview({ src }: CursorPreviewProps) {
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
             className="absolute -right-6 -top-6 h-[220px] w-[300px] -translate-y-1/2 overflow-hidden rounded-2xl"
             style={{
-              /* Glassmorphism card: the backdrop-filter blurs whatever is
-                 BEHIND the card (the page content — discipline titles, the
-                 blue arrow circle). The image sits on top, vivid and sharp,
-                 at near-full opacity so it stays colorful — but just
-                 transparent enough that the blurred page content reads
-                 through faintly. Like the weather-widget reference. */
+              /* Keep the image opaque; the glass treatment only supports the card. */
               backgroundColor: "rgba(255, 255, 255, 0.18)",
               backdropFilter: "blur(14px) saturate(160%)",
               WebkitBackdropFilter: "blur(14px) saturate(160%)",
@@ -75,10 +70,7 @@ export function CursorPreview({ src }: CursorPreviewProps) {
               alt=""
               accent="var(--accent)"
               className="h-full w-full border-0"
-              /* Image stays vivid (NOT faded/pale), but slightly transparent
-                 so the frosted page content behind the card shows through
-                 when the card passes over a title or arrow. */
-              imgClassName="object-cover opacity-85"
+              imgClassName="object-cover brightness-100 saturate-[1.15]"
             />
           </motion.div>
         ) : null}
