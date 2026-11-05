@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+
+import { useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { Github, Search } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
@@ -13,24 +15,25 @@ interface SiteHeaderProps {
   onOpenSearch: () => void;
 }
 
+const subscribe = () => () => {};
+
 export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
+  if (!mounted) return null;
   const onHome = view.kind === "home";
 
-  return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full px-3 pt-3 sm:px-5 sm:pt-4">
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto flex h-14 max-w-[1100px] items-center justify-between rounded-2xl border border-white/30 px-4 sm:px-6"
-        style={{
-          /* Floating island glass: strong backdrop blur + saturation so
-             scrolling content frosts through clearly. Translucent blue-tinted
+  return createPortal(
+    <>
+      <header
+        className="fixed top-3 sm:top-4 left-3 right-3 sm:left-5 sm:right-5 z-50 mx-auto flex h-14 max-w-[1100px] items-center justify-between rounded-2xl border border-white/30 px-4 sm:px-6"
+        style={{ position: "fixed", zIndex: 50, transform: "translateZ(0)",
+          /* Preserve the original blue glass tint; blur the scrolling scene so
+             underlying lettering dissolves into soft shapes. Translucent blue-tinted
              fill (not opaque) + a soft drop shadow lifts it off the page. */
           background:
             "linear-gradient(115deg, rgba(0,128,255,0.20) 0%, rgba(0,128,255,0.08) 30%, rgba(244,245,247,0.60) 65%, rgba(244,245,247,0.65) 100%)",
-          backdropFilter: "blur(20px) saturate(180%)",
-          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          backdropFilter: "blur(40px) saturate(180%)",
+          WebkitBackdropFilter: "blur(40px) saturate(180%)",
           boxShadow:
             "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 8px 30px -8px rgba(0,0,0,0.18)",
         }}
@@ -99,7 +102,8 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
           </a>
           <ThemeToggle />
         </nav>
-      </motion.header>
-    </div>
+      </header>
+    </>,
+    document.body
   );
 }

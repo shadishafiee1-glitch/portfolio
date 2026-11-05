@@ -422,3 +422,29 @@ currently point at the same commit.
   **The repo is now live on GitHub** — verify the first GitHub Actions build
   + Pages deployment succeeded, then enable Pages (Settings → Pages →
   Source = GitHub Actions) if not already enabled.
+
+### 2026-11-05 — Local Windows setup
+- Cloned repository into C:/shadi/portfolio and installed dependencies using the frozen Bun lockfile via npm exec.
+- Generated the portfolio manifest and started Next.js locally on port 3000.
+
+
+### 2026-11-05 — Frosted header alignment
+- Aligned header edges with the shared 1400px content container and responsive gutters.
+- Increased backdrop blur and theme-aware opacity to obscure underlying text.
+
+### 2026-11-05 — Stronger frosted glass
+- Increased header blur to 64px and surface opacity to 88–92% so scrolling text and fine details are obscured while diffuse colors remain visible.
+
+### 2026-11-05 — Reference glass treatment
+- Replaced the nearly opaque header fill with translucent highlights, 28px backdrop blur, luminous borders and inset reflections, with a separate dark-theme treatment.
+- Preserved shared content alignment.
+
+### 2026-11-05 — Restore original header
+- Reverted all local header glass and alignment styling changes to the original cloned version at the user's request.
+
+### 2026-11-05 — Blur with original blue styling
+- Increased only header backdrop blur from 20px to 40px, retaining the original blue gradient, opacity, geometry and shadow.
+
+### 2026-11-05 — Fix glass backdrop rendering
+- Rendered the fixed header through a body portal, outside the page compositing context; retained original gradient and dimensions. Removed entrance animation from the glass surface.
+- Hide header while search is open to preserve overlay interaction. Verified title overlap visually: underlying lettering is blurred only within the glass.

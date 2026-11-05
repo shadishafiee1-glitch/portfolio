@@ -69,11 +69,15 @@ export function PortfolioApp() {
   return (
     <div className="grain flex min-h-screen flex-col">
       <ScrollProgress />
+
+
+      {!searchOpen && (
       <SiteHeader
         view={view}
         navigate={navigate}
         onOpenSearch={() => setSearchOpen(true)}
       />
+      )}
 
       <main className="flex-1 pt-[72px]">
         <AnimatePresence mode="wait">
@@ -99,6 +103,8 @@ export function PortfolioApp() {
           </motion.div>
         </AnimatePresence>
       </main>
+
+
 
       <SiteFooter
         totalCategories={TOTAL_CATEGORIES}
