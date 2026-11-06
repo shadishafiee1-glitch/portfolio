@@ -295,3 +295,15 @@ body > * {
 .cursor-none-interactive * {
   cursor: none;
 }
+
+@keyframes employer-logo-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-7px) rotate(3deg); }
+}
+.employer-hover:hover .employer-logo-float,
+.employer-hover:focus-visible .employer-logo-float {
+  animation: employer-logo-float 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .employer-logo-float { animation: none !important; }
+}

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Images, LayoutGrid, List, X } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowLeft, ArrowUpRight, Images, LayoutGrid, List } from "lucide-react";
+import { useState } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import type { NavigateFn } from "@/hooks/use-hash-route";
@@ -21,42 +21,7 @@ interface CategoryViewProps {
 export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
   const cat = PORTFOLIO.find((c) => c.slug === categorySlug) ?? CATEGORY_MAP[categorySlug];
 
-  const [activeTag, setActiveTag] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const filterRef = useRef<HTMLDivElement | null>(null);
-
-  // collect the union of tags across this category's projects
-  const tags = useMemo(() => {
-    if (!cat) return [];
-    const set = new Set<string>();
-    for (const p of cat.projects) for (const t of p.tags) set.add(t);
-    return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [cat]);
-
-  const visibleProjects = useMemo(() => {
-    if (!cat) return [];
-    if (!activeTag) return cat.projects;
-    return cat.projects.filter((p) => p.tags.includes(activeTag));
-  }, [cat, activeTag]);
-
-  // global "/" shortcut focuses the first tag chip; Esc clears the filter
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement | null;
-      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
-      if (typing) return;
-      if (e.key === "/" && tags.length > 0) {
-        e.preventDefault();
-        const firstChip = filterRef.current?.querySelector<HTMLButtonElement>("[data-tag-chip]");
-        firstChip?.focus();
-      }
-      if (e.key === "Escape" && activeTag) {
-        setActiveTag(null);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [tags.length, activeTag]);
 
   if (!cat) {
     return <NotFoundView label="Category" slug={categorySlug} navigate={navigate} />;
@@ -86,9 +51,10 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
-              className="display-heavy text-balance text-[clamp(2.4rem,9vw,6rem)]"
+              className="display-heavy inline-block text-balance text-[clamp(1.6rem,4vw,2.6rem)] text-foreground"
             >
               {cat.name}
+              <span aria-hidden="true" className="mt-2 block h-1.5 w-24 rounded-full bg-[var(--accent)]" />
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -102,75 +68,19 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
         </div>
       </header>
 
-      {/* Filter bar + view toggle */}
-      {tags.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease, delay: 0.2 }}
-          className="mt-6 flex flex-wrap items-center justify-between gap-3"
-        >
-          <div ref={filterRef} className="flex flex-wrap items-center gap-2" role="toolbar" aria-label="Filter by tag">
-            <span className="mr-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Filter
-            </span>
-            <FilterChip
-              active={activeTag === null}
-              onClick={() => setActiveTag(null)}
-            >
-              All
-            </FilterChip>
-            {tags.map((t) => (
-              <FilterChip
-                key={t}
-                active={activeTag === t}
-                accent="var(--flame)"
-                onClick={() => setActiveTag((cur) => (cur === t ? null : t))}
-              >
-                {t}
-              </FilterChip>
-            ))}
-            {activeTag && (
-              <button
-                type="button"
-                onClick={() => setActiveTag(null)}
-                className="ml-1 inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Clear filter"
-              >
-                <X className="h-3 w-3" /> Clear
-              </button>
-            )}
-            <span className="ml-2 hidden text-[11px] text-muted-foreground/70 sm:inline">
-              press <kbd className="rounded border border-border/70 bg-muted px-1 font-mono text-[10px]">/</kbd> to focus
-            </span>
-          </div>
-
-          {/* View-mode toggle */}
-          <div className="flex items-center gap-1 rounded-full border border-border/60 p-0.5" role="group" aria-label="View mode">
-            <ViewToggle mode="grid" active={viewMode === "grid"} onClick={() => setViewMode("grid")} accent="var(--flame)" />
-            <ViewToggle mode="list" active={viewMode === "list"} onClick={() => setViewMode("list")} accent="var(--flame)" />
-          </div>
-        </motion.div>
-      )}
+      <div className="mt-6 flex justify-end">
+        <div className="flex items-center gap-1 rounded-full border border-border/60 p-0.5" role="group" aria-label="View mode">
+          <ViewToggle mode="grid" active={viewMode === "grid"} onClick={() => setViewMode("grid")} accent="var(--accent)" />
+          <ViewToggle mode="list" active={viewMode === "list"} onClick={() => setViewMode("list")} accent="var(--accent)" />
+        </div>
+      </div>
 
       {/* Projects */}
       {cat.projects.length === 0 ? (
         <EmptyState onBack={() => navigate({ kind: "home" })} />
-      ) : visibleProjects.length === 0 ? (
-        <div className="py-20 text-center">
-          <p className="display-text text-3xl italic text-muted-foreground">
-            No projects tagged &ldquo;{activeTag}&rdquo;.
-          </p>
-          <button
-            onClick={() => setActiveTag(null)}
-            className="mt-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-accent"
-          >
-            <X className="h-4 w-4" /> Clear filter
-          </button>
-        </div>
       ) : viewMode === "grid" ? (
         <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:gap-x-8">
-          {visibleProjects.map((project, i) => (
+          {cat.projects.map((project, i) => (
             <motion.article
               key={project.slug}
               layout
@@ -185,7 +95,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
         </div>
       ) : (
         <ul className="mt-8 border-t border-border/60">
-          {visibleProjects.map((project, i) => (
+          {cat.projects.map((project, i) => (
             <motion.li
               key={project.slug}
               layout
@@ -229,23 +139,6 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
                     <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">
                       {project.description}
                     </p>
-                  )}
-                  {project.tags.length > 0 && (
-                    <div className="mt-1.5 hidden flex-wrap gap-1.5 sm:flex">
-                      {project.tags.map((t) => (
-                        <span
-                          key={t}
-                          className={cn(
-                            "rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider transition-colors",
-                            activeTag === t
-                              ? "border-[color:var(--accent)] text-[color:var(--accent)]"
-                              : "border-border/60 text-muted-foreground",
-                          )}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
                   )}
                 </div>
                 {/* meta + arrow */}
@@ -323,37 +216,6 @@ function ProjectCard({
       {project.description && (
         <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">{project.description}</p>
       )}
-    </button>
-  );
-}
-
-function FilterChip({
-  active,
-  accent = "#1a1714",
-  onClick,
-  children,
-}: {
-  active: boolean;
-  accent?: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      data-tag-chip
-      onClick={onClick}
-      aria-pressed={active}
-      style={{ ["--accent" as string]: accent }}
-      className={cn(
-        "rounded-full border px-3 py-1.5 text-xs font-medium capitalize transition-all duration-200 outline-none",
-        active
-          ? "border-[color:var(--accent)] bg-[color:var(--accent)] text-white"
-          : "border-border/70 text-foreground/70 hover:border-foreground/40 hover:bg-accent hover:text-foreground",
-        "focus-visible:shadow-[inset_0_0_0_2px_var(--accent)]",
-      )}
-    >
-      {children}
     </button>
   );
 }

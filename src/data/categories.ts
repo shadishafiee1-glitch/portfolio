@@ -32,7 +32,7 @@ export const CATEGORIES: CategoryConfig[] = [
   {
     slug: "magazine",
     name: "Magazine Design",
-    previewImage: "images/magazine-preview.jpg",
+    previewImage: "images/magazine-preview-v2.jpg",
     tagline: "Editorial · Layout · Brand",
     description:
       "Editorial design, magazine spreads and brand explorations — typography, rhythm, identity and the choreography of print pages.",
@@ -40,6 +40,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "catalog-brochure",
+    previewImage: "images/catalog-preview.jpg",
     name: "Catalog & Brochure Design",
     tagline: "Print & Folio",
     description:
@@ -48,7 +49,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "logo-design",
-    previewImage: "images/logo-preview-v3.jpg",
+    previewImage: "images/logo-preview-v4.jpg",
     name: "Logo Design",
     tagline: "Identity & Marks",
     description:

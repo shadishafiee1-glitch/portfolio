@@ -552,3 +552,33 @@ currently point at the same commit.
 - Assigned the supplied painting 2.jpg as the Digital Painting hover preview.
 - Prepared accumulated typography, biography, employer logo and category preview updates for GitHub push at the user's request.
 - Production validation exposed a scaffold /api route incompatible with static export; marked its constant response force-static.
+
+### 2026-11-06 — Simplify category pages
+- Matched all category headings to About me serif styling and short rounded blue underline.
+- Removed tag filters, their keyboard shortcuts, filtering state and list-view tag badges; retained project navigation and grid/list layout controls.
+
+### 2026-11-06 — Category heading separators
+- Widened the blue heading underline from 64px to 96px and restored the dark divider below category descriptions.
+
+### 2026-11-06 — Logo preview and floating employer logo
+- Switched Logo Design preview to user-provided logo 4.jpg.
+- Slowed Kifpool logo reveal to 500ms with an 8px upward entrance, and added a gentle 3-second floating cycle on hover/keyboard focus. Respects reduced-motion preferences.
+
+### 2026-11-06 — Employer hover logos
+- Shared the slow reveal and floating logo treatment across Kifpool.me, Bank Tejarat, Khabar Fouri and Part Software Group using the supplied assets.
+- Employer names turn blue/bold on hover or keyboard focus; retained reduced-motion support.
+
+### 2026-11-06 — Employer logo presentation
+- Added transparent PNG bank/Part assets with built-in imagegen background removal; retained the original Khabar Fouri PNG with circular clipping because generated extractions distorted its artwork.
+- Unified 64px display slots, compensated Kifpool's transparent padding, removed the bottom gap and preserved shared float animation.
+
+### 2026-11-06 — Smaller continuously floating logos
+- Reduced employer logo display slots to 48px and adjusted the repeating hover float to a 2.4-second, 7px cycle.
+
+### 2026-11-06 — Curated moving image ribbons
+- Replaced project-cover ribbons with the user's 12 distinct supplied artworks, omitting duplicate portrait attachments.
+- Curated three six-tile rows alternating warm, cool and neutral palettes, including loop boundaries; preserved seamless motion and non-clickable presentation.
+
+### 2026-11-06 — Magazine and catalog previews
+- Replaced Magazine Design and Catalog & Brochure Design hover previews with the supplied magazine.jpg and catalouge.jpg images.
+- Publishing accumulated category, floating employer logo and moving ribbon updates at the user's request.

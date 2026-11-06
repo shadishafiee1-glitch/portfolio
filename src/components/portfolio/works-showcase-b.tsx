@@ -1,20 +1,36 @@
 "use client";
 
-import { PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
 
-const covers = PORTFOLIO.flatMap((category) =>
-  category.projects.filter((project) => project.cover).map((project) => ({
-    key: `${category.slug}/${project.slug}`,
-    src: project.cover,
-    name: project.name,
-  })),
-);
+const artworkNames: Record<number, string> = {
+  1: "Floral portrait painting",
+  4: "White-haired portrait painting",
+  5: "Fitness app presentation",
+  6: "Dumbledore creative banner",
+  8: "Vitamin social media designs",
+  10: "Credit scoring brochure",
+  11: "Posture brochure",
+  12: "Hidden Waves of AI magazine spreads",
+  13: "AI product banners",
+  15: "Tehran campaign design",
+  16: "Chocolate packaging design",
+  17: "Hidden Waves of AI magazine cover",
+};
+
+// Alternate warm, cool and neutral artwork, including across each loop seam.
+// Six tiles keep each repeated group wider than the largest viewport container.
+const rows = [
+  [1, 5, 16, 12, 8, 6],
+  [10, 4, 13, 15, 11, 6],
+  [17, 16, 5, 1, 8, 15],
+].map((row) => row.map((id) => ({
+  key: id,
+  src: `images/ribbons/${id}.jpg`,
+  name: artworkNames[id],
+})));
 
 /** Decorative, seamless image ribbons; no project navigation. */
 export function WorksShowcaseB() {
-  const rows = [0, 1, 2].map((row) => covers.filter((_, i) => i % 3 === row));
-
   return (
     <section aria-label="Selected work" className="border-t border-foreground/15 py-10 sm:py-14">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">

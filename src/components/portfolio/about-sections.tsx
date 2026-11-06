@@ -165,29 +165,7 @@ export function AboutSections() {
                   {job.role}
                   <span className="text-muted-foreground">
                     {" · "}
-                    {job.org === "Proopco, part of Kifpool.me" ? (
-                      <>
-                        Proopco, part of{" "}
-                        <span
-                          tabIndex={0}
-                          className="group/kifpool relative inline-block cursor-default outline-none hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]"
-                        >
-                          Kifpool.me
-                          <span
-                            aria-hidden="true"
-                            className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 block h-16 w-16 -translate-x-1/2 translate-y-1 opacity-0 transition-[opacity,transform] duration-200 group-hover/kifpool:translate-y-0 group-hover/kifpool:opacity-100 group-focus-visible/kifpool:translate-y-0 group-focus-visible/kifpool:opacity-100"
-                          >
-                            <img
-                              src={assetUrl("images/kifpool-logo-transparent.png")}
-                              alt=""
-                              width={64}
-                              height={64}
-                              className="h-full w-full object-contain"
-                            />
-                          </span>
-                        </span>
-                      </>
-                    ) : job.org}
+                    <EmployerName name={job.org} />
                   </span>
                 </h3>
                 <span className="font-sans text-xs text-muted-foreground">
@@ -263,5 +241,28 @@ function Section({
       </motion.h3>
       {children}
     </section>
+  );
+}
+
+const EMPLOYER_LOGOS: Record<string, { label: string; src: string; prefix?: string }> = {
+  "Proopco, part of Kifpool.me": { label: "Kifpool.me", prefix: "Proopco, part of ", src: "images/kifpool-logo-transparent.png" },
+  "Bank Tejarat": { label: "Bank Tejarat", src: "images/bank-tejarat-transparent.png" },
+  "Khabar Fouri": { label: "Khabar Fouri", src: "images/khabar-fouri-logo.png" },
+  "Part Software Group": { label: "Part Software Group", src: "images/part-software-transparent.png" },
+};
+
+function EmployerName({ name }: { name: string }) {
+  const logo = EMPLOYER_LOGOS[name];
+  if (!logo) return <>{name}</>;
+  return (
+    <>
+      {logo.prefix}
+      <span tabIndex={0} className="employer-hover group/employer relative inline-block cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
+        {logo.label}
+        <span aria-hidden="true" className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-0 block h-12 w-12 -translate-x-1/2 translate-y-2 opacity-0 transition-[opacity,translate] duration-500 ease-out group-hover/employer:translate-y-0 group-hover/employer:opacity-100 group-focus-visible/employer:translate-y-0 group-focus-visible/employer:opacity-100">
+          <img src={assetUrl(logo.src)} alt="" width={48} height={48} className="employer-logo-float h-full w-full object-contain" style={logo.label === "Khabar Fouri" ? { clipPath: "circle(49% at 50% 50%)" } : logo.label === "Kifpool.me" ? { scale: 1.45 } : undefined} />
+        </span>
+      </span>
+    </>
   );
 }
