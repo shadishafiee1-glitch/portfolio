@@ -145,7 +145,7 @@ export function AboutSections() {
 
       {/* ── WORK EXPERIENCE ───────────────────────────────────────────── */}
       <Section title="Work experience">
-        <div className="space-y-8">
+        <div className="space-y-20">
           {EXPERIENCE.map((job, i) => (
             <motion.article
               key={`${job.org}-${i}`}

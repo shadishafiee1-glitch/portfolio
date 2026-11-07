@@ -14,7 +14,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Editorial design, magazine spreads and brand explorations — typography, rhythm, identity and the choreography of print pages.",
     "accent": "#0080FF",
     "cover": "resources/magazine/brand-explorations/01-sheet.png",
-    "projectCount": 4,
+    "projectCount": 5,
     "projects": [
       {
         "slug": "brand-explorations",
@@ -80,6 +80,35 @@ export const PORTFOLIO: Category[] = [
         ]
       },
       {
+        "slug": "dideban-magazine",
+        "name": "Dideban Magazine",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/magazine/dideban-magazine/01.jpg",
+        "media": [
+          {
+            "path": "resources/magazine/dideban-magazine/01.jpg",
+            "name": "01",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/02.jpg",
+            "name": "02",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/03.jpg",
+            "name": "03",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
         "slug": "featured",
         "name": "Editorial Spread",
         "description": "A magazine spread study balancing column rhythm, display type and image pacing across a full bleed.",
@@ -115,7 +144,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Catalogs, brochures and multi-page folios built for clarity, hierarchy and tactile print quality.",
     "accent": "#9333ea",
     "cover": "resources/catalog-brochure/featured/catalog.jpg",
-    "projectCount": 2,
+    "projectCount": 6,
     "projects": [
       {
         "slug": "featured",
@@ -156,6 +185,104 @@ export const PORTFOLIO: Category[] = [
             "name": "01-spread",
             "type": "image",
             "ext": ".png"
+          }
+        ]
+      },
+      {
+        "slug": "parscenter",
+        "name": "ParsCenter",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/catalog-brochure/parscenter/01-catalog.jpg",
+        "media": [
+          {
+            "path": "resources/catalog-brochure/parscenter/01-catalog.jpg",
+            "name": "01-catalog",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/catalog-brochure/parscenter/02-spread.jpg",
+            "name": "02-spread",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "presentation-design",
+        "name": "Presentation Design",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/catalog-brochure/presentation-design/01-presentation.jpg",
+        "media": [
+          {
+            "path": "resources/catalog-brochure/presentation-design/01-presentation.jpg",
+            "name": "01-presentation",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/catalog-brochure/presentation-design/02-presentation.jpg",
+            "name": "02-presentation",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "satrap-catalog",
+        "name": "Satrap Catalog",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/catalog-brochure/satrap-catalog/03.jpg",
+        "media": [
+          {
+            "path": "resources/catalog-brochure/satrap-catalog/03.jpg",
+            "name": "03",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/catalog-brochure/satrap-catalog/04.jpg",
+            "name": "04",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/catalog-brochure/satrap-catalog/05.jpg",
+            "name": "05",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "zino-catalog",
+        "name": "Zino Catalog",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/catalog-brochure/zino-catalog/01.jpg",
+        "media": [
+          {
+            "path": "resources/catalog-brochure/zino-catalog/01.jpg",
+            "name": "01",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/catalog-brochure/zino-catalog/02.jpg",
+            "name": "02",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       }
@@ -428,5 +555,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 16;
+export const TOTAL_PROJECTS = 21;
 export const TOTAL_CATEGORIES = 7;

@@ -49,7 +49,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "logo-design",
-    previewImage: "images/logo-preview-v4.jpg",
+    previewImage: "images/logo-preview-v5.jpg",
     name: "Logo Design",
     tagline: "Identity & Marks",
     description:
@@ -67,7 +67,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     slug: "social-media-design",
-    previewImage: "images/social-preview.jpg",
+    previewImage: "images/social-preview-v2.jpg",
     name: "Social Media Design",
     tagline: "Social & Content",
     description:

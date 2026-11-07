@@ -582,3 +582,182 @@ currently point at the same commit.
 ### 2026-11-06 — Magazine and catalog previews
 - Replaced Magazine Design and Catalog & Brochure Design hover previews with the supplied magazine.jpg and catalouge.jpg images.
 - Publishing accumulated category, floating employer logo and moving ribbon updates at the user's request.
+
+### 2026-11-06 — Refresh social media preview
+- Replaced Social Media Design hover preview with the updated user-supplied social 2.jpg, using a versioned filename to avoid cached artwork.
+
+### 2026-11-06 — Refresh logo preview
+- Updated Logo Design hover preview with the latest supplied logo 4.jpg, using a new filename to prevent stale caching.
+
+### 2026-11-06 — Separate ribbon artwork by row
+- Assigned each of the 12 artworks exclusively to one ribbon, removing cross-row duplicates. Repeated sequences only within their own row for seamless wide-screen coverage and preserved travel speed.
+
+### 2026-11-06 — Gray AI banner ribbon background
+- Used built-in imagegen to replace the near-white background of ribbon artwork 13 with neutral light gray. Prompt requested background-only replacement preserving banners, typography, composition and shadows. Saved as public/images/ribbons/13-gray.png.
+
+### 2026-11-06 — Lighter ribbon backdrop
+- Lightened artwork 13 background with built-in imagegen. Prompt: change only surrounding gray to #e3e3e3, preserving banners, typography, shadows and framing. Saved public/images/ribbons/13-light-gray.png.
+
+### 2026-11-06 — Work experience logo clearance
+- Increased spacing between employer entries from 32px to 80px so 48px floating logos have room above company names without covering the previous job description.
+
+### 2026-11-06 — Dideban Magazine project
+- Added Dideban Magazine under Magazine Design with the three supplied images in order; image 1 is the cover. Regenerated the portfolio manifest.
+
+### 2026-11-06 — Inline Dideban magazine gallery
+- Magazine Design now displays a smaller Dideban Magazine heading and all three images directly in the category page. Replaced its project-card grid with the inline gallery; existing project data remains preserved.
+
+### 2026-11-06 — Two-column magazine gallery
+- Arranged the inline Dideban images in two columns with a staggered right column matching the reference; retained a single column on mobile and uncropped images.
+
+### 2026-11-06 — Magazine gallery spacing and lightbox
+- Changed the inline gallery to balanced columns with matching horizontal/vertical gaps, removing excess stagger spacing. Reused the existing lightbox for image clicks, arrows, thumbnails and Escape.
+
+### 2026-11-06 — Full viewport lightbox and stagger
+- Portaled the lightbox to document.body above the header and constrained the image itself to viewport height, reserving room for controls and thumbnails. Added a modest second-column offset without increasing gaps within the first column.
+
+### 2026-11-06 — Explicit staggered magazine columns
+- Assigned images 1 and 3 to the left column and image 2 to the right, offset down 56–80px. Kept independent 24–32px vertical gaps and clickable lightbox controls for every image.
+
+### 2026-11-06 — Fix clipped laptop lightbox
+- Confirmed old non-portaled lightbox was still present. Moved overlay to body above header and used a viewport-height flex layout with min-height zero and object-contain directly on the image. Controls and thumbnails reserve their own height.
+
+### 2026-11-06 — Magazine heading and click handling
+- Changed Dideban heading to smaller blue sans-serif text. Made gallery buttons explicitly interactive, stopped click propagation, and limited backdrop closing to direct backdrop clicks.
+
+### 2026-11-07 — Fix lightbox opening below page
+- Found unlayered body > * rule overriding Tailwind fixed positioning and z-index on the portaled lightbox. Applied explicit inline fixed/inset/z-index/viewport height so it opens in the current viewport regardless of scroll.
+
+### 2026-11-07 — Inline Satrap Catalog gallery
+- Added the three supplied Satrap images and project metadata. Catalog & Brochure now shares the magazine inline gallery, smaller blue heading, staggered columns and viewport lightbox.
+
+### 2026-11-07 — Zino Catalog section
+- Added Zino Catalog with two supplied images after Satrap, separated by a short thin line. Reused the blue heading and staggered gallery with independent lightbox navigation per catalog.
+
+### 2026-11-07 — Restore missing Zino rendering
+- Confirmed Zino assets and manifest existed but category rendering omitted the section. Added explicit Zino section after Satrap with short divider, blue heading, staggered images and its own lightbox.
+
+### 2026-11-07 — Faded full-width catalog divider
+- Extended the Satrap/Zino separator across the content width with transparent gradient ends.
+
+### 2026-11-07 — Satrap gallery description
+- Added the user's exact English heading and description in small typography beneath the right-column Satrap image, filling the blank area.
+
+### 2026-11-07 — Catalog typography and separators
+- Enlarged Satrap description to 16px and aligned its text and block to the image's right edge. Enlarged catalog headings to 20–24px. Both catalog separators now use 2px faded-end gradients.
+
+### 2026-11-07 — Left-align Satrap copy
+- Left-aligned the description text while retaining its right-anchored container aligned with the right-hand image.
+
+### 2026-11-07 — Justify Satrap description
+- Justified the Satrap description paragraph along both edges, retaining a left-aligned heading and last line.
+
+### 2026-11-07 — Shift Satrap copy left and normalize spacing
+- Anchored the description block to the left of its image column and restored left-aligned text for natural word spacing.
+
+### 2026-11-07 — Satrap bounded justified text
+- Made the invisible text box explicitly full-width up to 32rem, retaining its left anchor. Justified its paragraph with automatic English hyphenation to reduce stretched word gaps; the last line remains left-aligned.
+
+### 2026-11-07 — Satrap text inset and whole words
+- Disabled hyphenation and word splitting while retaining justification. Inset the entire text box 16px on mobile and 32px on desktop from the image's left edge, adjusting its width to fit.
+
+### 2026-11-07 — Blue Zino divider and tighter spacing
+- Changed the faded divider above Zino to the site's accent blue. Reduced its bottom margin by 8px to lift the Zino heading and both images together.
+
+### 2026-11-07 — Blue top divider and gallery hover glow
+- Matched the top catalog divider to the blue Zino divider. Added a 2px blue outline and soft glow on hover or keyboard focus for inline gallery images without shifting layout.
+
+### 2026-11-07 — Drawn gallery outlines and Zino copy
+- Replaced the instant hover border with an SVG outline traced around each image over 900ms; respects reduced motion and keyboard focus.
+- Added the user's exact Zino product catalogue heading and description below its images with justified whole-word text.
+
+### 2026-11-07 — Faster light outline and closer Zino copy
+- Removed the outline shadow, lightened its stroke to #68cfff, and made it draw and disappear in a repeating 1.1-second hover cycle. Preserved a static outline for reduced motion.
+- Reduced spacing above Zino copy to 12px and removed vertical padding to bring it closer to the images.
+
+### 2026-11-07 — Site-blue outline and closing Zino divider
+- Matched animated image outlines to the site's accent blue. Lifted Zino copy another 20px and added a full-width, faded-end blue divider below it matching the catalog separators.
+
+### 2026-11-07 — Fade completed image outlines
+- Changed the hover animation to fade the complete outline after its ends meet, rather than continuing to erase it around the perimeter.
+
+### 2026-11-07 — Static image hover outline
+- Removed the drawing and fading animation. A thin site-blue outline now remains visible while an image is hovered or keyboard-focused.
+
+### 2026-11-07 — Thinner image hover outline
+- Reduced the blue gallery hover outline from 2px to 1px.
+
+### 2026-11-07 — ParsCenter catalog section
+- Added the user's 6.jpg and 7.jpg as a new ParsCenter project and regenerated the manifest.
+- Rendered ParsCenter immediately after the closing Zino divider with matching blue heading, staggered gallery, hover outlines and its own lightbox; avoided duplicating the divider.
+
+### 2026-11-08 — Pars Center brochure description
+- Added the user's exact corporate brochure heading and description beneath the ParsCenter images, matching Zino's typography, justification and spacing without splitting words.
+
+### 2026-11-08 — Catalog project selector
+- Added a rounded project selector for Satrap, Zino and ParsCenter. Only the selected project's side-by-side images and exact description appear in a rounded content panel; retained image hover outlines and per-project lightboxes. Mobile images stack and project buttons scroll horizontally.
+
+### 2026-11-08 — Separate catalog pills and All gallery
+- Gave each project selector its own rounded blue-bordered box and added All with a combined gallery and lightbox for the three curated catalogs.
+- Moved Satrap copy into the gallery grid alongside its final image. ESLint passed.
+
+### 2026-11-08 — Stagger catalog images and round selectors
+- Fully rounded catalog selector pills. Offset right-column gallery images down 56px (80px on large screens), including All, and reserved space below to prevent description overlap. Mobile retains a single column.
+
+### 2026-11-08 — Tighter catalog page spacing
+- Lifted catalog content with smaller top padding and heading margins. Reduced spacing between introductory copy, blue divider, project selectors and image panel; removed the extra gallery top margin while preserving the staggered layout.
+
+### 2026-11-08 — Presentation Design catalog tab
+- Removed the enclosing gallery panel border. Added Presentation Design to the catalog selector and All gallery with the user's 8.jpg and 9.jpg, preserving staggered layout, image hover outlines and lightbox. Regenerated the manifest; ESLint passed.
+
+### 2026-11-08 — Shorter catalog selector pills
+- Reduced selector vertical padding from 12px to 8px, lowering each pill's total height by 8px.
+
+### 2026-11-08 — Consistent Catalog spelling
+- Standardized all remaining visible Catalogue/catalogue copy to Catalog/catalog across Satrap and Zino headings and descriptions. Checked src, public, scripts and README for alternate spelling.
+
+### 2026-11-08 — Lift Zino and Pars Center descriptions
+- Reduced the top margin of Zino and Pars Center text from 24px to 16px, moving both descriptions up 8px.
+
+### 2026-11-08 — Lower Satrap description
+- Moved the Satrap text block down 8px beside its final image.
+
+### 2026-11-08 — Consistent catalog description spacing
+- Placed catalog descriptions within the image grid with a shared 16px vertical gap, removing bespoke text offsets and padding. Satrap remains beside its final image; Zino and Pars Center copy follows their left image without the right column's stagger adding extra space. ESLint passed.
+
+### 2026-11-08 — More space for catalog copy
+- Lowered all three catalog description blocks by 12px, preserving Satrap beside its last image and the shared spacing of Zino and Pars Center.
+
+### 2026-11-08 — Lower catalog copy further
+- Increased all three description offsets from 12px to 28px, moving them another 16px down.
+
+### 2026-11-08 — Presentations inside Satrap
+- Removed the Presentation Design selector and placed its two images after Satrap's catalog text and a faded blue divider, retaining the images in All. Added the exact supplied Satrap presentation heading and description beneath the presentation images, with their own lightbox. ESLint passed.
+
+### 2026-11-08 — Balanced presentation separator spacing
+- Removed nested gallery padding and top margin, gave the Satrap separator equal top/bottom margins, and moved presentation copy into the same grid spacing as other descriptions. ESLint passed.
+
+### 2026-11-08 — Remove extra space above Satrap divider
+- Removed the first Satrap gallery's unnecessary 56–80px bottom padding, which added to the divider's top gap. Retained equal divider margins and stagger clearance for the other galleries.
+
+### 2026-11-08 — Equal gallery image gutters
+- Replaced translated grid rows with independent gallery columns, matching the magazine layout. Horizontal and vertical image gaps now share 24px spacing (32px on large screens) while the right column retains its initial stagger. ESLint passed.
+
+### 2026-11-08 — Match catalog heading placement to magazine
+- Unified page top padding, heading margins and introductory description spacing so Catalog & Brochure Design occupies the same area as Magazine Design.
+
+### 2026-11-08 — Match magazine divider to catalog
+- Replaced the magazine heading's dark border with the same 2px accent-blue, faded-end divider used on the catalog page.
+
+### 2026-11-08 — Dideban magazine pill heading
+- Styled the Dideban Magazine heading as a solid blue, fully rounded pill with white text and the same padding as active catalog selectors.
+
+### 2026-11-08 — Default catalog selection to All
+- Changed the initial catalog project selection from Satrap to All so the combined gallery is shown on entry.
+
+### 2026-11-08 — Shared gallery style across disciplines
+- Applied blue faded heading dividers, rounded project pills with default All, staggered inline galleries, consistent image gutters, hover outlines and lightboxes to Logo, Banner, Social Media, Poster and Digital Painting categories.
+- Replaced their grid/list card browsing with the shared project selector and inline project descriptions, preserving existing magazine and curated catalog behavior. ESLint passed and the local page returned HTTP 200.
+
+### 2026-11-08 — Publish portfolio updates
+- Validated the complete working site with ESLint and a successful static production build. Prepared accumulated gallery, lightbox, project media, preview and spacing updates for publication to origin/main.

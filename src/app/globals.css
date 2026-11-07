@@ -300,6 +300,25 @@ body > * {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
   50% { transform: translateY(-7px) rotate(3deg); }
 }
+.catalog-image-glow {
+  position: relative;
+}
+.gallery-outline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.gallery-outline rect {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1px;
+  opacity: 0;
+}
+.catalog-image-glow:hover .gallery-outline rect,
+.catalog-image-glow:focus-visible .gallery-outline rect {
+  opacity: 1;
+}
 .employer-hover:hover .employer-logo-float,
 .employer-hover:focus-visible .employer-logo-float {
   animation: employer-logo-float 2.4s ease-in-out infinite;

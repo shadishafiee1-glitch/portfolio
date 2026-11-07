@@ -18,14 +18,14 @@ const artworkNames: Record<number, string> = {
 };
 
 // Alternate warm, cool and neutral artwork, including across each loop seam.
-// Six tiles keep each repeated group wider than the largest viewport container.
+// Each artwork belongs to one row only. Repeat within that row to fill wide screens.
 const rows = [
-  [1, 5, 16, 12, 8, 6],
-  [10, 4, 13, 15, 11, 6],
-  [17, 16, 5, 1, 8, 15],
-].map((row) => row.map((id) => ({
-  key: id,
-  src: `images/ribbons/${id}.jpg`,
+  [16, 12, 1, 5],
+  [4, 13, 15, 11],
+  [6, 8, 17, 10],
+].map((row) => [...row, ...row].map((id, index) => ({
+  key: `${id}-${index}`,
+  src: id === 13 ? "images/ribbons/13-light-gray.png" : `images/ribbons/${id}.jpg`,
   name: artworkNames[id],
 })));
 
@@ -39,7 +39,7 @@ export function WorksShowcaseB() {
             <div key={row} className="marquee-pause overflow-hidden">
               <div
                 className={`flex w-max ${row === 1 ? "animate-marquee-rev" : "animate-marquee"}`}
-                style={{ animationDuration: `${46 + row * 9}s` }}
+                style={{ animationDuration: `${(46 + row * 9) * 4 / 3}s` }}
               >
                 {[0, 1].map((copy) => (
                   <div key={copy} aria-hidden={copy === 1 ? true : undefined} className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4">

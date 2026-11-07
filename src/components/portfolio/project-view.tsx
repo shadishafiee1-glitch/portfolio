@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, Download, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
@@ -348,7 +349,7 @@ interface LightboxProps {
   accent: string;
 }
 
-function Lightbox({
+export function Lightbox({
   index,
   total,
   onClose,
@@ -379,7 +380,9 @@ function Lightbox({
 
   const current = index !== null ? media[index] : null;
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {current && (
         <motion.div
@@ -387,8 +390,9 @@ function Lightbox({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-[80] flex flex-col bg-black/90 backdrop-blur-md"
-          onClick={onClose}
+          className="fixed inset-0 z-[200] flex h-dvh flex-col overflow-hidden bg-black/90 backdrop-blur-md"
+          style={{ position: "fixed", inset: 0, zIndex: 200, height: "100dvh" }}
+          onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
         >
           {/* top bar */}
           <div
@@ -410,8 +414,8 @@ function Lightbox({
 
           {/* stage */}
           <div
-            className="relative flex flex-1 items-center justify-center px-4 pb-4"
-            onClick={onClose}
+            className="relative flex min-h-0 flex-1 items-center justify-center px-4 pb-4"
+            onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -420,7 +424,7 @@ function Lightbox({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.25, ease }}
-                className="relative max-h-[82vh] max-w-[92vw]"
+                className="relative flex h-full min-h-0 w-full flex-col items-center justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {current.type === "video" ? (
@@ -429,19 +433,16 @@ function Lightbox({
                     controls
                     autoPlay
                     playsInline
-                    className="max-h-[82vh] max-w-[92vw] rounded-lg"
+                    className="min-h-0 max-h-full max-w-[92vw] rounded-lg"
                   />
                 ) : (
-                  <SmartImage
-                    src={current.path}
+                  <img
+                    src={assetUrl(current.path)}
                     alt={current.name}
-                    priority
-                    accent="var(--flame)"
-                    className="max-h-[82vh] max-w-[92vw] rounded-lg"
-                    imgClassName="object-contain"
+                    className="block min-h-0 flex-1 w-full object-contain"
                   />
                 )}
-                <p className="mt-3 text-center font-mono text-xs text-white/60">
+                <p className="mt-3 shrink-0 text-center font-mono text-xs text-white/60">
                   {current.name}
                 </p>
               </motion.div>
@@ -477,7 +478,7 @@ function Lightbox({
           {/* Thumbnail filmstrip — only when more than 1 piece */}
           {total > 1 && (
             <div
-              className="custom-scroll flex items-center gap-2 overflow-x-auto px-5 pb-4 pt-1 sm:px-8"
+              className="custom-scroll flex shrink-0 items-center gap-2 overflow-x-auto px-5 pb-4 pt-1 sm:px-8"
               onClick={(e) => e.stopPropagation()}
             >
               {media.map((m, i) => (
@@ -515,6 +516,7 @@ function Lightbox({
           )}
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
