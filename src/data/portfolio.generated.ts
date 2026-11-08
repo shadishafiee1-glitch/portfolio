@@ -289,106 +289,148 @@ export const PORTFOLIO: Category[] = [
     ]
   },
   {
-    "slug": "logo-design",
-    "name": "Logo Design",
-    "tagline": "Identity & Marks",
-    "description": "Logos and brand marks — distilled symbols, wordmarks and the systems that carry an identity.",
-    "accent": "#be123c",
-    "cover": "resources/logo-design/cafe-identity/01-mockup.png",
-    "projectCount": 2,
-    "projects": [
-      {
-        "slug": "cafe-identity",
-        "name": "Café Identity",
-        "description": "A small café identity — wordmark, menu system and collateral with a warm, tactile, minimal voice.",
-        "year": "2024",
-        "client": "Roasthouse Coffee",
-        "tags": [
-          "identity",
-          "branding",
-          "print"
-        ],
-        "cover": "resources/logo-design/cafe-identity/01-mockup.png",
-        "media": [
-          {
-            "path": "resources/logo-design/cafe-identity/01-mockup.png",
-            "name": "01-mockup",
-            "type": "image",
-            "ext": ".png"
-          }
-        ]
-      },
-      {
-        "slug": "featured",
-        "name": "Brand Mark",
-        "description": "A set of logotype and symbol studies exploring reduction — distilling an idea into a single legible mark.",
-        "year": "2023",
-        "client": "Various Studios",
-        "tags": [
-          "identity",
-          "logotype",
-          "branding"
-        ],
-        "cover": "resources/logo-design/featured/logo.jpg",
-        "media": [
-          {
-            "path": "resources/logo-design/featured/logo.jpg",
-            "name": "logo",
-            "type": "image",
-            "ext": ".jpg"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "banner-design",
     "name": "Banner Design",
     "tagline": "Web & Display",
     "description": "Web and display banners engineered for attention, conversion and responsive delivery.",
     "accent": "#15803d",
-    "cover": "resources/banner-design/featured/banner.jpg",
-    "projectCount": 2,
+    "cover": "resources/banner-design/selected-banners/01-dumbledore.jpg",
+    "projectCount": 1,
     "projects": [
       {
-        "slug": "featured",
-        "name": "Display Banners",
-        "description": "Web and display banner set engineered for attention, conversion and responsive delivery across viewports.",
-        "year": "2024",
-        "client": "Retail Campaigns",
-        "tags": [
-          "digital",
-          "display",
-          "advertising"
-        ],
-        "cover": "resources/banner-design/featured/banner.jpg",
+        "slug": "selected-banners",
+        "name": "Selected Banners",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/banner-design/selected-banners/01-dumbledore.jpg",
         "media": [
           {
-            "path": "resources/banner-design/featured/banner.jpg",
-            "name": "banner",
+            "path": "resources/banner-design/selected-banners/01-dumbledore.jpg",
+            "name": "01-dumbledore",
             "type": "image",
             "ext": ".jpg"
-          }
-        ]
-      },
-      {
-        "slug": "summer-sale",
-        "name": "Summer Sale",
-        "description": "A responsive display-banner set for a seasonal retail campaign — bold geometry, warm palette and a clear, scalable layout.",
-        "year": "2024",
-        "client": "Seasonal Retail",
-        "tags": [
-          "digital",
-          "display",
-          "advertising"
-        ],
-        "cover": "resources/banner-design/summer-sale/01-hero.png",
-        "media": [
+          },
           {
-            "path": "resources/banner-design/summer-sale/01-hero.png",
-            "name": "01-hero",
+            "path": "resources/banner-design/selected-banners/02-black-friday.jpg",
+            "name": "02-black-friday",
             "type": "image",
-            "ext": ".png"
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/03-mashhad-market.jpg",
+            "name": "03-mashhad-market",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/04-resume.jpg",
+            "name": "04-resume",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/05-magical-api.jpg",
+            "name": "05-magical-api",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/06-radio-signal.jpg",
+            "name": "06-radio-signal",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/07-signal.jpg",
+            "name": "07-signal",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/09-ai-services.jpg",
+            "name": "09-ai-services",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/10-trading-rules.jpg",
+            "name": "10-trading-rules",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/11-custom-panel.jpg",
+            "name": "11-custom-panel",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/12-calendar.jpg",
+            "name": "12-calendar",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/13-analysis.jpg",
+            "name": "13-analysis",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/14-match.jpg",
+            "name": "14-match",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/15-game.jpg",
+            "name": "15-game",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/16-hype.jpg",
+            "name": "16-hype",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/17-phase-two.jpg",
+            "name": "17-phase-two",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/18-usdt-irr.jpg",
+            "name": "18-usdt-irr",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/19-proopco.jpg",
+            "name": "19-proopco",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/20-coupon.jpg",
+            "name": "20-coupon",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/21-black-rocket.jpg",
+            "name": "21-black-rocket",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/22-pulse.jpg",
+            "name": "22-pulse",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       }
@@ -400,48 +442,167 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Social & Content",
     "description": "Social media creatives, campaigns and content systems built for scroll-stopping clarity.",
     "accent": "#c2410c",
-    "cover": "resources/social-media-design/featured/social.jpg",
-    "projectCount": 2,
+    "cover": "resources/social-media-design/selected-social/01-social.jpg",
+    "projectCount": 1,
     "projects": [
       {
-        "slug": "featured",
-        "name": "Social Campaign",
-        "description": "A social media campaign system — templates, motion-ready frames and a content rhythm built for scroll-stopping clarity.",
-        "year": "2024",
-        "client": "Brand Feed",
-        "tags": [
-          "social",
-          "content",
-          "campaign"
-        ],
-        "cover": "resources/social-media-design/featured/social.jpg",
+        "slug": "selected-social",
+        "name": "Selected Social Media",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/social-media-design/selected-social/01-social.jpg",
         "media": [
           {
-            "path": "resources/social-media-design/featured/social.jpg",
-            "name": "social",
+            "path": "resources/social-media-design/selected-social/01-social.jpg",
+            "name": "01-social",
             "type": "image",
             "ext": ".jpg"
-          }
-        ]
-      },
-      {
-        "slug": "launch-campaign",
-        "name": "Launch Campaign",
-        "description": "A social launch system — posts, stories and motion-ready frames sharing one warm gradient identity.",
-        "year": "2024",
-        "client": "Brand Feed",
-        "tags": [
-          "social",
-          "content",
-          "campaign"
-        ],
-        "cover": "resources/social-media-design/launch-campaign/01-grid.png",
-        "media": [
+          },
           {
-            "path": "resources/social-media-design/launch-campaign/01-grid.png",
-            "name": "01-grid",
+            "path": "resources/social-media-design/selected-social/02-social.jpg",
+            "name": "02-social",
             "type": "image",
-            "ext": ".png"
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/03-social.jpg",
+            "name": "03-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/04-social.jpg",
+            "name": "04-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/05-social.jpg",
+            "name": "05-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/06-social.jpg",
+            "name": "06-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/07-social.jpg",
+            "name": "07-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/08-social.jpg",
+            "name": "08-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/09-social.jpg",
+            "name": "09-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/10-social.jpg",
+            "name": "10-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/11-social.jpg",
+            "name": "11-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/12-social.jpg",
+            "name": "12-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/13-social.jpg",
+            "name": "13-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/14-social.jpg",
+            "name": "14-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/15-social.jpg",
+            "name": "15-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/16-social.jpg",
+            "name": "16-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/17-social.jpg",
+            "name": "17-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/18-social.jpg",
+            "name": "18-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/19-social.jpg",
+            "name": "19-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/20-social.jpg",
+            "name": "20-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/21-social.jpg",
+            "name": "21-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/22-social.jpg",
+            "name": "22-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/23-social.jpg",
+            "name": "23-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/24-social.jpg",
+            "name": "24-social",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/selected-social/25-social.jpg",
+            "name": "25-social",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       }
@@ -495,6 +656,105 @@ export const PORTFOLIO: Category[] = [
             "name": "01-poster",
             "type": "image",
             "ext": ".png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "logo-design",
+    "name": "Logo Design",
+    "tagline": "Identity & Marks",
+    "description": "Logos and brand marks — distilled symbols, wordmarks and the systems that carry an identity.",
+    "accent": "#be123c",
+    "cover": "resources/logo-design/featured/vatanparast.png",
+    "projectCount": 5,
+    "projects": [
+      {
+        "slug": "featured",
+        "name": "Vatanparast",
+        "description": "Designed for Vatanparast’s nutrition research lab in Canada, this logo brings together the letter V, a leaf, a human figure, and an upward gesture of growth.\nThe V represents the Vatanparast name, while the leaf connects the identity to nutrition and natural vitality.\nThe human form and rising movement express health, progress, and the lab’s focus on human wellbeing.",
+        "year": null,
+        "client": null,
+        "tags": [
+          "identity",
+          "branding"
+        ],
+        "cover": "resources/logo-design/featured/vatanparast.png",
+        "media": [
+          {
+            "path": "resources/logo-design/featured/vatanparast.png",
+            "name": "vatanparast",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
+      {
+        "slug": "luna-collection",
+        "name": "LUNA",
+        "description": "LUNA is a logotype designed for an Instagram-based fashion boutique.\nThe name means “moon,” a concept woven into the lettering through a crescent moon motif.\nDelicate curves and refined letterforms bring the name and its meaning together, creating an elegant identity for the boutique.",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/logo-design/luna-collection/01-logo.png",
+        "media": [
+          {
+            "path": "resources/logo-design/luna-collection/01-logo.png",
+            "name": "01-logo",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
+      {
+        "slug": "premium-gradient",
+        "name": "Kartamoon",
+        "description": "Kartamoon is a task management website designed to help people organize their work and keep track of what comes next.\nThe logo combines the letter K with a series of cards, referencing the task cards at the heart of the platform.\nThe modular shapes bring structure and clarity to the mark, reflecting a simple, organized approach to managing everyday tasks.",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/logo-design/premium-gradient/01-logo.png",
+        "media": [
+          {
+            "path": "resources/logo-design/premium-gradient/01-logo.png",
+            "name": "01-logo",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
+      {
+        "slug": "rocket-b",
+        "name": "BlackRocket",
+        "description": "BlackRocket is a logo designed for a trading website, combining the letter B with the silhouette of a rocket.\nThe B anchors the mark to the brand name, while the rocket introduces a sense of momentum, ambition, and forward movement.\nBold geometry and a clear silhouette create a distinctive identity that reflects the energy of the trading world.",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/logo-design/rocket-b/01-logo.png",
+        "media": [
+          {
+            "path": "resources/logo-design/rocket-b/01-logo.png",
+            "name": "01-logo",
+            "type": "image",
+            "ext": ".png"
+          }
+        ]
+      },
+      {
+        "slug": "standea",
+        "name": "STANDEA",
+        "description": "Designed for a client in the United States, STANDEA combines “Stance” and “Idea” — an app where people share their opinions and respond with Agree or Disagree.\nThe logo brings these two opposing reactions together in a single mark, with the letter S formed between them.\nIts contrasting red and blue shapes express different viewpoints, creating a unified identity built around conversation and the exchange of ideas.",
+        "year": null,
+        "client": null,
+        "tags": [],
+        "cover": "resources/logo-design/standea/01-logo.jpg",
+        "media": [
+          {
+            "path": "resources/logo-design/standea/01-logo.jpg",
+            "name": "01-logo",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       }
@@ -555,5 +815,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 21;
+export const TOTAL_PROJECTS = 22;
 export const TOTAL_CATEGORIES = 7;

@@ -1,0 +1,28 @@
+// Original proportions of supplied social artwork.
+export const SOCIAL_RATIOS: Record<string, number> = {
+  "01-social": 1.268,
+  "02-social": 1.5802469135802468,
+  "03-social": 1.7013574660633484,
+  "04-social": 0.5625,
+  "05-social": 0.7167928423950447,
+  "06-social": 1.8213530655391121,
+  "07-social": 1.9076549210206561,
+  "08-social": 0.5625,
+  "09-social": 0.5625,
+  "10-social": 0.5625,
+  "11-social": 0.5625,
+  "12-social": 0.5625,
+  "13-social": 0.5625,
+  "14-social": 0.5625,
+  "15-social": 0.5625,
+  "16-social": 0.5625,
+  "17-social": 0.5625,
+  "18-social": 0.5625,
+  "19-social": 0.5625,
+  "20-social": 0.5625,
+  "21-social": 0.5625,
+  "22-social": 0.5625,
+  "23-social": 0.5625,
+  "24-social": 0.5625,
+  "25-social": 0.5625
+};

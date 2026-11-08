@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { ChevronLeft, ChevronRight, Download, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, X, Leaf, UserRound, ArrowUp, ThumbsUp, ThumbsDown, PanelsTopLeft, Plus, Rocket } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { assetUrl } from "@/lib/assets";
@@ -337,6 +337,32 @@ function Meta({ label, value }: { label: string; value: string }) {
   );
 }
 
+function LogoIngredients({ path }: { path: string }) {
+  const iconClass = "h-5 w-5";
+  const parts = path.includes("/vatanparast.")
+    ? [{ label: "V", symbol: "V" }, { label: "Leaf", symbol: <Leaf className={iconClass} /> }, { label: "Person", symbol: <UserRound className={iconClass} /> }, { label: "Growth", symbol: <ArrowUp className={iconClass} /> }]
+    : path.includes("/standea/")
+      ? [{ label: "Agree", symbol: <ThumbsUp className={iconClass} /> }, { label: "Disagree", symbol: <ThumbsDown className={iconClass} /> }, { label: "S", symbol: "S" }]
+      : path.includes("/premium-gradient/")
+        ? [{ label: "Task cards", symbol: <PanelsTopLeft className={iconClass} /> }, { label: "K", symbol: "K" }]
+        : path.includes("/rocket-b/")
+          ? [{ label: "B", symbol: "B" }, { label: "Rocket", symbol: <Rocket className={iconClass} /> }]
+          : [];
+  if (!parts.length) return null;
+  return (
+    <div className={cn("mt-5 flex items-center text-[var(--accent)]", parts.length === 2 ? "gap-2" : "w-full justify-between")} aria-label="Logo elements">
+      {parts.map((part, i) => (
+        <div key={part.label} className="contents">
+          {i > 0 && <Plus aria-hidden="true" className="h-3 w-3 shrink-0" />}
+          <span aria-label={part.label} role="img" title={part.label} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--accent)] text-base font-semibold">
+            {part.symbol}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 interface LightboxProps {
   index: number | null;
   total: number;
@@ -347,6 +373,8 @@ interface LightboxProps {
   onThumb: (i: number) => void;
   media: { path: string; name: string; type: "image" | "video" }[];
   accent: string;
+  description?: string;
+  uniformFrame?: boolean;
 }
 
 export function Lightbox({
@@ -358,6 +386,8 @@ export function Lightbox({
   onThumb,
   media,
   accent,
+  description,
+  uniformFrame = false,
 }: LightboxProps) {
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
@@ -414,7 +444,7 @@ export function Lightbox({
 
           {/* stage */}
           <div
-            className="relative flex min-h-0 flex-1 items-center justify-center px-4 pb-4"
+            className="relative mx-auto flex min-h-0 w-full flex-1 items-center justify-center px-4 pb-4"
             onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
           >
             <AnimatePresence mode="wait">
@@ -424,9 +454,10 @@ export function Lightbox({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.25, ease }}
-                className="relative flex h-full min-h-0 w-full flex-col items-center justify-center"
+                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", uniformFrame && "lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
                 onClick={(e) => e.stopPropagation()}
               >
+                <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center lg:h-full lg:min-w-0">
                 {current.type === "video" ? (
                   <video
                     src={assetUrl(current.path)}
@@ -436,15 +467,21 @@ export function Lightbox({
                     className="min-h-0 max-h-full max-w-[92vw] rounded-lg"
                   />
                 ) : (
+                  <div className={cn("flex min-h-0 max-h-full items-center justify-center overflow-hidden rounded-2xl", uniformFrame ? "aspect-[3/2] w-full" : "max-w-full")}>
                   <img
                     src={assetUrl(current.path)}
                     alt={current.name}
-                    className="block min-h-0 flex-1 w-full object-contain"
+                    className={cn("block min-h-0 max-h-full rounded-2xl", uniformFrame ? "h-full w-full" : "h-auto w-auto max-w-full", uniformFrame && current.path.includes("/vatanparast.") ? "object-cover" : "object-contain")}
                   />
+                  </div>
                 )}
-                <p className="mt-3 shrink-0 text-center font-mono text-xs text-white/60">
-                  {current.name}
-                </p>
+                </div>
+                {description && (
+                  <aside lang="en" style={{ hyphens: "none", overflowWrap: "normal", wordBreak: "normal" }} className="max-h-[25dvh] w-full shrink-0 overflow-y-auto px-3 pb-3 whitespace-pre-line text-left text-xs leading-relaxed text-white/85 lg:max-h-full lg:w-[220px] lg:self-center lg:px-0 lg:text-sm xl:w-[240px]">
+                    {description}
+                    <LogoIngredients path={current.path} />
+                  </aside>
+                )}
               </motion.div>
             </AnimatePresence>
 
@@ -456,7 +493,7 @@ export function Lightbox({
                     onPrev();
                   }}
                   aria-label="Previous"
-                  className="absolute left-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-white/90 transition-colors hover:bg-white/10 sm:left-6 sm:h-12 sm:w-12"
+                  className="absolute left-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-[var(--accent)] transition-colors hover:bg-white/10 sm:left-6 sm:h-12 sm:w-12"
                 >
                   <ChevronLeft className="h-5 w-5" />
                 </button>
@@ -466,8 +503,7 @@ export function Lightbox({
                     onNext();
                   }}
                   aria-label="Next"
-                  className="absolute right-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-white/90 transition-colors hover:bg-white/10 sm:right-6 sm:h-12 sm:w-12"
-                  style={{ color: "var(--flame)" }}
+                  className="absolute right-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-[var(--accent)] transition-colors hover:bg-white/10 sm:right-6 sm:h-12 sm:w-12"
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>

@@ -48,15 +48,6 @@ export const CATEGORIES: CategoryConfig[] = [
     accent: "#9333ea",
   },
   {
-    slug: "logo-design",
-    previewImage: "images/logo-preview-v5.jpg",
-    name: "Logo Design",
-    tagline: "Identity & Marks",
-    description:
-      "Logos and brand marks — distilled symbols, wordmarks and the systems that carry an identity.",
-    accent: "#be123c",
-  },
-  {
     slug: "banner-design",
     previewImage: "images/banner-preview.jpg",
     name: "Banner Design",
@@ -82,6 +73,15 @@ export const CATEGORIES: CategoryConfig[] = [
     description:
       "Posters and large-format print artwork — bold composition, contrast and a single decisive idea.",
     accent: "#1d4ed8",
+  },
+  {
+    slug: "logo-design",
+    previewImage: "images/logo-preview-v5.jpg",
+    name: "Logo Design",
+    tagline: "Identity & Marks",
+    description:
+      "Logos and brand marks — distilled symbols, wordmarks and the systems that carry an identity.",
+    accent: "#be123c",
   },
   {
     slug: "digital-painting",

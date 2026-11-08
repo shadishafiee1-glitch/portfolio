@@ -761,3 +761,169 @@ currently point at the same commit.
 
 ### 2026-11-08 — Publish portfolio updates
 - Validated the complete working site with ESLint and a successful static production build. Prepared accumulated gallery, lightbox, project media, preview and spacing updates for publication to origin/main.
+
+### 2026-11-08 — Add supplied logo mockups and reorder Logo Design
+- Added four supplied images as Premium Gradient, Rocket B, Luna Collection and STANDEA logo projects, each with project metadata and original image quality. They appear in All and their individual project selectors.
+- Moved Logo Design immediately after Poster Design in the canonical category configuration and regenerated the manifest (25 projects).
+
+### 2026-11-08 — Simplify and shrink logo gallery
+- Removed Cafe Identity from site discovery by archiving it outside the repository at C:/shadi/portfolio-content-archive/cafe-identity after deletion was blocked by automatic review. Regenerated the manifest (five logo projects).
+- Removed project selector pills specifically for Logo Design and constrained its combined staggered gallery to 1000px for smaller artwork. ESLint passed.
+
+### 2026-11-08 — Full-width varied logo gallery
+- Aligned the logo gallery to page content edges with three desktop columns, varied image widths and vertical offsets for a less uniform composition. Tablet uses two columns and mobile one; preserved hover outlines and lightbox navigation.
+
+### 2026-11-08 — Compact aligned logo gallery
+- Reduced logo image gutters to 12px (16px on desktop), removed width variations and vertical offsets, and filled each of the three desktop columns evenly for a tighter aligned layout.
+
+### 2026-11-08 — Mixed-format logo mosaic with equal gutters
+- Composed the desktop logo gallery with a tall central image spanning two rows beside four landscape tiles. Kept all gutters at 16px (12px on smaller screens), using cover crops for the mosaic while the lightbox retains full originals. Mobile shows uncropped images.
+
+### 2026-11-08 — STANDEA in tall logo tile
+- Swapped STANDEA with the previous central portrait tile, keeping gallery and lightbox order synchronized and preserving equal mosaic gutters.
+
+### 2026-11-08 — Replace top-left logo with Vatanparast
+- Replaced the featured logo artwork with the supplied Vatanparast PNG and updated its project name. Archived the previous image outside the site, retained the five-image mosaic and STANDEA's central portrait position, and regenerated the manifest.
+
+### 2026-11-08 — Vatanparast logo rationale in lightbox
+- Added a short English description of the nutrition lab identity combining V, leaf, human figure and growth in featured/meta.json. Logo lightboxes now show the selected project's description beneath the image; shared lightbox captions are optional and viewport height remains reserved for media. Regenerated manifest and passed ESLint.
+
+### 2026-11-08 — Vatanparast lab location
+- Added the user-provided Canada location to the English logo rationale and regenerated the manifest.
+
+### 2026-11-08 — Side-by-side logo lightbox description
+- Moved optional lightbox descriptions into a narrow right column on desktop, allowing the image to fill the remaining width and available viewport height on the left. Smaller screens retain stacked image and copy; media without descriptions keeps its full-width stage. ESLint passed.
+
+### 2026-11-08 — Closer justified lightbox copy
+- Reduced desktop image-to-description gap from 32px to 12px and removed left padding from the invisible text box. Justified its text with a left-aligned last line and whole words.
+
+### 2026-11-08 — Smaller lightbox copy and arrow clearance
+- Reduced description font to 14px on desktop and 12px on smaller screens, narrowed its desktop text box to 220–240px, and reserved an 80px right margin so the next-image arrow does not overlap the text.
+
+### 2026-11-08 — Natural logo description spacing
+- Removed lightbox text justification to restore natural word spacing and separated each Vatanparast rationale sentence into its own paragraph. Preserved line breaks in the lightbox and regenerated the manifest.
+
+### 2026-11-08 — Blue lightbox navigation arrows
+- Matched both previous and next image arrows to the site's accent blue.
+
+### 2026-11-08 — Left arrow clearance for logo image
+- Added 64px of desktop left padding to the image area when a lightbox description is present, separating the logo image from the previous arrow.
+
+### 2026-11-08 — STANDEA logo rationale
+- Added a short English description explaining Stance + Idea, the opinion-sharing app's Agree/Disagree responses, and their combination with S in the logo. Used three paragraphs and the existing right-hand lightbox description styling; regenerated the manifest.
+
+### 2026-11-08 — STANDEA client location and tighter copy
+- Added that STANDEA was designed for a client in the United States. Reduced paragraph spacing in both Vatanparast and STANDEA descriptions by removing blank lines while keeping sentence breaks. Regenerated the manifest.
+
+### 2026-11-08 — Uniform logo lightbox frames
+- Standardized opened logo images to a 3:2 cover frame and reserved identical desktop description space even for logos without copy so image widths remain consistent. Other galleries retain their existing full-image presentation. ESLint passed.
+
+### 2026-11-08 — STANDEA-sized uncropped lightbox layout
+- Replaced forced cover crops with an explicit 3:2 image stage sized against the viewport, using contain to preserve full artwork. Kept the same reserved right-hand description column for every logo so image space stays consistent.
+
+### 2026-11-08 — Match Vatanparast image bounds
+- Made Vatanparast fill the same 3:2 lightbox frame as the other logos with a centered side crop; retained its right-hand description and the existing display of other artwork.
+
+### 2026-11-08 — Kartamoon logo rationale
+- Named the premium-gradient logo project Kartamoon and added a short English rationale explaining the task-management website and its K/card symbol. Its description uses the existing right-hand lightbox layout and compact paragraph breaks. Regenerated the manifest.
+
+### 2026-11-08 — Logo construction icons
+- Added blue outlined element tiles beneath the Vatanparast, STANDEA and Kartamoon lightbox descriptions, separated by plus signs: V/leaf/person/up arrow, thumbs up/thumbs down/S, and task cards/K. Used accessible Lucide icons and matching blue borders. ESLint passed.
+
+### 2026-11-08 — Align icon row to description width
+- Distributed logo element tiles and plus signs across the full description width so the row's left and right edges align with the text box.
+
+### 2026-11-08 — Circular logo element borders
+- Changed the thin blue borders around logo construction elements to circles.
+
+### 2026-11-08 — Compact Kartamoon elements
+- Grouped Kartamoon's card, plus and K with an 8px gap instead of distributing them across the description width. Other logo element rows retain their alignment.
+
+### 2026-11-08 — Rounded lightbox images
+- Added 16px rounded corners to opened images and clipped the uniform logo frame to the same rounded shape.
+
+### 2026-11-08 — Symmetric lightbox arrow clearance
+- Replaced separate image padding and text margin with equal 80px desktop side gutters around the image/description group, reserving matching space for both navigation arrows.
+
+### 2026-11-08 — Align visible image edge to arrow gutter
+- Left-aligned the height-constrained logo frame within its desktop column, removing the extra centered space between the previous arrow and the visible image. Both visible content edges now follow the symmetric side gutters.
+
+### 2026-11-08 — Compact centered logo stage with equal arrow gaps
+- Constrained the entire logo stage to the image's viewport-based size plus the description, 12px inner gap and symmetric arrow gutters. Navigation arrows now follow the compact stage rather than the screen edges, eliminating unused space between image and text.
+
+### 2026-11-08 — Restore viewport-edge navigation arrows
+- Restored the full-width lightbox stage so arrows return to their original screen-edge positions. Kept the image and text grouped closely by constraining only the inner content.
+
+### 2026-11-08 — Increase image-to-copy gap
+- Increased the desktop lightbox image/description gap from 12px to 24px and expanded the inner group accordingly, preserving image sizing and arrow positions.
+
+### 2026-11-08 — Remove image filenames and round all lightbox images
+- Removed the visible filename beneath opened images. Applied a rounded clipping wrapper to every lightbox image, including galleries without the uniform logo frame.
+
+### 2026-11-08 — BlackRocket logo rationale
+- Named the Rocket B project BlackRocket and added an English description of the trading website identity combining B and a rocket. Added matching B + rocket elements in blue circles beneath its lightbox copy; regenerated the manifest.
+
+### 2026-11-08 — LUNA boutique logo rationale
+- Added an English description for the Instagram fashion boutique explaining the moon meaning and crescent integrated into its logotype. Uses the shared rounded logo lightbox with right-side text and matching blue letter/moon element circles. Regenerated the manifest.
+
+### 2026-11-08 — Remove LUNA element circles
+- Removed only the circular construction elements beneath LUNA's description, preserving its text and image styling.
+
+### 2026-11-08 — Mixed-size banner mosaic
+- Added all 13 supplied banners under selected-banners and regenerated the manifest. Banner Design now displays a full-width mixed-size mosaic with wide, small and tall tiles, equal 16px desktop gutters (12px on smaller screens), rounded hover outlines and an uncropped full-image lightbox. Existing banners remain included after the new work.
+
+### 2026-11-08 — Uncropped banner artwork
+- Replaced the fixed-height cropped banner tiles with natural-ratio masonry columns. All banners now display their full original composition, using image heights for a varied layout and matching 12px/16px horizontal and vertical gutters. ESLint passed.
+
+### 2026-11-08 — Remove duplicate Black Friday banner
+- Confirmed the old featured banner duplicates the newly supplied Black Friday artwork. Archived the old featured project outside site resources, retaining the user's new original image once, and regenerated the manifest.
+
+### 2026-11-08 — Remove orange banner and lower phone mockup
+- Archived the orange Summer Sale project outside site resources and regenerated the manifest. Moved the turquoise finance-app phone mockup to the end of the banner gallery, retaining full images and equal gutters. ESLint passed.
+
+### 2026-11-08 — More banners and brand filters
+- Added eight supplied banners (21 total), interleaving new artwork with existing banners and keeping the phone mockup at the end. Added All, Proopco and Magical Api rounded filters with matching filtered lightbox navigation.
+- Reduced desktop gallery sizes using four natural-ratio masonry columns; preserved original uncropped artwork and equal gutters. Regenerated manifest and passed ESLint.
+
+### 2026-11-08 — Banner sizing, ordering and Part filter
+- Moved the turquoise Signal and finance-app banners to the gallery end, reduced six Proopco tiles to 86% width on larger screens, and added Part Software Group filtering for Radio Signal, Signal, finance-app and AI-service banners. Original image ratios and full-size lightbox media are preserved.
+
+### 2026-11-08 — Add Pulse banner
+- Added the supplied Pulse artwork as 22-pulse.jpg, interleaved in All without cropping; preserved its original file quality and excluded it from unrelated brand filters. Regenerated the manifest.
+
+### 2026-11-08 — Remove final turquoise phone banner
+- Archived 08-finance-app.jpg outside site resources at the user's request and regenerated the manifest, removing it from the gallery, brand filter and lightbox.
+
+### 2026-11-08 — Pulse under Part and equal banner gutters
+- Added Pulse to Part Software Group filtering. Removed selective narrower tile widths so all banner edges align with their columns and the full-width gallery, with equal horizontal/vertical 12px gutters (16px desktop). Preserved the existing masonry ordering and uncropped image ratios. ESLint passed.
+
+### 2026-11-08 — Larger Magical Api and Part galleries
+- Switched Magical Api and Part Software Group filtered banner galleries to two desktop columns for larger images and less empty space, preserving existing All/Proopco sizing and equal gutters.
+
+### 2026-11-08 — Larger colorful banners in All
+- Gave selected colorful banners (Dumbledore, Mashhad Market, Magical API waitlist, AI services and Pulse) a wider desktop gallery column, with darker artwork in narrower columns. Preserved natural image ratios, equal gutters and existing brand-filter layouts. ESLint passed.
+
+### 2026-11-08 — Restore compact banner masonry
+- Reverted the unequal independent column layout in All after it created excessive blank space below. Restored balanced four-column natural-ratio masonry with equal gutters; retained larger two-column brand filters and all supplied images.
+
+### 2026-11-08 — Varied uncropped banner rows
+- Replaced All's uniform columns with justified rows of varying image counts, calculating widths from original aspect ratios so dark banners vary in size while rows fill the content width with equal gutters and no crops or column-bottom gaps. Added source image ratio data. ESLint passed.
+
+### 2026-11-08 — Prioritize Black Friday in staggered banner masonry
+- Promoted Black Friday to the wide gallery column and constrained the yellow Radio Signal banner to a narrower column. Replaced straight justified rows with natural-ratio masonry, greedily balancing estimated column heights to reduce bottom whitespace. Maintained equal gutters, full uncropped images and lightbox ordering. ESLint passed.
+
+### 2026-11-08 — Enlarge AI services banner
+- Assigned 09-ai-services.jpg to the wider All-gallery column alongside Black Friday for clearer detail, preserving its original ratio and equal gutters.
+
+### 2026-11-08 — Smaller Proopco filtered images
+- Changed only the Proopco filtered gallery to three columns on medium screens and four on desktop, reducing image size while preserving uncropped artwork and equal gutters. Other filters keep their current layouts.
+
+### 2026-11-08 — Supplied social media gallery
+- Added all 25 supplied social images under selected-social and recorded their original aspect ratios. Applied a banner-style full-width masonry gallery with varied desktop column widths, equal 12px/16px gutters, balanced column heights, rounded hover outlines and full-image lightbox navigation.
+- Kept images uncropped and existing social work included. Regenerated the manifest and passed ESLint.
+
+### 2026-11-08 — Remove old social samples and mix similar work
+- Archived the two identified old featured/launch-campaign social images outside site resources. Interleaved supplied work across visual themes and penalized consecutive same-theme placements within a column while balancing gallery heights. Preserved equal gutters and uncropped images; regenerated manifest and passed ESLint.
+
+### 2026-11-08 — Publish logo, banner and social updates
+- Passed full ESLint and production static export checks. Prepared all requested logo replacements/rationales, gallery/lightbox refinements, banner filters and social media additions for origin/main publication.
