@@ -6,6 +6,7 @@ import { useState, type CSSProperties } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { BANNER_RATIOS } from "@/data/banner-ratios";
 import { CATALOG_RATIOS } from "@/data/catalog-ratios";
+import { POSTER_RATIOS } from "@/data/poster-ratios";
 import { PAINTING_RATIOS } from "@/data/painting-ratios";
 import { SOCIAL_RATIOS, SOCIAL_REELS_COVERS, SOCIAL_STORIES } from "@/data/social-ratios";
 import { cn } from "@/lib/utils";
@@ -116,7 +117,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
           <Lightbox index={lightbox} total={magazineMedia.length} media={magazineMedia} accent="var(--accent)" onClose={() => setLightbox(null)} onThumb={setLightbox} onPrev={() => setLightbox((current) => current === null ? null : (current - 1 + magazineMedia.length) % magazineMedia.length)} onNext={() => setLightbox((current) => current === null ? null : (current + 1) % magazineMedia.length)} />
         </section>
       ) : (
-      categorySlug === "banner-design" ? <BannerGallery projects={cat.projects} /> : categorySlug === "social-media-design" ? <SocialGallery projects={cat.projects} /> : categorySlug === "digital-painting" ? <DigitalPaintingGallery projects={cat.projects} /> : <ProjectCollection key={categorySlug} hideSelectors={categorySlug === "logo-design"} projects={cat.projects} onBack={() => navigate({ kind: "home" })} />
+      categorySlug === "banner-design" ? <BannerGallery projects={cat.projects} /> : categorySlug === "social-media-design" ? <SocialGallery projects={cat.projects} /> : categorySlug === "poster-design" ? <PosterGallery projects={cat.projects} /> : categorySlug === "digital-painting" ? <DigitalPaintingGallery projects={cat.projects} /> : <ProjectCollection key={categorySlug} hideSelectors={categorySlug === "logo-design"} projects={cat.projects} onBack={() => navigate({ kind: "home" })} />
     )}
     </div>
   );
@@ -142,6 +143,42 @@ function ProjectCollection({ projects, onBack, hideSelectors = false }: { projec
   </div>
   {selected === "all" ? <AllCatalogs projects={projects} /> : projects.filter((project) => project.slug === selected).map((project) => <AdditionalCatalog key={project.slug} project={project} />)}
  </section>;
+}
+
+function PosterGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["projects"] }) {
+  const [index, setIndex] = useState<number | null>(null);
+  const items = [...projects].sort((a, b) => Number(b.slug === "bank-tejarat") - Number(a.slug === "bank-tejarat"))
+    .flatMap((project) => project.media.map((media) => ({ media, title: project.name })));
+  const media = items.map((item) => item.media);
+  const columns: number[][] = [[], [], []];
+  const loads = [0, 0, 0];
+  const heightOf = (i: number) => 1 / (POSTER_RATIOS[items[i].media.path] ?? 1);
+  items.map((_, i) => i).sort((a, b) => heightOf(b) - heightOf(a)).forEach((i) => {
+    const column = loads.reduce((best, value, c) => value < loads[best] ? c : best, 0);
+    columns[column].push(i);
+    loads[column] += heightOf(i) + 0.05;
+  });
+  columns.forEach((column) => column.sort((a, b) => a - b));
+  const active = columns.filter((column) => column.length);
+  const sums = active.map((column) => column.reduce((sum, i) => sum + heightOf(i), 0));
+  const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);
+  const offsets = sums.map((sum, c) => (active[c].length - 1) / sum);
+  const correction = 16 * (offsets.reduce((sum, value) => sum + value, 0) - (active.length - 1));
+  const tracks = sums.map((sum, c) => {
+    const share = 1 / sum / inverseSum;
+    return `calc(${share * 100}% + ${correction * share - 16 * offsets[c]}px)`;
+  }).join(" ");
+  return <section className="mt-8" aria-label="Poster design gallery">
+    <div style={{ "--poster-tracks": tracks } as CSSProperties} className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[var(--poster-tracks)] lg:gap-4">
+      {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
+        {column.map((i) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
+          <img src={assetUrl(items[i].media.path)} alt={`${items[i].title} — ${items[i].media.name}`} className="block h-auto w-full" loading={i < 3 ? "eager" : "lazy"} />
+          <GalleryOutline />
+        </button>)}
+      </div>)}
+    </div>
+    <Lightbox index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
+  </section>;
 }
 
 function DigitalPaintingGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["projects"] }) {

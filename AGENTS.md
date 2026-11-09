@@ -1079,3 +1079,16 @@ currently point at the same commit.
 
 ### 2026-11-09 — Publish headline hearts
 - Published the verified headline-hover hearts correction to origin/main after ESLint and whitespace checks passed. Kept unrelated local assets and archived artwork out of the commit.
+
+### 2026-11-09 — Bank Tejarat posters and aligned gallery
+- Added all seven supplied cybersecurity posters as a Bank Tejarat project and regenerated the manifest. Preserved existing poster artwork.
+- Created a full-width three-column Poster Design gallery using social-style balanced, varied column widths, calculated from original image ratios and 16px desktop gutters. Top/bottom edges align; posters remain uncropped with full-gallery lightbox navigation and responsive mobile flow.
+- ESLint passed; numerical checks confirmed matching bottom edges and positive widths at 960/1336px for all nine posters.
+
+### 2026-11-09 — Remove old poster samples and selectors
+- Archived the two old featured/music-festival poster images outside public resources. Regenerated the manifest so Poster Design contains only the seven supplied Bank Tejarat posters; removed stale entries from poster ratios.
+- Confirmed the category route uses the direct PosterGallery with no project/category selector controls. ESLint passed and manifest checks confirmed exactly seven supplied posters.
+
+### 2026-11-09 — Zero Hour and wildlife posters publication
+- Added supplied sample 1.jpg as Zero Hour in the Bank Tejarat project and deer.jpg as a Wildlife Awareness project. Recorded original aspect ratios and regenerated the manifest. Poster gallery now shows nine supplied works with no category selectors; old samples remain excluded.
+- Full ESLint, production static export and calculated gallery alignment checks passed. Prepared all requested poster additions and cleanup for origin/main publication.

@@ -739,48 +739,90 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Posters & Print",
     "description": "Posters and large-format print artwork — bold composition, contrast and a single decisive idea.",
     "accent": "#1d4ed8",
-    "cover": "resources/poster-design/featured/poster.jpg",
+    "cover": "resources/poster-design/bank-tejarat/01-emergency-access.jpg",
     "projectCount": 2,
     "projects": [
       {
-        "slug": "featured",
-        "name": "Event Poster",
-        "description": "Large-format poster artwork — bold composition, contrast and a single decisive idea carried by type and image.",
-        "year": "2023",
-        "client": "Cultural Series",
+        "slug": "bank-tejarat",
+        "name": "Bank Tejarat — Security Awareness",
+        "description": "Cybersecurity awareness posters combining visual storytelling and clear messaging.",
+        "year": null,
+        "client": "Bank Tejarat",
         "tags": [
           "poster",
-          "print",
-          "typography"
+          "cybersecurity",
+          "campaign"
         ],
-        "cover": "resources/poster-design/featured/poster.jpg",
+        "cover": "resources/poster-design/bank-tejarat/01-emergency-access.jpg",
         "media": [
           {
-            "path": "resources/poster-design/featured/poster.jpg",
-            "name": "poster",
+            "path": "resources/poster-design/bank-tejarat/01-emergency-access.jpg",
+            "name": "01-emergency-access",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/02-fake-pages.jpg",
+            "name": "02-fake-pages",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/03-fake-accounts.jpg",
+            "name": "03-fake-accounts",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/04-lost-phone.jpg",
+            "name": "04-lost-phone",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/05-crisis-planning.jpg",
+            "name": "05-crisis-planning",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/06-small-mistake-trap.jpg",
+            "name": "06-small-mistake-trap",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/07-phishing-link.jpg",
+            "name": "07-phishing-link",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/poster-design/bank-tejarat/08-zero-hour.jpg",
+            "name": "08-zero-hour",
             "type": "image",
             "ext": ".jpg"
           }
         ]
       },
       {
-        "slug": "music-festival",
-        "name": "Music Festival",
-        "description": "A festival poster series built on bold geometry, screen-print layering and a single decisive type voice.",
-        "year": "2023",
-        "client": "Solstice Festival",
+        "slug": "wildlife-awareness",
+        "name": "Wildlife Awareness",
+        "description": "A poster advocating for wildlife protection.",
+        "year": null,
+        "client": null,
         "tags": [
           "poster",
-          "print",
-          "typography"
+          "wildlife",
+          "awareness"
         ],
-        "cover": "resources/poster-design/music-festival/01-poster.png",
+        "cover": "resources/poster-design/wildlife-awareness/01-deer.jpg",
         "media": [
           {
-            "path": "resources/poster-design/music-festival/01-poster.png",
-            "name": "01-poster",
+            "path": "resources/poster-design/wildlife-awareness/01-deer.jpg",
+            "name": "01-deer",
             "type": "image",
-            "ext": ".png"
+            "ext": ".jpg"
           }
         ]
       }
