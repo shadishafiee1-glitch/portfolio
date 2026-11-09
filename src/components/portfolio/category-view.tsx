@@ -6,6 +6,7 @@ import { useState, type CSSProperties } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { BANNER_RATIOS } from "@/data/banner-ratios";
 import { CATALOG_RATIOS } from "@/data/catalog-ratios";
+import { PAINTING_RATIOS } from "@/data/painting-ratios";
 import { SOCIAL_RATIOS, SOCIAL_REELS_COVERS, SOCIAL_STORIES } from "@/data/social-ratios";
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
@@ -148,15 +149,34 @@ function DigitalPaintingGallery({ projects }: { projects: (typeof PORTFOLIO)[num
   const items = [...projects].sort((a, b) => Number(b.slug === "selected-paintings") - Number(a.slug === "selected-paintings"))
     .flatMap((project) => project.media.map((media) => ({ media, title: project.name, zoom: project.slug === "selected-paintings" })));
   const media = items.map((item) => item.media);
+  const columns: number[][] = [[], [], []];
+  const targets = [0.375, 0.25, 0.375].map((weight) => Math.floor(items.length * weight));
+  for (let remaining = items.length - targets.reduce((sum, n) => sum + n, 0), c = 0; remaining > 0; remaining--, c++) targets[c % 3]++;
+  let cursor = 0;
+  targets.forEach((n, c) => { columns[c] = Array.from({ length: n }, () => cursor++); });
+  const active = columns.filter((column) => column.length);
+  const sums = active.map((column) => column.reduce((sum, i) => sum + 1 / (items[i].zoom ? 4 / 3 : PAINTING_RATIOS[items[i].media.path] ?? 1), 0));
+  const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);
+  const offsets = sums.map((sum, c) => (active[c].length - 1) / sum);
+  const correction = 16 * (offsets.reduce((sum, value) => sum + value, 0) - (active.length - 1));
+  const tracks = sums.map((sum, c) => {
+    const share = 1 / sum / inverseSum;
+    return `calc(${share * 100}% + ${correction * share - 16 * offsets[c]}px)`;
+  }).join(" ");
   return (
     <section className="mt-8" aria-label="Digital painting gallery">
-      <div className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:gap-4">
-        {items.map((item, i) => (
+      <div style={{ "--painting-tracks": tracks } as CSSProperties} className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[var(--painting-tracks)] lg:gap-4">
+        {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
+        {column.map((i) => {
+          const item = items[i];
+          return (
           <button key={item.media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${item.title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
-            <img src={assetUrl(item.media.path)} alt={`${item.title} — ${i + 1}`} className={cn("block w-full", item.zoom ? "aspect-[4/3] scale-[1.08] object-cover" : "h-auto")} style={item.zoom && item.media.name === "04-painting" ? { objectPosition: "40% center", transformOrigin: "40% center" } : undefined} loading={i < 2 ? "eager" : "lazy"} />
+            <img src={assetUrl(item.media.path)} alt={`${item.title} — ${i + 1}`} className={cn("block w-full", item.zoom ? "aspect-[4/3] object-cover" : "h-auto", item.zoom && (item.media.name === "07-painting" ? "scale-[1.45]" : ["02-painting", "05-painting"].includes(item.media.name) ? "scale-[1.3]" : "scale-[1.08]"))} style={item.zoom && item.media.name === "05-painting" ? { objectPosition: "48% center", transformOrigin: "48% 42%" } : item.zoom && item.media.name === "02-painting" ? { objectPosition: "54% center", transformOrigin: "54% 35%" } : item.zoom && item.media.name === "07-painting" ? { objectPosition: "52% center", transformOrigin: "52% 18%" } : item.zoom && item.media.name === "04-painting" ? { objectPosition: "40% center", transformOrigin: "40% center" } : undefined} loading={i < 2 ? "eager" : "lazy"} />
             <GalleryOutline />
           </button>
-        ))}
+          );
+        })}
+        </div>)}
       </div>
       <Lightbox index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
     </section>

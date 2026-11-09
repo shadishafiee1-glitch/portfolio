@@ -63,7 +63,7 @@ export function AboutView({ navigate }: AboutViewProps) {
           <p className="display-text mt-2 text-2xl italic">Have a brief in mind?</p>
         </div>
         <a
-          href="mailto:hello@shadishafiee.com?subject=Project%20enquiry"
+          href="mailto:shadi.shafiee1@gmail.com?subject=Project%20enquiry"
           className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-[var(--accent)]"
         >
           hello@shadishafiee.com

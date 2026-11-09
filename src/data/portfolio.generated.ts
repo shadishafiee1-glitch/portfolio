@@ -891,51 +891,9 @@ export const PORTFOLIO: Category[] = [
     "tagline": "Painting & Illustration",
     "description": "Digital paintings and illustrations — colour, light and atmosphere rendered stroke by stroke.",
     "accent": "#7c3aed",
-    "cover": "resources/digital-painting/featured/painting.jpg",
-    "projectCount": 3,
+    "cover": "resources/digital-painting/selected-paintings/01-painting.jpg",
+    "projectCount": 1,
     "projects": [
-      {
-        "slug": "featured",
-        "name": "Digital Canvas",
-        "description": "A digital painting study — colour, light and atmosphere rendered stroke by stroke on a pressure-sensitive canvas.",
-        "year": "2024",
-        "client": "Personal Work",
-        "tags": [
-          "painting",
-          "illustration",
-          "colour"
-        ],
-        "cover": "resources/digital-painting/featured/painting.jpg",
-        "media": [
-          {
-            "path": "resources/digital-painting/featured/painting.jpg",
-            "name": "painting",
-            "type": "image",
-            "ext": ".jpg"
-          }
-        ]
-      },
-      {
-        "slug": "portrait-study",
-        "name": "Portrait Study",
-        "description": "A painterly portrait study — expressive brushwork, warm atmosphere and colour built up stroke by stroke.",
-        "year": "2024",
-        "client": "Personal Work",
-        "tags": [
-          "painting",
-          "illustration",
-          "colour"
-        ],
-        "cover": "resources/digital-painting/portrait-study/01-painting.png",
-        "media": [
-          {
-            "path": "resources/digital-painting/portrait-study/01-painting.png",
-            "name": "01-painting",
-            "type": "image",
-            "ext": ".png"
-          }
-        ]
-      },
       {
         "slug": "selected-paintings",
         "name": "Digital Portraits",
@@ -997,5 +955,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 28;
+export const TOTAL_PROJECTS = 26;
 export const TOTAL_CATEGORIES = 7;

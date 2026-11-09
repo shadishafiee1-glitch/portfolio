@@ -1023,3 +1023,29 @@ currently point at the same commit.
 ### 2026-11-09 — Digital paintings and GitHub publication
 - Added seven supplied original painting mockups under selected-paintings with metadata. Created a two-column Digital Painting gallery with a modest CSS zoom and artwork-aware positioning so paintings are clearer, while the lightbox preserves complete original files. Existing paintings remain included.
 - Verified a rendered preview of all seven zoomed views, full ESLint, production static export and whitespace checks. Prepared this session's social/gallery/catalog updates and new artwork for publication to origin/main; unused local assets and archived artwork stay outside the commit.
+
+### 2026-11-09 — Remove seventh painting and align painting gallery
+- Archived the seventh supplied painting (green artwork over the sofa) outside public resources and regenerated the manifest.
+- Applied a three-column asymmetric natural-ratio layout with calculated equal top/bottom edges, moderate size variation and equal 16px desktop gutters. Retained the requested mild zoom for the six new paintings and full-original lightbox views; existing painting artwork remains included.
+- ESLint passed.
+
+### 2026-11-09 — Correct painting removal
+- Restored supplied painting 07 (green artwork over sofa), which was removed after misinterpreting the previous request. Matched the new screenshot to portrait-study/01-painting.png and archived that portrait outside public resources instead.
+- Regenerated the manifest and verified painting 07 is present and the identified portrait absent. Retained the new asymmetric painting layout.
+
+### 2026-11-09 — Remove duplicate leaf portrait
+- Identified the old featured/painting.jpg as a duplicate of supplied selected-paintings/02-painting.jpg (leaf portrait). Archived the old smaller copy outside public resources, retaining the supplied original and its zoomed gallery view.
+- Regenerated manifest and verified Digital Painting contains seven images with no featured duplicate.
+
+### 2026-11-09 — Closer view of green painting
+- Increased only painting 07 gallery zoom from 1.08 to 1.45, anchored near the upper-center artwork so the framed green painting remains visible and surrounding furniture occupies less space. Preserved gallery geometry and original lightbox image.
+- ESLint passed.
+
+### 2026-11-09 — Closer leaf portrait view
+- Increased painting 02 gallery zoom from 1.08 to 1.30, anchored at 54% horizontal / 35% vertical to emphasize the framed leaf portrait. Preserved gallery layout and the original lightbox image.
+- ESLint passed.
+
+### 2026-11-09 — Contact footer and closer painting 05
+- Increased painting 05 gallery zoom to 1.30 around the framed portrait, retaining layout and the full original lightbox image.
+- Replaced the shared footer identity/archive text with “Let’s work together.” and “Have a project in mind? Get in touch.” Added Email, Dribbble, Telegram and LinkedIn icons in blue circles across all routes. Email uses user-confirmed shadi.shafiee1@gmail.com; other icons remain disabled until the user supplies profile links. Updated the About contact email too.
+- Full ESLint and production static export passed. Included the preceding painting layout, duplicate removal and focal zoom corrections in this publication.
