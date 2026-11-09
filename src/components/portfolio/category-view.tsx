@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { BANNER_RATIOS } from "@/data/banner-ratios";
-import { SOCIAL_RATIOS } from "@/data/social-ratios";
+import { CATALOG_RATIOS } from "@/data/catalog-ratios";
+import { SOCIAL_RATIOS, SOCIAL_REELS_COVERS, SOCIAL_STORIES } from "@/data/social-ratios";
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
 import type { NavigateFn } from "@/hooks/use-hash-route";
@@ -83,8 +84,10 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
             ))}
           </div>
           {catalogSlug === "all" ? (
-            <AllCatalogs projects={["satrap-catalog", "zino-catalog", "parscenter", "presentation-design"].flatMap((slug) => cat.projects.filter((project) => project.slug === slug))} />
-          ) : cat.projects.filter((project) => project.slug === catalogSlug).map((project) => <AdditionalCatalog key={project.slug} project={project} />)}
+            <CatalogGallery key="all" projects={["satrap-catalog", "zino-catalog", "parscenter", "presentation-design"].flatMap((slug) => cat.projects.filter((project) => project.slug === slug))} />
+          ) : catalogSlug === "satrap-catalog" ? (
+            cat.projects.filter((project) => project.slug === "satrap-catalog").map((project) => <AdditionalCatalog key={project.slug} project={project} />)
+          ) : <CatalogGallery key={catalogSlug} projects={cat.projects.filter((project) => project.slug === catalogSlug)} showDescriptions />}
         </section>
       ) : inlineProjectSlug ? (
         <section className="mt-10" aria-labelledby="dideban-title">
@@ -112,7 +115,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
           <Lightbox index={lightbox} total={magazineMedia.length} media={magazineMedia} accent="var(--accent)" onClose={() => setLightbox(null)} onThumb={setLightbox} onPrev={() => setLightbox((current) => current === null ? null : (current - 1 + magazineMedia.length) % magazineMedia.length)} onNext={() => setLightbox((current) => current === null ? null : (current + 1) % magazineMedia.length)} />
         </section>
       ) : (
-      categorySlug === "banner-design" ? <BannerGallery projects={cat.projects} /> : categorySlug === "social-media-design" ? <SocialGallery projects={cat.projects} /> : <ProjectCollection key={categorySlug} hideSelectors={categorySlug === "logo-design"} projects={cat.projects} onBack={() => navigate({ kind: "home" })} />
+      categorySlug === "banner-design" ? <BannerGallery projects={cat.projects} /> : categorySlug === "social-media-design" ? <SocialGallery projects={cat.projects} /> : categorySlug === "digital-painting" ? <DigitalPaintingGallery projects={cat.projects} /> : <ProjectCollection key={categorySlug} hideSelectors={categorySlug === "logo-design"} projects={cat.projects} onBack={() => navigate({ kind: "home" })} />
     )}
     </div>
   );
@@ -140,40 +143,120 @@ function ProjectCollection({ projects, onBack, hideSelectors = false }: { projec
  </section>;
 }
 
+function DigitalPaintingGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["projects"] }) {
+  const [index, setIndex] = useState<number | null>(null);
+  const items = [...projects].sort((a, b) => Number(b.slug === "selected-paintings") - Number(a.slug === "selected-paintings"))
+    .flatMap((project) => project.media.map((media) => ({ media, title: project.name, zoom: project.slug === "selected-paintings" })));
+  const media = items.map((item) => item.media);
+  return (
+    <section className="mt-8" aria-label="Digital painting gallery">
+      <div className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:gap-4">
+        {items.map((item, i) => (
+          <button key={item.media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${item.title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
+            <img src={assetUrl(item.media.path)} alt={`${item.title} — ${i + 1}`} className={cn("block w-full", item.zoom ? "aspect-[4/3] scale-[1.08] object-cover" : "h-auto")} style={item.zoom && item.media.name === "04-painting" ? { objectPosition: "40% center", transformOrigin: "40% center" } : undefined} loading={i < 2 ? "eager" : "lazy"} />
+            <GalleryOutline />
+          </button>
+        ))}
+      </div>
+      <Lightbox index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
+    </section>
+  );
+}
+
 function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["projects"] }) {
   const [index, setIndex] = useState<number | null>(null);
+  const [filter, setFilter] = useState("all");
   const items = [...projects].sort((a, b) => Number(b.slug === "selected-social") - Number(a.slug === "selected-social"))
-    .flatMap((project) => project.media.map((media) => ({ media, title: project.name })));
+    .flatMap((project) => project.media.map((media) => ({ media, title: project.name,
+      category: project.tags.includes("reels-cover") || (project.slug === "selected-social" && SOCIAL_REELS_COVERS.has(media.name)) ? "reels-cover" : project.slug === "selected-social" && SOCIAL_STORIES.has(media.name) ? "story" : project.tags.includes("post") ? "post" : project.tags.includes("story") ? "story" : (SOCIAL_RATIOS[media.name] ?? 1) < 0.65 ? "story" : "post",
+    })))
+    .filter((item) => filter === "all" || item.category === filter);
   const sequence = [1, 18, 8, 3, 13, 22, 6, 20, 2, 9, 24, 4, 16, 10, 21, 14, 7, 25, 11, 17, 19, 5, 12, 23, 15];
   items.sort((a, b) => sequence.indexOf(Number(a.media.name.slice(0, 2))) - sequence.indexOf(Number(b.media.name.slice(0, 2))));
-  const group = (i: number) => {
-    const n = Number(items[i].media.name.slice(0, 2));
-    return n >= 18 ? "trading" : n >= 8 && n <= 12 ? "vending" : n === 13 || n === 14 ? "blog" : n === 2 || n === 3 ? "pulse" : n === 4 || n === 5 ? "comic" : "other-" + n;
-  };
+  if (filter === "all") {
+    const comic = items.findIndex((item) => item.media.name === "05-social");
+    if (comic >= 0) items.unshift(...items.splice(comic, 1));
+    const priority = (name: string) => name === "01-top-trader" ? 2 :
+      ["01-social", "27-singapore-story", "28-aseman-story", "29-kish-story"].includes(name) ? 1 : 0;
+    items.sort((a, b) => priority(a.media.name) - priority(b.media.name));
+    const soon = items.findIndex((item) => item.media.name === "04-social");
+    const aseman = items.findIndex((item) => item.media.name === "28-aseman-story");
+    if (soon >= 0 && aseman >= 0) {
+      [items[soon], items[aseman]] = [items[aseman], items[soon]];
+    }
+  }
   const media = items.map((item) => item.media);
-  const columns: number[][] = [[], [], [], []];
-  const heights = [0, 0, 0, 0];
-  const widths = [1.4, 1, 1, 1];
-  items.forEach((item, i) => {
-    const ratio = SOCIAL_RATIOS[item.media.name] ?? 1;
-    const score = (col: number) => heights[col] + (columns[col].length && group(columns[col][columns[col].length - 1]) === group(i) ? 3 : 0);
-    const column = heights.reduce((best, _, col) => score(col) < score(best) ? col : best, 0);
-    columns[column].push(i);
-    heights[column] += widths[column] / ratio + 0.05;
+  // Solve column widths from their total image heights, including every gutter,
+  // so the varied-size columns share both their top and bottom edges.
+  const bandCount = Math.ceil(items.length / 8);
+  const balanced = filter === "all" || filter === "story";
+  const bands = balanced
+    ? Array.from({ length: bandCount }, (_, band) => {
+      const start = Math.floor(band * items.length / bandCount);
+      const end = Math.floor((band + 1) * items.length / bandCount);
+      return Array.from({ length: end - start }, (_, i) => start + i);
+    })
+    : [items.map((_, i) => i)];
+  const layouts = bands.map((indices, band) => {
+    const columns: number[][] = [[], [], [], []];
+    const targets = [0.2, 0.3, 0.15, 0.35].map((weight) => Math.floor(indices.length * weight));
+    for (let remaining = indices.length - targets.reduce((sum, n) => sum + n, 0), c = 0; remaining > 0; remaining--, c++) targets[c % 4]++;
+    let cursor = 0;
+    targets.forEach((count, c) => {
+      // Rotate the wide column between bands rather than stacking large covers.
+      columns[(c + band) % 4] = indices.slice(cursor, cursor + count);
+      cursor += count;
+    });
+    if (balanced) {
+      // Four readable columns; balance actual artwork heights before solving
+      // widths so a single cover cannot create an oversized column.
+      columns.splice(0, columns.length, [], [], [], []);
+      const loads = [0, 0, 0, 0];
+      const heightOf = (i: number) => 1 / (SOCIAL_RATIOS[items[i].media.name] ?? (items[i].category === "post" ? 1 : 0.5625));
+      [...indices].sort((a, b) => heightOf(b) - heightOf(a)).forEach((i) => {
+        const order = [0, 1, 2, 3].map((c) => (c + band) % 4);
+        const column = order.reduce((best, c) => loads[c] < loads[best] ? c : best, order[0]);
+        columns[column].push(i);
+        loads[column] += heightOf(i) + 0.05;
+      });
+      columns.forEach((column) => column.sort((a, b) => a - b));
+    }
+    const activeColumns = columns.filter((column) => column.length);
+    const sums = activeColumns.map((column) => column.reduce((sum, i) => sum + 1 / (SOCIAL_RATIOS[items[i].media.name] ?? (items[i].category === "post" ? 1 : 0.5625)), 0));
+    const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);
+    const gapOffsets = sums.map((sum, c) => (activeColumns[c].length - 1) / sum);
+    const correction = 16 * (gapOffsets.reduce((sum, value) => sum + value, 0) - (activeColumns.length - 1));
+    const tracks = sums.map((sum, c) => {
+      const share = 1 / sum / inverseSum;
+      return `calc(${share * 100}% + ${correction * share - 16 * gapOffsets[c]}px)`;
+    }).join(" ");
+    return { columns: activeColumns, tracks };
   });
   return (
-    <section className="mt-8" aria-label="Social media gallery">
-      <div className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-4">
-        {columns.map((column, c) => (
-          <div key={c} className="flex flex-col gap-3 lg:gap-4">
-            {column.map((i) => (
-              <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
-                <img src={assetUrl(items[i].media.path)} alt={items[i].media.name} className="block h-auto w-full" loading="lazy" />
-                <GalleryOutline />
-              </button>
-            ))}
-          </div>
+    <section className="mt-4" aria-label="Social media gallery">
+      <div role="group" aria-label="Social media categories" className="mb-6 flex gap-3 overflow-x-auto py-2">
+        {[["all", "All"], ["reels-cover", "Reels Cover"], ["story", "Story"], ["post", "Post"]].map(([value, label]) => (
+          <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-6 py-2 font-semibold transition-colors", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
+      </div>
+      <div className="flex w-full flex-col gap-3 lg:gap-4">
+      {layouts.map((layout, band) => (
+        <div key={band} style={{ "--reel-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[var(--reel-tracks)] lg:gap-4">
+          {layout.columns.map((column, c) => (
+            <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
+            {column.map((i) => {
+              const item = items[i];
+              return (
+            <button key={item.media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${item.title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
+              <img src={assetUrl(item.media.path)} alt={item.media.name} className="block h-auto w-full" loading="lazy" />
+              <GalleryOutline />
+            </button>
+              );
+            })}
+            </div>
+          ))}
+        </div>
+      ))}
       </div>
       <Lightbox index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
     </section>
@@ -195,18 +278,31 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   if (phoneIndex >= 0) items.push(...items.splice(phoneIndex, 1));
   const media = items.map((item) => item.media);
 
-  const mosaic: number[][] = [[], [], []];
-  const heights = [0, 0, 0];
-  const widths = [1.5, 1, 1];
-  const placement = items.map((_, i) => i);
-  const priority = placement.findIndex((i) => items[i].media.name.startsWith("02-"));
-  if (priority >= 0) placement.unshift(...placement.splice(priority, 1));
-  placement.forEach((i) => {
-    const number = Number(items[i].media.name.slice(0, 2));
-    const candidates = number === 6 ? [1, 2] : [0, 1, 2];
-    const column = [2, 9].includes(number) ? 0 : candidates.reduce((best, col) => heights[col] < heights[best] ? col : best);
-    mosaic[column].push(i);
-    heights[column] += widths[column] / (BANNER_RATIOS[items[i].media.name] ?? 1) + 0.05;
+  const columnCount = filter === "all" ? 3 : filter === "proopco" ? 4 : 2;
+  const bandCount = Math.ceil(items.length / (columnCount * 3));
+  const layouts = Array.from({ length: bandCount }, (_, band) => {
+    const start = Math.floor(band * items.length / bandCount);
+    const end = Math.floor((band + 1) * items.length / bandCount);
+    const indices = Array.from({ length: end - start }, (_, i) => start + i);
+    const columns: number[][] = Array.from({ length: Math.min(columnCount, indices.length) }, () => []);
+    const loads = columns.map(() => 0);
+    const heightOf = (i: number) => 1 / (BANNER_RATIOS[items[i].media.name] ?? 1);
+    [...indices].sort((a, b) => heightOf(b) - heightOf(a)).forEach((i) => {
+      const order = columns.map((_, c) => (c + band) % columns.length);
+      const column = order.reduce((best, c) => loads[c] < loads[best] ? c : best, order[0]);
+      columns[column].push(i);
+      loads[column] += heightOf(i) + 0.05;
+    });
+    columns.forEach((column) => column.sort((a, b) => a - b));
+    const sums = columns.map((column) => column.reduce((sum, i) => sum + heightOf(i), 0));
+    const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);
+    const offsets = sums.map((sum, c) => (columns[c].length - 1) / sum);
+    const correction = 16 * (offsets.reduce((sum, value) => sum + value, 0) - (columns.length - 1));
+    const tracks = sums.map((sum, c) => {
+      const share = 1 / sum / inverseSum;
+      return `calc(${share * 100}% + ${correction * share - 16 * offsets[c]}px)`;
+    }).join(" ");
+    return { columns, tracks };
   });
   return (
     <section className="mt-4" aria-label="Banner design gallery">
@@ -215,29 +311,22 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
           <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-6 py-2 font-semibold transition-colors", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
       </div>
-      {filter === "all" ? (
-        <div className="grid grid-cols-1 items-start gap-3 sm:grid-cols-3 sm:grid-cols-[1.5fr_1fr_1fr] lg:gap-4">
-          {mosaic.map((column, col) => (
-            <div key={col} className="flex flex-col gap-3 lg:gap-4">
-              {column.map((i) => (
-                <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open banner ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
-                  <img src={assetUrl(items[i].media.path)} alt={items[i].media.name} className="block h-auto w-full" loading="lazy" />
-                  <GalleryOutline />
-                </button>
-              ))}
-            </div>
-          ))}
-        </div>
-      ) : (
-      <div className={cn("columns-1 gap-3 sm:columns-2 lg:gap-4", filter === "proopco" ? "md:columns-3 lg:columns-4" : "lg:columns-2")}>
-        {items.map((item, i) => (
-          <button key={item.media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${item.title} ${i + 1}`} className="catalog-image-glow mb-3 block w-full break-inside-avoid cursor-zoom-in overflow-hidden rounded-2xl lg:mb-4">
-            <img src={assetUrl(item.media.path)} alt={item.media.name} className="block h-auto w-full" loading={i < 2 ? "eager" : "lazy"} />
-            <GalleryOutline />
-          </button>
+      <div className="flex w-full flex-col gap-3 lg:gap-4">
+        {layouts.map((layout, band) => (
+          <div key={band} style={{ "--banner-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[var(--banner-tracks)] lg:gap-4">
+            {layout.columns.map((column, c) => (
+              <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
+                {column.map((i) => (
+                  <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
+                    <img src={assetUrl(items[i].media.path)} alt={items[i].media.name} className="block h-auto w-full" loading="lazy" />
+                    <GalleryOutline />
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
         ))}
       </div>
-      )}
       <Lightbox index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
     </section>
   );
@@ -265,6 +354,65 @@ function LogoGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["proje
       <Lightbox uniformFrame description={index === null ? undefined : items[index]?.description} index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
     </section>
   );
+}
+
+const CATALOG_DESCRIPTIONS: Record<string, [string, string]> = {
+  "satrap-catalog": [
+    "Satrap | Corporate Catalog Design",
+    "A bilingual catalog design showcasing Satrap’s banking solutions and risk management services. Featuring a clean, modern layout, bold typography, and a cohesive visual identity across both Persian and English editions."
+  ],
+  "zino-catalog": [
+    "Zino | Product Catalog Design",
+    "A modern, minimalist catalog design showcasing Zino, a smart wearable posture trainer designed to promote better sitting habits and spinal health."
+  ],
+  "parscenter": [
+    "Pars Center | Corporate Brochure Design",
+    "A modern corporate brochure design for Pars Center, a B2B online marketplace, featuring minimalist layouts, bold red accents, and engaging visual compositions."
+  ],
+  "presentation-design": [
+    "Satrap | Presentation Design",
+    "Two corporate presentations designed for Satrap, focusing on Credit Risk and Liquidity Risk Management, featuring modern typography, dynamic compositions, and a cohesive visual identity."
+  ]
+};
+
+function CatalogGallery({ projects, showDescriptions = false }: { projects: (typeof PORTFOLIO)[number]["projects"]; showDescriptions?: boolean }) {
+  const [index, setIndex] = useState<number | null>(null);
+  const items = projects.flatMap((project) => project.media.map((media) => ({ media, title: project.name })));
+  const media = items.map((item) => item.media);
+  const count = Math.min(showDescriptions ? 2 : 3, items.length);
+  if (!count) return null;
+  const columns: number[][] = Array.from({ length: count }, () => []);
+  const weights = count === 3 ? [0.33, 0.44, 0.23] : columns.map(() => 1 / count);
+  const targets = weights.map((weight) => Math.floor(items.length * weight));
+  for (let remaining = items.length - targets.reduce((sum, n) => sum + n, 0), c = 0; remaining > 0; remaining--, c++) targets[c % count]++;
+  let cursor = 0;
+  targets.forEach((n, c) => { columns[c] = Array.from({ length: n }, () => cursor++); });
+  const active = columns.filter((column) => column.length);
+  const sums = active.map((column) => column.reduce((sum, i) => sum + 1 / (CATALOG_RATIOS[items[i].media.path] ?? 1), 0));
+  const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);
+  const offsets = sums.map((sum, c) => (active[c].length - 1) / sum);
+  const correction = 16 * (offsets.reduce((sum, value) => sum + value, 0) - (active.length - 1));
+  const tracks = sums.map((sum, c) => {
+    const share = 1 / sum / inverseSum;
+    return `calc(${share * 100}% + ${correction * share - 16 * offsets[c]}px)`;
+  }).join(" ");
+  return <section className="mt-6" aria-label="Catalog and brochure gallery">
+    <div style={{ "--catalog-tracks": tracks } as CSSProperties} className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[var(--catalog-tracks)] lg:gap-4">
+      {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
+        {column.map((i) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
+          <img src={assetUrl(items[i].media.path)} alt={`${items[i].title} — ${i + 1}`} className="block h-auto w-full" loading="lazy" />
+          <GalleryOutline />
+        </button>)}
+      </div>)}
+    </div>
+    {showDescriptions && <div className="mt-8 grid gap-6 sm:grid-cols-2">
+      {projects.map((project) => { const [title, description] = CATALOG_DESCRIPTIONS[project.slug] ?? [project.name, project.description]; return <div key={project.slug} className="max-w-lg text-base leading-8">
+        <h3 className="font-semibold text-foreground">{title}</h3>
+        {description && <p className="mt-3 text-muted-foreground">{description}</p>}
+      </div>; })}
+    </div>}
+    <Lightbox index={index} total={media.length} media={media} accent="var(--accent)" onClose={() => setIndex(null)} onThumb={setIndex} onPrev={() => setIndex((i) => i === null ? null : (i - 1 + media.length) % media.length)} onNext={() => setIndex((i) => i === null ? null : (i + 1) % media.length)} />
+  </section>;
 }
 
 function AllCatalogs({ projects }: { projects: (typeof PORTFOLIO)[number]["projects"] }) {

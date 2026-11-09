@@ -1,5 +1,18 @@
+// Composite artwork explicitly identified by the owner as Stories.
+export const SOCIAL_STORIES = new Set(["02-social", "03-social", "07-social"]);
+
+// Artwork identified by the owner as Reels covers.
+export const SOCIAL_REELS_COVERS = new Set([
+  "08-social", "09-social", "10-social", "11-social", "12-social",
+  "13-social", "14-social", "15-social", "16-social", "17-social",
+  "18-social", "19-social", "20-social", "21-social", "22-social", "23-social",
+]);
+
 // Original proportions of supplied social artwork.
 export const SOCIAL_RATIOS: Record<string, number> = {
+  "19-social-post": 2.2145328719723185,
+  "01-top-trader": 0.5625,
+  "01-dollar-price": 0.5625,
   "01-social": 1.268,
   "02-social": 1.5802469135802468,
   "03-social": 1.7013574660633484,

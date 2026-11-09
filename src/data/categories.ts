@@ -62,7 +62,7 @@ export const CATEGORIES: CategoryConfig[] = [
     name: "Social Media Design",
     tagline: "Social & Content",
     description:
-      "Social media creatives, campaigns and content systems built for scroll-stopping clarity.",
+        "Social media creatives brought to life through my own ideas and design. Every piece is conceived and designed by me.",
     accent: "#c2410c",
   },
   {

@@ -440,11 +440,123 @@ export const PORTFOLIO: Category[] = [
     "slug": "social-media-design",
     "name": "Social Media Design",
     "tagline": "Social & Content",
-    "description": "Social media creatives, campaigns and content systems built for scroll-stopping clarity.",
+    "description": "Social media creatives brought to life through my own ideas and design. Every piece is conceived and designed by me.",
     "accent": "#c2410c",
-    "cover": "resources/social-media-design/selected-social/01-social.jpg",
-    "projectCount": 1,
+    "cover": "resources/social-media-design/damoon-stories/27-singapore-story.jpg",
+    "projectCount": 6,
     "projects": [
+      {
+        "slug": "damoon-stories",
+        "name": "Damoon Travel Stories",
+        "description": "",
+        "year": null,
+        "client": "Damoon",
+        "tags": [
+          "story"
+        ],
+        "cover": "resources/social-media-design/damoon-stories/27-singapore-story.jpg",
+        "media": [
+          {
+            "path": "resources/social-media-design/damoon-stories/27-singapore-story.jpg",
+            "name": "27-singapore-story",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/damoon-stories/28-aseman-story.jpg",
+            "name": "28-aseman-story",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/damoon-stories/29-kish-story.jpg",
+            "name": "29-kish-story",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "proopco-stories",
+        "name": "Proopco Stories",
+        "description": "",
+        "year": null,
+        "client": "Proopco",
+        "tags": [
+          "story"
+        ],
+        "cover": "resources/social-media-design/proopco-stories/01-dollar-price.jpg",
+        "media": [
+          {
+            "path": "resources/social-media-design/proopco-stories/01-dollar-price.jpg",
+            "name": "01-dollar-price",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/proopco-stories/01-top-trader.jpg",
+            "name": "01-top-trader",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "reels-cover",
+        "name": "Map.Trade Reels Covers",
+        "description": "",
+        "year": null,
+        "client": "Map.Trade",
+        "tags": [
+          "reels-cover"
+        ],
+        "cover": "resources/social-media-design/reels-cover/01-reels-cover.jpg",
+        "media": [
+          {
+            "path": "resources/social-media-design/reels-cover/01-reels-cover.jpg",
+            "name": "01-reels-cover",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/reels-cover/04-reels-cover.jpg",
+            "name": "04-reels-cover",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/reels-cover/05-reels-cover.jpg",
+            "name": "05-reels-cover",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/social-media-design/reels-cover/06-reels-cover.jpg",
+            "name": "06-reels-cover",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "selected-posts",
+        "name": "Selected Social Posts",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [
+          "post"
+        ],
+        "cover": "resources/social-media-design/selected-posts/19-social-post.jpg",
+        "media": [
+          {
+            "path": "resources/social-media-design/selected-posts/19-social-post.jpg",
+            "name": "19-social-post",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
       {
         "slug": "selected-social",
         "name": "Selected Social Media",
@@ -487,12 +599,6 @@ export const PORTFOLIO: Category[] = [
           {
             "path": "resources/social-media-design/selected-social/06-social.jpg",
             "name": "06-social",
-            "type": "image",
-            "ext": ".jpg"
-          },
-          {
-            "path": "resources/social-media-design/selected-social/07-social.jpg",
-            "name": "07-social",
             "type": "image",
             "ext": ".jpg"
           },
@@ -601,6 +707,25 @@ export const PORTFOLIO: Category[] = [
           {
             "path": "resources/social-media-design/selected-social/25-social.jpg",
             "name": "25-social",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "selected-stories",
+        "name": "Selected Stories",
+        "description": "",
+        "year": null,
+        "client": null,
+        "tags": [
+          "story"
+        ],
+        "cover": "resources/social-media-design/selected-stories/26-maze-story.jpg",
+        "media": [
+          {
+            "path": "resources/social-media-design/selected-stories/26-maze-story.jpg",
+            "name": "26-maze-story",
             "type": "image",
             "ext": ".jpg"
           }
@@ -767,7 +892,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Digital paintings and illustrations — colour, light and atmosphere rendered stroke by stroke.",
     "accent": "#7c3aed",
     "cover": "resources/digital-painting/featured/painting.jpg",
-    "projectCount": 2,
+    "projectCount": 3,
     "projects": [
       {
         "slug": "featured",
@@ -810,10 +935,67 @@ export const PORTFOLIO: Category[] = [
             "ext": ".png"
           }
         ]
+      },
+      {
+        "slug": "selected-paintings",
+        "name": "Digital Portraits",
+        "description": "A collection of original digital paintings exploring portraiture, nature and expressive color.",
+        "year": null,
+        "client": null,
+        "tags": [
+          "digital-painting",
+          "portrait",
+          "illustration"
+        ],
+        "cover": "resources/digital-painting/selected-paintings/01-painting.jpg",
+        "media": [
+          {
+            "path": "resources/digital-painting/selected-paintings/01-painting.jpg",
+            "name": "01-painting",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/digital-painting/selected-paintings/02-painting.jpg",
+            "name": "02-painting",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/digital-painting/selected-paintings/03-painting.jpg",
+            "name": "03-painting",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/digital-painting/selected-paintings/04-painting.jpg",
+            "name": "04-painting",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/digital-painting/selected-paintings/05-painting.jpg",
+            "name": "05-painting",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/digital-painting/selected-paintings/06-painting.jpg",
+            "name": "06-painting",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/digital-painting/selected-paintings/07-painting.jpg",
+            "name": "07-painting",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
       }
     ]
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 22;
+export const TOTAL_PROJECTS = 28;
 export const TOTAL_CATEGORIES = 7;

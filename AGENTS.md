@@ -927,3 +927,99 @@ currently point at the same commit.
 
 ### 2026-11-08 — Publish logo, banner and social updates
 - Passed full ESLint and production static export checks. Prepared all requested logo replacements/rationales, gallery/lightbox refinements, banner filters and social media additions for origin/main publication.
+
+### 2026-11-09 — Social media format categories and Reels covers
+- Added All / Reels Cover / Story / Post filters using the existing blue pill style; filter changes reset the lightbox selection.
+- Added the three supplied Map.Trade covers in a reels-cover project with metadata and regenerated the manifest. Kept original artwork proportions and gallery/lightbox behavior.
+- Existing artwork is provisionally classified as Story for tall 9:16 assets and Post otherwise; new covers use an explicit reels-cover tag.
+- ESLint passed and a new cover returned HTTP 200 locally. TypeScript checking reports existing CategoryConfig.projects and PrismaClient errors outside this change.
+
+### 2026-11-09 — More social artwork
+- Added supplied Map.Trade cover 01 and Proopco Top Trader to Reels Cover, and Proopco Dollar Price to Story. Added explicit Story tag support and original aspect ratios; regenerated manifest.
+- ESLint passed; all three new images returned HTTP 200 locally.
+
+### 2026-11-09 — Top Trader story classification
+- Moved Top Trader artwork from the Proopco reels folder into Proopco Stories at the user's request and regenerated the manifest. Empty reels project is omitted automatically.
+
+### 2026-11-09 — Classify screenshot artwork as Reels covers
+- Matched the supplied screenshots to selected-social images 08–23 (including the partially visible horse and internet-trading artwork). Added an explicit per-image Reels Cover set so these 16 works appear in Reels Cover instead of Story while keeping existing gallery order and asset paths.
+- Kept Top Trader and Dollar Price in Story. ESLint passed.
+
+### 2026-11-09 — Regular Reels grid and supplied Post artwork
+- Replaced uneven independently balanced columns in the Reels Cover filter with a responsive equal-width row grid (one/two/four columns). All 20 covers retain full natural proportions and lightbox navigation; desktop now forms five complete rows with a level bottom edge.
+- Added supplied P 19.jpg under selected-posts with an explicit post tag and regenerated the manifest. ESLint passed; new artwork returned HTTP 200 locally.
+
+### 2026-11-09 — Asymmetric Reels gallery with aligned edges
+- Replaced equal Reels rows with varied desktop columns holding 4/6/3/7 images. Computed column widths from original aspect ratios and 16px gutters to keep top and bottom edges aligned without cropping, stretching, or empty filler. Responsive smaller screens retain simple image flow.
+- ESLint passed; numerical checks at 960/1200/1336px confirmed equal column heights and exact total gallery width.
+
+### 2026-11-09 — Shared asymmetric social filter layout
+- Applied the accepted aligned asymmetric Reels column layout to All, Story and Post within Social Media. Removed the old uneven-bottom gallery path and included the supplied Post image's actual ratio in width calculations.
+- ESLint passed. Numerical layout checks confirmed positive widths and matching bottom edges for every social filter with current content.
+
+### 2026-11-09 — Spread large images across All
+- Split only the social All layout into eight-image bands and rotated the varied-width columns between bands, distributing large artwork across the page instead of stacking it in one column. Each band retains calculated equal top/bottom edges, natural image ratios and 16px desktop gutters. Other social filters retain their accepted layout.
+- ESLint passed.
+
+### 2026-11-09 — Balance All artwork sizes
+- Changed social All bands to three larger, readable columns. Distribute artwork by its actual aspect-ratio height before calculating widths, reducing extreme large/small differences while retaining asymmetric placement, original proportions and aligned band edges.
+- ESLint passed.
+
+### 2026-11-09 — Slightly smaller All gallery
+- Reduced social All gallery desktop width to 92%, centered, retaining the accepted balanced layout and image proportions. Mobile/tablet sizing stays responsive.
+- ESLint passed.
+
+### 2026-11-09 — Restore gallery alignment and prioritize comic
+- Restored social gallery to the full shared content width, aligning both outside edges with the rest of the site.
+- Promoted the digital-signature comic illustration (05-social) to the beginning of All and moved Proopco Top Trader to the final band, preserving balanced columns, original image ratios and aligned band edges.
+- ESLint passed.
+
+### 2026-11-09 — Classify supplied Story composites
+- Matched the screenshot to 02-social (purple mockup), 03-social (three fitness panels), and 07-social (travel phone mockups). Added explicit Story overrides so all three appear in Story rather than Post, preserving original assets and layout ratios.
+- ESLint passed.
+
+### 2026-11-09 — Smaller All images with full-width alignment
+- Increased balanced social All bands from three to four desktop columns to reduce image sizes while retaining full shared content width, varied placement, original proportions and aligned top/bottom edges. Other filters keep their existing sizes.
+- ESLint passed.
+
+### 2026-11-09 — Lower green social mockup priority
+- Swapped the green phone mockup (01-social) with the lower horizontal travel-phone mockup (07-social) in All. Preserved image proportions, full-width alignment and automatic balanced layout.
+- ESLint passed.
+
+### 2026-11-09 — Maze Story artwork
+- Added the supplied maze story.jpg in selected-stories with an explicit story tag, appearing in All and Story. Retained original image proportions and regenerated the manifest.
+- Verified the new image returns HTTP 200 locally.
+- Evenly distributed All images across bands so adding a 33rd image does not create an oversized single-image final band. ESLint passed.
+
+### 2026-11-09 — Individual Damoon stories replace composite
+- Added three supplied Damoon travel stories as separate artwork with explicit Story metadata. Archived the old three-phone travel composite (07-social.jpg) outside public resources so it no longer appears in All, Story or the lightbox. Regenerated the manifest.
+- All three new image URLs returned HTTP 200 locally.
+
+### 2026-11-09 — Balanced Story and lower Damoon priority
+- Applied All's four-column aspect-ratio balancing and even band distribution to Story to reduce extreme size differences while keeping natural artwork ratios and aligned band edges.
+- Moved the three new Damoon stories into All's low-priority tail alongside the green mockup; Top Trader remains last. Comic remains promoted at the start.
+- ESLint passed.
+
+### 2026-11-09 — Swap Soon with bottom-right tourism artwork
+- Swapped Soon comic artwork (04-social) with Aseman tourism story (28-aseman-story) in All. Their matching 9:16 ratios preserve the existing geometry, placing Soon in the final right-hand column and moving Aseman into its previous position.
+- ESLint passed.
+
+### 2026-11-09 — Social concept and design credit
+- Updated the Social Media Design description to explicitly credit Shadi for both original ideas and design of every piece. Regenerated the manifest.
+
+### 2026-11-09 — Aligned asymmetric banner galleries
+- Applied social-style balanced asymmetric bands to Banner Design and its brand filters. Column widths are solved from original artwork ratios and equal 16px desktop gutters, aligning top/bottom edges without cropping. Preserved full content width, responsive flow, brand filtering and lightbox indexing; All uses three columns, Proopco four, and other brands two.
+- ESLint passed. Numerical checks using the implemented layout verified matching bottom edges and positive widths at 960/1336px for all banner filters.
+
+### 2026-11-09 — Aligned asymmetric catalog and brochure layouts
+- Applied a full-width natural-ratio asymmetric gallery to Catalog & Brochure All and its Satrap/Zino/ParsCenter filters. Calculated widths include equal 16px desktop gutters so columns share top and bottom edges without cropping or stretching. Added original artwork ratios keyed by asset path.
+- Preserved Satrap presentation artwork and all existing project descriptions, placing descriptions below the gallery to maintain aligned image edges. Retained filter controls and lightbox navigation.
+- ESLint passed; numerical alignment checks passed for all current column distributions at 960/1336px.
+
+### 2026-11-09 — Restore Satrap filter layout
+- Restored only the Satrap catalog filter to its previous staggered two-column AdditionalCatalog layout, including its original description placement and separate presentation section. All/Zino/ParsCenter retain their new aligned layouts.
+- ESLint passed.
+
+### 2026-11-09 — Digital paintings and GitHub publication
+- Added seven supplied original painting mockups under selected-paintings with metadata. Created a two-column Digital Painting gallery with a modest CSS zoom and artwork-aware positioning so paintings are clearer, while the lightbox preserves complete original files. Existing paintings remain included.
+- Verified a rendered preview of all seven zoomed views, full ESLint, production static export and whitespace checks. Prepared this session's social/gallery/catalog updates and new artwork for publication to origin/main; unused local assets and archived artwork stay outside the commit.
