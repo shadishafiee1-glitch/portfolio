@@ -20,8 +20,11 @@ export function SiteFooter(_props: SiteFooterProps) {
       <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-14">
         <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="footer-contact-pulse display-text text-balance text-3xl text-foreground sm:text-4xl">
+            <h2 className="contact-headline footer-contact-pulse display-text relative inline-block text-balance text-3xl text-foreground sm:text-4xl">
               Let’s work together.
+              <span aria-hidden="true" className="pointer-events-none absolute inset-0">
+                {[0, 1, 2, 3, 4].map((heart) => <Heart key={heart} className="contact-heart absolute top-0 h-3 w-3 fill-current text-[var(--accent)]" strokeWidth={1.5} />)}
+              </span>
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-foreground/60 sm:text-base">
               Have a project in mind? Get in touch.
@@ -30,12 +33,7 @@ export function SiteFooter(_props: SiteFooterProps) {
               {SOCIAL.map(({ label, href, icon: Icon }) => {
                 const classes = "inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-deep)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]";
                 return (
-                  <li key={label} className={label === "Phone" ? "phone-contact relative" : undefined}>
-                    {label === "Phone" && (
-                      <span aria-hidden="true" className="pointer-events-none absolute inset-0">
-                        {[0, 1, 2, 3, 4].map((heart) => <Heart key={heart} className="contact-heart absolute left-1/2 top-0 h-3 w-3 fill-current text-[var(--accent)]" strokeWidth={1.5} />)}
-                      </span>
-                    )}
+                  <li key={label}>
                     {href ? (
                       <a href={href} aria-label={label} title={label} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className={classes}>
                         <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.7} />

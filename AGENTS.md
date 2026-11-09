@@ -1069,3 +1069,13 @@ currently point at the same commit.
 ### 2026-11-09 — Floating hearts on contact hover
 - Added five decorative blue hearts above the Phone circle, rising and fading with staggered timing while its wrapper is hovered. Works with the currently disabled phone placeholder and will also work with a future contact link. Keeps layout stable and respects reduced-motion preferences with a static heart.
 - Verified the hover in the browser: contact-heart-rise runs and hearts appear above the icon. Full ESLint and production static export passed. Published along with the preceding footer circle, phone icon and headline animation refinements.
+
+### 2026-11-09 — Move hearts to collaboration headline
+- Removed floating hearts from the Phone icon and attached them to the “Let’s work together.” heading hover instead, spreading their starting points across the text. Preserved the headline color pulse and reduced-motion fallback.
+- ESLint passed.
+
+### 2026-11-09 — Verify headline hearts in refreshed preview
+- Corrected stale local stylesheet loading by restarting the development server and rebuilding the changed stylesheet. Verified the browser loads the contact-headline:hover rule and visibly shows hearts rising above the headline with the pointer over the text. Slightly slowed heart rise to 1.7 seconds.
+
+### 2026-11-09 — Publish headline hearts
+- Published the verified headline-hover hearts correction to origin/main after ESLint and whitespace checks passed. Kept unrelated local assets and archived artwork out of the commit.

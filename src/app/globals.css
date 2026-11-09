@@ -319,23 +319,23 @@ body > * {
 }
 .contact-heart {
   opacity: 0;
+  left: 15%;
   --heart-drift: -18px;
   --heart-turn: -18deg;
 }
-.contact-heart:nth-child(2) { --heart-drift: 17px; --heart-turn: 15deg; animation-delay: 0.22s; }
-.contact-heart:nth-child(3) { --heart-drift: -5px; --heart-turn: -8deg; animation-delay: 0.48s; }
-.contact-heart:nth-child(4) { --heart-drift: 26px; --heart-turn: 22deg; animation-delay: 0.72s; }
-.contact-heart:nth-child(5) { --heart-drift: -26px; --heart-turn: -22deg; animation-delay: 0.98s; }
-.phone-contact:hover .contact-heart,
-.phone-contact:focus-within .contact-heart {
+.contact-heart:nth-child(2) { left: 35%; --heart-drift: 17px; --heart-turn: 15deg; animation-delay: 0.22s; }
+.contact-heart:nth-child(3) { left: 55%; --heart-drift: -5px; --heart-turn: -8deg; animation-delay: 0.48s; }
+.contact-heart:nth-child(4) { left: 75%; --heart-drift: 26px; --heart-turn: 22deg; animation-delay: 0.72s; }
+.contact-heart:nth-child(5) { left: 90%; --heart-drift: -26px; --heart-turn: -22deg; animation-delay: 0.98s; }
+.contact-headline:hover .contact-heart {
   animation-name: contact-heart-rise;
-  animation-duration: 1.6s;
+  animation-duration: 1.7s;
   animation-timing-function: ease-out;
   animation-iteration-count: infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .phone-contact .contact-heart { animation: none !important; }
-  .phone-contact:hover .contact-heart:first-child { opacity: 1; transform: translate(-50%, -20px); }
+  .contact-headline .contact-heart { animation: none !important; }
+  .contact-headline:hover .contact-heart:first-child { opacity: 1; transform: translate(-50%, -20px); }
 }
 .catalog-image-glow {
   position: relative;
