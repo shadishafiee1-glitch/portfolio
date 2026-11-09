@@ -29,6 +29,22 @@ export function PortfolioApp() {
   const [searchOpen, setSearchOpen] = useState(false);
   const { recent, record } = useRecentlyViewed();
 
+  useEffect(() => {
+    const onImageAction = (event: Event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest("img, picture") || target.closest("button, figure, .catalog-image-glow")?.querySelector("img")) {
+        event.preventDefault();
+      }
+    };
+    document.addEventListener("contextmenu", onImageAction, true);
+    document.addEventListener("dragstart", onImageAction, true);
+    return () => {
+      document.removeEventListener("contextmenu", onImageAction, true);
+      document.removeEventListener("dragstart", onImageAction, true);
+    };
+  }, []);
+
   // Global Cmd/Ctrl+K opens search; Esc closes (overlay handles Esc itself).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

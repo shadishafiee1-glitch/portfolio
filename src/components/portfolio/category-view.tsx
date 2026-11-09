@@ -7,6 +7,7 @@ import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
 import { BANNER_RATIOS } from "@/data/banner-ratios";
 import { CATALOG_RATIOS } from "@/data/catalog-ratios";
 import { POSTER_RATIOS } from "@/data/poster-ratios";
+import { POSTER_PREVIEWS } from "@/data/poster-previews.generated";
 import { PAINTING_RATIOS } from "@/data/painting-ratios";
 import { SOCIAL_RATIOS, SOCIAL_REELS_COVERS, SOCIAL_STORIES } from "@/data/social-ratios";
 import { cn } from "@/lib/utils";
@@ -159,6 +160,14 @@ function PosterGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   columns.forEach((column) => {
     if (column.length > 1) column.unshift(...column.splice(-1));
   });
+  const deer = items.findIndex((item) => item.media.name === "01-deer-v2");
+  const largePoster = items.findIndex((item) => item.media.name === "07-phishing-link");
+  if (deer >= 0 && largePoster >= 0) {
+    columns.forEach((column) => column.forEach((i, position) => {
+      if (i === deer) column[position] = largePoster;
+      else if (i === largePoster) column[position] = deer;
+    }));
+  }
   const active = columns.filter((column) => column.length);
   const sums = active.map((column) => column.reduce((sum, i) => sum + heightOf(i), 0));
   const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);
@@ -171,8 +180,8 @@ function PosterGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   return <section className="mt-8" aria-label="Poster design gallery">
     <div style={{ "--poster-tracks": tracks } as CSSProperties} className="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-[var(--poster-tracks)] lg:gap-4">
       {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
-        {column.map((i) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
-          <img src={assetUrl(items[i].media.path)} alt={`${items[i].title} — ${items[i].media.name}`} className="block h-auto w-full" loading={i < 3 ? "eager" : "lazy"} />
+        {column.map((i, position) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
+          <img src={assetUrl(POSTER_PREVIEWS[items[i].media.path]?.variants[0].path ?? items[i].media.path)} srcSet={POSTER_PREVIEWS[items[i].media.path]?.variants.map((variant) => `${assetUrl(variant.path)} ${variant.width}w`).join(", ")} sizes="(min-width: 1400px) 360px, (min-width: 1024px) 28vw, (min-width: 640px) 48vw, 100vw" width={POSTER_PREVIEWS[items[i].media.path]?.width} height={POSTER_PREVIEWS[items[i].media.path]?.height} alt={`${items[i].title} — ${items[i].media.name}`} className="block h-auto w-full" loading={position === 0 ? "eager" : "lazy"} decoding="async" />
           <GalleryOutline />
         </button>)}
       </div>)}

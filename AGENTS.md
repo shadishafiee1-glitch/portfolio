@@ -1119,3 +1119,21 @@ currently point at the same commit.
 ### 2026-11-09 — Publish final poster arrangement
 - Prepared the updated deer artwork and final four-column asymmetric poster arrangement, including promotion of the bottom four posters, for origin/main publication.
 - ESLint and whitespace checks passed.
+
+### 2026-11-09 — Larger deer placement and lighter poster loading
+- Swapped the deer with the larger phishing-link poster slot, retaining column edge calculations and lightbox media order.
+- Found gallery originals totaled 25.5 MB, including several 3.7–7.3 MB files. Added reproducible 480/960px WebP previews and a generated asset map; both preview sets together total 1.29 MB. Gallery uses responsive srcSet, async decoding, eager first-column items and explicit image dimensions to prevent load-time layout shifts. Lightbox retains original files.
+- Full ESLint passed; verified all nine preview pairs exist and metadata matches source images. Regenerate previews with node scripts/generate-poster-previews.mjs after poster content changes.
+
+### 2026-11-09 — Compress full poster assets
+- Optimized all nine full poster JPEGs with high-quality mozjpeg (quality 90, 4:4:4 color) and a maximum 2800px long edge; smaller source images retain their dimensions. Only replaced files when byte size decreased and preserved local originals outside public resources.
+- Reduced full poster transfer size from 25,509,555 to 4,712,257 bytes (82% smaller). Regenerated responsive previews and manifest; inspected optimized poster text/artwork and passed ESLint.
+
+### 2026-11-09 — Image context menus and site-wide optimization
+- Added a document-level capture handler that prevents the image context menu and image dragging across gallery, preview, search and lightbox images, including image-button overlays. Normal non-image context menus remain available.
+- Added scripts/optimize-site-images.mjs and optimized 92 heavy public images. Reduced total scanned image bytes from 176,629,218 to 62,997,336 (64% smaller). Used quality-90 4:4:4 JPEG encoding with a maximum 2800px long edge and lossless PNG/WebP encoding; preserved smaller image dimensions, transparency, asset paths and local original backups outside public resources.
+- Validated all 92 optimized images decode with preserved aspect ratios and alpha. Regenerated poster previews and manifest; full ESLint and production static export passed.
+
+### 2026-11-09 — Publish image performance improvements
+- Published optimized tracked site images, responsive poster previews, larger deer placement and image context-menu handling to origin/main. Local archived originals and unrelated untracked assets remain excluded.
+- Full lint, static export and image-integrity checks passed before publication; final whitespace check passed.
