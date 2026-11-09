@@ -8,5 +8,5 @@ export const POSTER_RATIOS: Record<string, number> = {
   "resources/poster-design/bank-tejarat/06-small-mistake-trap.jpg": 0.7071155009070752,
   "resources/poster-design/bank-tejarat/07-phishing-link.jpg": 0.7071155009070752,
   "resources/poster-design/bank-tejarat/08-zero-hour.jpg": 0.7064343163538874,
-  "resources/poster-design/wildlife-awareness/01-deer.jpg": 0.7143202709240445
+  "resources/poster-design/wildlife-awareness/01-deer-v2.jpg": 0.7142857142857143
 };

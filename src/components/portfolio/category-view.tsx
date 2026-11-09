@@ -150,15 +150,15 @@ function PosterGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   const items = [...projects].sort((a, b) => Number(b.slug === "bank-tejarat") - Number(a.slug === "bank-tejarat"))
     .flatMap((project) => project.media.map((media) => ({ media, title: project.name })));
   const media = items.map((item) => item.media);
-  const columns: number[][] = [[], [], []];
-  const loads = [0, 0, 0];
+  const columns: number[][] = [[], [], [], []];
   const heightOf = (i: number) => 1 / (POSTER_RATIOS[items[i].media.path] ?? 1);
-  items.map((_, i) => i).sort((a, b) => heightOf(b) - heightOf(a)).forEach((i) => {
-    const column = loads.reduce((best, value, c) => value < loads[best] ? c : best, 0);
-    columns[column].push(i);
-    loads[column] += heightOf(i) + 0.05;
+  // Unequal image counts create visibly staggered sizes while the solved
+  // widths below still align the outside edges of the complete gallery.
+  const placement = [0, 2, 1, 3, 0, 2, 1, 3, 0];
+  items.forEach((_, i) => columns[placement[i % placement.length]].push(i));
+  columns.forEach((column) => {
+    if (column.length > 1) column.unshift(...column.splice(-1));
   });
-  columns.forEach((column) => column.sort((a, b) => a - b));
   const active = columns.filter((column) => column.length);
   const sums = active.map((column) => column.reduce((sum, i) => sum + heightOf(i), 0));
   const inverseSum = sums.reduce((sum, value) => sum + 1 / value, 0);

@@ -816,11 +816,11 @@ export const PORTFOLIO: Category[] = [
           "wildlife",
           "awareness"
         ],
-        "cover": "resources/poster-design/wildlife-awareness/01-deer.jpg",
+        "cover": "resources/poster-design/wildlife-awareness/01-deer-v2.jpg",
         "media": [
           {
-            "path": "resources/poster-design/wildlife-awareness/01-deer.jpg",
-            "name": "01-deer",
+            "path": "resources/poster-design/wildlife-awareness/01-deer-v2.jpg",
+            "name": "01-deer-v2",
             "type": "image",
             "ext": ".jpg"
           }

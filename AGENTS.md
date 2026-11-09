@@ -1092,3 +1092,30 @@ currently point at the same commit.
 ### 2026-11-09 — Zero Hour and wildlife posters publication
 - Added supplied sample 1.jpg as Zero Hour in the Bank Tejarat project and deer.jpg as a Wildlife Awareness project. Recorded original aspect ratios and regenerated the manifest. Poster gallery now shows nine supplied works with no category selectors; old samples remain excluded.
 - Full ESLint, production static export and calculated gallery alignment checks passed. Prepared all requested poster additions and cleanup for origin/main publication.
+
+### 2026-11-09 — Remove deer poster
+- Archived the deer poster outside public resources at the user's request, removed its ratio entry and regenerated the manifest. Poster Design retains the eight Bank Tejarat posters.
+- Verified the deer asset is absent from the generated manifest.
+
+### 2026-11-09 — Replacement deer poster
+- Added the user's updated Desktop/deer.jpg as 01-deer-v2.jpg, using a fresh asset URL to avoid the old cached image. Recorded its original ratio and regenerated the manifest; the archived previous version remains excluded.
+
+### 2026-11-09 — More asymmetric poster arrangement
+- Replaced uniform height-balanced poster columns with interleaved 3/2/4-image columns, creating medium/large/small posters and staggered internal edges. Kept original ratios, full-width alignment, equal gutters and calculated matching top/bottom edges.
+- ESLint passed.
+
+### 2026-11-09 — Smaller poster gallery
+- Expanded Poster Design to five asymmetric desktop columns to substantially reduce artwork size while retaining shared page edges, full image proportions and aligned column bottoms.
+- ESLint passed.
+
+### 2026-11-09 — Intermediate poster size
+- Adjusted the poster gallery from five to four desktop columns for a slightly larger intermediate size, preserving asymmetric placement and aligned outside edges.
+- ESLint passed.
+
+### 2026-11-09 — Promote bottom four posters
+- Moved the final poster in each of the four desktop columns to the top of its column, retaining existing sizes, column membership, spacing and aligned gallery edges.
+- ESLint passed.
+
+### 2026-11-09 — Publish final poster arrangement
+- Prepared the updated deer artwork and final four-column asymmetric poster arrangement, including promotion of the bottom four posters, for origin/main publication.
+- ESLint and whitespace checks passed.
