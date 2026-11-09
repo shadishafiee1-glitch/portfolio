@@ -296,9 +296,46 @@ body > * {
   cursor: none;
 }
 
+@keyframes footer-contact-pulse {
+  0%, 15%, 100% { color: var(--foreground); }
+  45%, 65% { color: var(--accent); }
+}
+.footer-contact-pulse {
+  animation: footer-contact-pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-contact-pulse { animation: none; }
+}
+
 @keyframes employer-logo-float {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
   50% { transform: translateY(-7px) rotate(3deg); }
+}
+
+@keyframes contact-heart-rise {
+  0% { opacity: 0; transform: translate(-50%, -4px) scale(0.45) rotate(0deg); }
+  20% { opacity: 0.95; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--heart-drift)), -54px) scale(0.9) rotate(var(--heart-turn)); }
+}
+.contact-heart {
+  opacity: 0;
+  --heart-drift: -18px;
+  --heart-turn: -18deg;
+}
+.contact-heart:nth-child(2) { --heart-drift: 17px; --heart-turn: 15deg; animation-delay: 0.22s; }
+.contact-heart:nth-child(3) { --heart-drift: -5px; --heart-turn: -8deg; animation-delay: 0.48s; }
+.contact-heart:nth-child(4) { --heart-drift: 26px; --heart-turn: 22deg; animation-delay: 0.72s; }
+.contact-heart:nth-child(5) { --heart-drift: -26px; --heart-turn: -22deg; animation-delay: 0.98s; }
+.phone-contact:hover .contact-heart,
+.phone-contact:focus-within .contact-heart {
+  animation-name: contact-heart-rise;
+  animation-duration: 1.6s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone-contact .contact-heart { animation: none !important; }
+  .phone-contact:hover .contact-heart:first-child { opacity: 1; transform: translate(-50%, -20px); }
 }
 .catalog-image-glow {
   position: relative;

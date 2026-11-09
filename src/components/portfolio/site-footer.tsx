@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp, Dribbble, Linkedin, Mail, Send } from "lucide-react";
+import { ArrowUp, Dribbble, Heart, Linkedin, Mail, Phone } from "lucide-react";
 
 interface SiteFooterProps {
   totalCategories: number;
@@ -10,7 +10,7 @@ interface SiteFooterProps {
 const SOCIAL = [
   { label: "Email", href: "mailto:shadi.shafiee1@gmail.com", icon: Mail },
   { label: "Dribbble", href: null, icon: Dribbble },
-  { label: "Telegram", href: null, icon: Send },
+  { label: "Phone", href: null, icon: Phone },
   { label: "LinkedIn", href: null, icon: Linkedin },
 ];
 
@@ -20,7 +20,7 @@ export function SiteFooter(_props: SiteFooterProps) {
       <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-14">
         <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="display-text text-balance text-3xl text-foreground sm:text-4xl">
+            <h2 className="footer-contact-pulse display-text text-balance text-3xl text-foreground sm:text-4xl">
               Let’s work together.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-foreground/60 sm:text-base">
@@ -28,9 +28,14 @@ export function SiteFooter(_props: SiteFooterProps) {
             </p>
             <ul aria-label="Contact and social profiles" className="mt-6 flex flex-wrap gap-3">
               {SOCIAL.map(({ label, href, icon: Icon }) => {
-                const classes = "inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-deep)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]";
+                const classes = "inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-deep)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]";
                 return (
-                  <li key={label}>
+                  <li key={label} className={label === "Phone" ? "phone-contact relative" : undefined}>
+                    {label === "Phone" && (
+                      <span aria-hidden="true" className="pointer-events-none absolute inset-0">
+                        {[0, 1, 2, 3, 4].map((heart) => <Heart key={heart} className="contact-heart absolute left-1/2 top-0 h-3 w-3 fill-current text-[var(--accent)]" strokeWidth={1.5} />)}
+                      </span>
+                    )}
                     {href ? (
                       <a href={href} aria-label={label} title={label} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className={classes}>
                         <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.7} />

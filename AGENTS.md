@@ -1049,3 +1049,23 @@ currently point at the same commit.
 - Increased painting 05 gallery zoom to 1.30 around the framed portrait, retaining layout and the full original lightbox image.
 - Replaced the shared footer identity/archive text with “Let’s work together.” and “Have a project in mind? Get in touch.” Added Email, Dribbble, Telegram and LinkedIn icons in blue circles across all routes. Email uses user-confirmed shadi.shafiee1@gmail.com; other icons remain disabled until the user supplies profile links. Updated the About contact email too.
 - Full ESLint and production static export passed. Included the preceding painting layout, duplicate removal and focal zoom corrections in this publication.
+
+### 2026-11-09 — Smaller footer icon circles
+- Reduced shared footer blue circles from 48px to 40px while preserving 20px icons and existing spacing.
+- ESLint passed.
+
+### 2026-11-09 — Phone footer icon
+- Replaced the Telegram footer icon and accessible label with Phone. Kept the contact button disabled until the user supplies a phone number.
+- ESLint passed.
+
+### 2026-11-09 — Animated footer collaboration headline
+- Added a smooth repeating three-second color transition between the theme text color and accent blue for “Let’s work together.” across all pages. Respects reduced-motion preferences and dark-theme text contrast.
+- ESLint passed.
+
+### 2026-11-09 — Refresh footer animation preview
+- Diagnosed stale browser CSS: the footer had the animation class but computed animation was none and the loaded stylesheet lacked the keyframes. Restarted the local development server and refreshed the preview with a cache-busting URL.
+- Made the color cycle more visible with 2.4-second timing and short holds at ink/blue. Verified in the browser that the animation runs and computed text color changes from rgb(26,26,34) to blue intermediate values; reduced-motion behavior remains intact.
+
+### 2026-11-09 — Floating hearts on contact hover
+- Added five decorative blue hearts above the Phone circle, rising and fading with staggered timing while its wrapper is hovered. Works with the currently disabled phone placeholder and will also work with a future contact link. Keeps layout stable and respects reduced-motion preferences with a static heart.
+- Verified the hover in the browser: contact-heart-rise runs and hearts appear above the icon. Full ESLint and production static export passed. Published along with the preceding footer circle, phone icon and headline animation refinements.
