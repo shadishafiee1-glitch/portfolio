@@ -1144,3 +1144,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Fix Vercel output directory
 - Vercel log showed NEXT_NO_ROUTES_MANIFEST after a successful Next build: its Next.js adapter was incorrectly directed to out. Pointed the adapter to .next, where routes-manifest.json is generated; static export remains enabled.
+
+### 2026-11-10 — Activate contact links
+- Connected footer Dribbble and LinkedIn icons to the user's profiles (removed LinkedIn tracking parameters) and Phone to tel:+989364719124.

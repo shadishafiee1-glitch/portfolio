@@ -9,9 +9,9 @@ interface SiteFooterProps {
 
 const SOCIAL = [
   { label: "Email", href: "mailto:shadi.shafiee1@gmail.com", icon: Mail },
-  { label: "Dribbble", href: null, icon: Dribbble },
-  { label: "Phone", href: null, icon: Phone },
-  { label: "LinkedIn", href: null, icon: Linkedin },
+  { label: "Dribbble", href: "https://dribbble.com/shadi89", icon: Dribbble },
+  { label: "Phone", href: "tel:+989364719124", icon: Phone },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/shadi-shafiee-", icon: Linkedin },
 ];
 
 export function SiteFooter(_props: SiteFooterProps) {
