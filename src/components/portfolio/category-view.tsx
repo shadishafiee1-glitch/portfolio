@@ -95,10 +95,10 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
       ) : inlineProjectSlug ? (
         <section className="mt-10" aria-labelledby="dideban-title">
           <h2 id="dideban-title" className="inline-flex rounded-full border border-[var(--accent)] bg-[var(--accent)] px-6 py-2 font-sans text-base font-semibold text-white">{inlineProject?.name}</h2>
-          <div className="mt-6 grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:gap-8">
-            {[0, 1].map((column) => (
-              <div key={column} className={cn("space-y-6 lg:space-y-8", column === 1 && "sm:pt-14 lg:pt-20")}>
-            {magazineMedia.map((media, index) => index % 2 === column && (
+          <div className="mt-6 grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
+            {[0, 1, 2].map((column) => (
+              <div key={column} className="contents lg:block lg:space-y-4">
+            {magazineMedia.map((media, index) => index % 3 === column && (
               <button key={media.path} type="button" onClick={(event) => { event.stopPropagation(); setLightbox(index); }} aria-label={`Open ${inlineProject?.name} image ${index + 1}`} className="catalog-image-glow relative z-10 block w-full cursor-zoom-in overflow-hidden rounded-2xl pointer-events-auto">
                 <img src={assetUrl(media.path)} alt={`${inlineProject?.name} — ${index + 1}`} className="block h-auto w-full" loading={index === 0 ? "eager" : "lazy"} />
                 <GalleryOutline />

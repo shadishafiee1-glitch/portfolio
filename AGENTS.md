@@ -1150,3 +1150,8 @@ currently point at the same commit.
 
 ### 2026-11-10 — Phone hover number
 - Show the phone number above the footer contact icon on hover and keyboard focus, with left-to-right digits; retained tel link for mobile dialing and added the number to its accessible label.
+
+### 2026-11-10 — Dideban magazine additions
+- Added four supplied magazine mockups to the existing Dideban project, preserving the three earlier images. Optimized JPEGs at quality 90 with a maximum 2800px edge and regenerated the manifest.
+- Matched the gallery to the site's rounded, outlined image treatment with three desktop columns, two tablet columns and one mobile column; retained original image proportions and lightbox navigation.
+- ESLint and Vercel-mode production build passed.

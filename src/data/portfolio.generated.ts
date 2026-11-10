@@ -105,6 +105,30 @@ export const PORTFOLIO: Category[] = [
             "name": "03",
             "type": "image",
             "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/04-generative-ai-spread.jpg",
+            "name": "04-generative-ai-spread",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/05-generative-ai-layout.jpg",
+            "name": "05-generative-ai-layout",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/06-generative-ai-cover.jpg",
+            "name": "06-generative-ai-cover",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/07-governance-intelligence.jpg",
+            "name": "07-governance-intelligence",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       },
