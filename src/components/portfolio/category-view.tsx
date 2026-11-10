@@ -97,26 +97,8 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
         <section className="mt-10" aria-labelledby="dideban-title">
           <h2 id="dideban-title" className="inline-flex rounded-full border border-[var(--accent)] bg-[var(--accent)] px-6 py-2 font-sans text-base font-semibold text-white">{inlineProject?.name}</h2>
           <div className="mt-6 sm:hidden"><MobileGallery media={magazineMedia} onOpen={setLightbox} /></div>
-          <div className="mt-6 hidden grid-cols-2 items-start gap-2 sm:grid sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
-            {[0, 1, 2].map((column) => (
-              <div key={column} className="contents lg:block lg:space-y-4">
-            {magazineMedia.map((media, index) => index % 3 === column && (
-              <button key={media.path} type="button" onClick={(event) => { event.stopPropagation(); setLightbox(index); }} aria-label={`Open ${inlineProject?.name} image ${index + 1}`} className="catalog-image-glow relative z-10 block w-full cursor-zoom-in overflow-hidden rounded-2xl pointer-events-auto">
-                <img src={assetUrl(media.path)} alt={`${inlineProject?.name} — ${index + 1}`} className="block h-auto w-full" loading={index === 0 ? "eager" : "lazy"} />
-                <GalleryOutline />
-              </button>
-            ))}
-                {inlineProjectSlug === "satrap-catalog" && column === 1 && (
-                  <div className="ml-4 mr-auto w-[calc(100%-1rem)] max-w-lg py-4 text-left text-base leading-8 sm:ml-8 sm:w-[calc(100%-2rem)] sm:py-8">
-                    <h3 className="font-semibold text-foreground">Satrap | Corporate Catalog Design</h3>
-                    <p className="mt-3 text-justify text-muted-foreground [text-align-last:left]" lang="en" style={{ hyphens: "none", overflowWrap: "normal", wordBreak: "normal" }}>
-                      A bilingual catalog design showcasing Satrap’s banking solutions and risk management services. Featuring a clean, modern layout, bold typography, and a cohesive visual identity across both Persian and English editions.
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <div className="mt-6 hidden sm:block lg:hidden"><MobileGallery media={magazineMedia} onOpen={setLightbox} columnCount={2} gap={12} className="grid" /></div>
+          <div className="mt-6 hidden lg:block"><MobileGallery media={magazineMedia} onOpen={setLightbox} columnCount={3} gap={16} className="grid" /></div>
           <Lightbox index={lightbox} total={magazineMedia.length} media={magazineMedia} accent="var(--accent)" onClose={() => setLightbox(null)} onThumb={setLightbox} onPrev={() => setLightbox((current) => current === null ? null : (current - 1 + magazineMedia.length) % magazineMedia.length)} onNext={() => setLightbox((current) => current === null ? null : (current + 1) % magazineMedia.length)} />
         </section>
       ) : (

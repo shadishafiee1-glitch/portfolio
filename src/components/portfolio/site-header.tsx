@@ -3,7 +3,7 @@
 
 import { useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
-import { Github, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import type { View } from "@/lib/types";
@@ -91,15 +91,6 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
           >
             About
           </button>
-          <a
-            href="https://github.com/shadishafiee1-glitch/portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub repository"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/15 text-foreground/70 transition-colors hover:border-[var(--accent)] hover:text-foreground"
-          >
-            <Github className="h-4 w-4" />
-          </a>
           <ThemeToggle />
         </nav>
       </header>

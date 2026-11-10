@@ -1185,3 +1185,8 @@ currently point at the same commit.
 ### 2026-11-10 — Employer names and mobile color
 - Renamed the first employer to Proopco (Kifpool.me), preserving its floating logo. Company names use the accent blue below 640px; desktop colors retain existing behavior.
 - ESLint and whitespace checks passed.
+
+### 2026-11-10 — Align magazine gallery and remove GitHub header link
+- Replaced uneven fixed-width magazine columns with ratio-balanced widths at tablet and desktop sizes. All columns share aligned top/bottom edges with constant responsive gaps; preserved original proportions and lightbox selection.
+- Removed the GitHub repository link and icon from the header.
+- ESLint and production build passed.
