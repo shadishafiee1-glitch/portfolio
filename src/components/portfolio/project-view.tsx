@@ -433,6 +433,10 @@ export function Lightbox({
               {String((index ?? 0) + 1).padStart(2, "0")} /{" "}
               {String(total).padStart(2, "0")}
             </span>
+            {total > 1 && <div className="flex items-center gap-2 sm:hidden">
+              <button type="button" onClick={onPrev} aria-label="Previous" className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[var(--accent)]"><ChevronLeft className="h-4 w-4" /></button>
+              <button type="button" onClick={onNext} aria-label="Next" className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[var(--accent)]"><ChevronRight className="h-4 w-4" /></button>
+            </div>}
             <button
               onClick={onClose}
               aria-label="Close"
