@@ -162,7 +162,7 @@ export function AboutSections() {
               />
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="text-lg font-semibold text-foreground">
-                  <span className="max-sm:text-xs max-sm:font-medium">{job.role}</span>
+                  <span className={job.role === "Freelance Graphic Designer" ? "max-sm:whitespace-nowrap max-sm:text-[10px] max-sm:font-medium" : "max-sm:text-xs max-sm:font-medium"}>{job.role}</span>
                   <span className="text-muted-foreground">
                     {" · "}
                     <EmployerName name={job.org} />

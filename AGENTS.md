@@ -1205,3 +1205,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Mobile experience text hierarchy
 - Clarified mobile hierarchy per user: role labels (Graphic Designer) are 12px and medium weight; company names are 16px and semibold, including Bank Tejarat. Kept company names blue and single-line; desktop typography is preserved. ESLint passed.
+
+### 2026-11-10 — Single-line freelance role on mobile
+- Reduced only Freelance Graphic Designer to 10px below 640px and prevented wrapping within that role. Preserved company names and desktop sizes. ESLint passed.
