@@ -15,7 +15,7 @@ import type { NextConfig } from "next";
  * `next build` (NODE_ENV=production) so the basePath is applied automatically.
  */
 const isProd = process.env.NODE_ENV === "production";
-const basePath = isProd ? "/portfolio" : "";
+const basePath = isProd && process.env.VERCEL !== "1" ? "/portfolio" : "";
 
 const nextConfig: NextConfig = {
   output: "export",

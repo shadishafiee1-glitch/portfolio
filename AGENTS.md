@@ -1137,3 +1137,7 @@ currently point at the same commit.
 ### 2026-11-09 — Publish image performance improvements
 - Published optimized tracked site images, responsive poster previews, larger deer placement and image context-menu handling to origin/main. Local archived originals and unrelated untracked assets remain excluded.
 - Full lint, static export and image-integrity checks passed before publication; final whitespace check passed.
+
+### 2026-11-10 — Vercel deployment support
+- Serve Vercel builds at the domain root while preserving /portfolio for GitHub Pages.
+- Added Vercel build/output configuration and automatic Vercel social metadata hostname; SITE_URL can override it for a custom domain.

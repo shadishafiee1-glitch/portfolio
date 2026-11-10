@@ -39,9 +39,14 @@ const caveat = Caveat({
 
 // basePath is "" in dev, "/portfolio" in the static export (GitHub Pages).
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-// Canonical GitHub Pages URL — used for absolute OG/Twitter card image URLs
+// SITE_URL overrides the automatic Vercel hostname when a custom domain is connected.
 // so social scrapers (which need absolute URLs) resolve the cover correctly.
-const SITE_URL = "https://shadishafiee1-glitch.github.io/portfolio";
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+const SITE_URL = process.env.SITE_URL ?? (
+  process.env.VERCEL === "1" && vercelHost
+    ? `https://${vercelHost}`
+    : "https://shadishafiee1-glitch.github.io/portfolio"
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
