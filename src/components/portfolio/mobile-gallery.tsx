@@ -6,7 +6,12 @@ import { assetUrl } from "@/lib/assets";
 import type { Project } from "@/lib/types";
 
 /** Balanced columns with equal outside edges and a constant 8px gap. */
-export function MobileGallery({ media, onOpen, columnCount = 2 }: { media: Project["media"]; onOpen: (index: number) => void; columnCount?: 2 | 3 }) {
+export function MobileGallery({ media, onOpen, columnCount = 2, uniform = false }: { media: Project["media"]; onOpen: (index: number) => void; columnCount?: 2 | 3; uniform?: boolean }) {
+  if (uniform) return <div className="grid grid-cols-2 gap-2 sm:hidden">
+    {media.map((item, i) => <button key={item.path} type="button" onClick={() => onOpen(i)} aria-label={`Open ${item.name}`} className="catalog-image-glow flex aspect-square min-w-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/5">
+      <img src={assetUrl(item.path)} alt={item.name} className="h-full w-full object-contain" loading="lazy" decoding="async" />
+    </button>)}
+  </div>;
   const columns: number[][] = Array.from({ length: columnCount }, () => []);
   const loads = columns.map(() => 0);
   media.forEach((item, i) => {

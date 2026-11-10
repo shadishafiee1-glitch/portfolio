@@ -1170,3 +1170,7 @@ currently point at the same commit.
 ### 2026-11-10 — Smaller social artwork on mobile
 - Changed only Social Media Design mobile galleries (including filters) to three balanced columns, retaining equal 8px gaps and aligned outside edges. Other categories and tablet/desktop layouts retain their current column counts.
 - ESLint and production build passed.
+
+### 2026-11-10 — Balance mobile social post sizes
+- Use two equal square frames only for the Social Media Post mobile filter, showing complete images with object-contain and uniform 8px gaps. Keeps unequal aspect ratios from creating oversized and tiny neighboring posts; other filters retain balanced layouts.
+- ESLint and production build passed.
