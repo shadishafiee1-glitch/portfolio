@@ -1224,3 +1224,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Mobile filter gaps and magazine chip
 - Increased mobile category chip gaps to 8px and matched the Dideban Magazine chip to the standard mobile filter size (10px type with compact padding). Desktop sizes are preserved. ESLint passed.
+
+### 2026-11-10 — Bring mobile logo descriptions closer
+- Removed surplus flexible space below logo lightbox images on mobile and reduced the image-description gap to 8px for uniform logo frames. Tablet/desktop behavior is preserved. ESLint passed.

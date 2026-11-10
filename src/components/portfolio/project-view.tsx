@@ -454,10 +454,10 @@ export function Lightbox({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.25, ease }}
-                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", uniformFrame && "lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
+                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", uniformFrame && "max-sm:gap-2 lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center lg:h-full lg:min-w-0">
+                <div className={cn("flex min-h-0 w-full flex-1 flex-col items-center justify-center lg:h-full lg:min-w-0", uniformFrame && "max-sm:flex-initial")}>
                 {current.type === "video" ? (
                   <video
                     src={assetUrl(current.path)}
