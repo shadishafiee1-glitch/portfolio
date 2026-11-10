@@ -1196,3 +1196,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Restore magazine hover outlines
 - Added the existing blue SVG hover/focus border treatment to the shared balanced gallery used by Magazine Design, including uniform mobile frames. ESLint passed.
+
+### 2026-11-10 — Smaller single-line mobile employer names
+- Reduced company names to 14px below 640px and prevented line breaks within each company name, including Proopco (Kifpool.me). Preserved desktop typography and floating logos. ESLint passed.
