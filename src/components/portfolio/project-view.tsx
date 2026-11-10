@@ -493,7 +493,7 @@ export function Lightbox({
                     onPrev();
                   }}
                   aria-label="Previous"
-                  className="absolute left-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-[var(--accent)] transition-colors hover:bg-white/10 sm:left-6 sm:h-12 sm:w-12"
+                  className="absolute left-2 top-1/2 hidden h-11 w-11 sm:inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-[var(--accent)] transition-colors hover:bg-white/10 sm:left-6 sm:h-12 sm:w-12"
                 >
                   <ChevronLeft className="h-5 w-5" />
                 </button>
@@ -503,7 +503,7 @@ export function Lightbox({
                     onNext();
                   }}
                   aria-label="Next"
-                  className="absolute right-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-[var(--accent)] transition-colors hover:bg-white/10 sm:right-6 sm:h-12 sm:w-12"
+                  className="absolute right-2 top-1/2 hidden h-11 w-11 sm:inline-flex -translate-y-1/2 items-center justify-center rounded-full border border-white/20 text-[var(--accent)] transition-colors hover:bg-white/10 sm:right-6 sm:h-12 sm:w-12"
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>

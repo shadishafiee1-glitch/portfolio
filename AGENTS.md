@@ -1231,3 +1231,6 @@ currently point at the same commit.
 ### 2026-11-10 — Prevent clipped mobile logo element icons
 - Moved mobile logo description scrolling into its own text container so the element icons remain fully visible outside the capped text area. Reserved icon row space and reduced its mobile top margin; preserved desktop scrolling behavior.
 - Prevented lightbox header from shrinking. ESLint and production build passed.
+
+### 2026-11-10 — Smaller mobile lightbox arrows above artwork
+- Moved mobile previous/next controls into the lightbox top bar above artwork, using 32px circles and 16px chevrons. Retained side arrows on tablet and desktop. ESLint passed.
