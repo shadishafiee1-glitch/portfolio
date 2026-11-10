@@ -82,9 +82,9 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
 
       {categorySlug === "catalog-brochure" ? (
         <section className="mt-4">
-          <div role="group" aria-label="Catalog projects" className="flex gap-1.5 overflow-x-auto py-2 sm:gap-3">
+          <div role="group" aria-label="Catalog projects" className="flex gap-1 overflow-x-auto py-2 sm:gap-3">
             {[["all", "All"], ["satrap-catalog", "Satrap"], ["zino-catalog", "Zino"], ["parscenter", "ParsCenter"]].map(([slug, label]) => (
-              <button key={slug} type="button" aria-pressed={catalogSlug === slug} onClick={() => setCatalogSlug(slug)} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-2 py-1.5 text-[11px] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", catalogSlug === slug ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
+              <button key={slug} type="button" aria-pressed={catalogSlug === slug} onClick={() => setCatalogSlug(slug)} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-1.5 py-1 text-[10px] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", catalogSlug === slug ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
             ))}
           </div>
           {catalogSlug === "all" ? (
@@ -123,8 +123,8 @@ function ProjectCollection({ projects, onBack, hideSelectors = false }: { projec
  if (!projects.length) return <EmptyState onBack={onBack} />;
  if (hideSelectors) return <LogoGallery projects={projects} />;
  return <section className="mt-4">
-  <div role="group" aria-label="Projects" className="flex gap-1.5 overflow-x-auto py-2 sm:gap-3">
-   {[{slug:"all",name:"All"}, ...projects].map((project) => <button key={project.slug} type="button" aria-pressed={selected === project.slug} onClick={() => setSelected(project.slug)} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-2 py-1.5 text-[11px] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", selected === project.slug ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{project.name}</button>)}
+  <div role="group" aria-label="Projects" className="flex gap-1 overflow-x-auto py-2 sm:gap-3">
+   {[{slug:"all",name:"All"}, ...projects].map((project) => <button key={project.slug} type="button" aria-pressed={selected === project.slug} onClick={() => setSelected(project.slug)} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-1.5 py-1 text-[10px] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", selected === project.slug ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{project.name}</button>)}
   </div>
   {selected === "all" ? <AllCatalogs projects={projects} /> : projects.filter((project) => project.slug === selected).map((project) => <AdditionalCatalog key={project.slug} project={project} />)}
  </section>;
@@ -286,9 +286,9 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   });
   return (
     <section className="mt-4" aria-label="Social media gallery">
-      <div role="group" aria-label="Social media categories" className="mb-6 flex gap-1.5 overflow-x-auto py-2 sm:gap-3">
+      <div role="group" aria-label="Social media categories" className="mb-6 flex gap-1 overflow-x-auto py-2 sm:gap-3">
         {[["all", "All"], ["reels-cover", "Reels Cover"], ["story", "Story"], ["post", "Post"]].map(([value, label]) => (
-          <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-2 py-1.5 text-[11px] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
+          <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-1.5 py-1 text-[10px] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
       </div>
       <MobileGallery media={media} onOpen={setIndex} columnCount={3} uniform={filter === "post"} />
@@ -359,9 +359,9 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   });
   return (
     <section className="mt-4" aria-label="Banner design gallery">
-      <div role="group" aria-label="Banner categories" className="mb-6 flex gap-1.5 overflow-x-auto py-2 sm:gap-3">
+      <div role="group" aria-label="Banner categories" className="mb-6 flex gap-1 overflow-x-auto py-2 sm:gap-3">
         {[["all", "All"], ["proopco", "Proopco"], ["magical-api", "Magical Api"], ["part-software-group", "Part Software Group"]].map(([value, label]) => (
-          <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-1.5 py-1.5 text-[clamp(9px,2.6vw,11px)] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
+          <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-1 py-1 text-[clamp(8px,2.4vw,10px)] font-semibold transition-colors sm:px-6 sm:py-2 sm:text-base", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
       </div>
       <MobileGallery media={media} onOpen={setIndex} />

@@ -1218,3 +1218,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Tighter mobile employer spacing
 - Reduced spacing between work experience entries from 80px to 56px only below 640px; retained larger-screen spacing.
+
+### 2026-11-10 — Further compact mobile spacing and filters
+- Reduced mobile work experience gaps to 40px. Further reduced mobile filter chip text, padding and gaps (4px); tablet/desktop styling is preserved. ESLint passed.
