@@ -129,6 +129,24 @@ export const PORTFOLIO: Category[] = [
             "name": "07-governance-intelligence",
             "type": "image",
             "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/08-foundation-models.jpg",
+            "name": "08-foundation-models",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/09-machine-intelligence-cover.jpg",
+            "name": "09-machine-intelligence-cover",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/magazine/dideban-magazine/10-machine-intelligence-spread.jpg",
+            "name": "10-machine-intelligence-spread",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       },

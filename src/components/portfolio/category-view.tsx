@@ -13,6 +13,7 @@ import { SOCIAL_RATIOS, SOCIAL_REELS_COVERS, SOCIAL_STORIES } from "@/data/socia
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
 import type { NavigateFn } from "@/hooks/use-hash-route";
+import { MobileGallery } from "./mobile-gallery";
 import { NotFoundView } from "./not-found-view";
 import { Lightbox } from "./project-view";
 
@@ -95,7 +96,8 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
       ) : inlineProjectSlug ? (
         <section className="mt-10" aria-labelledby="dideban-title">
           <h2 id="dideban-title" className="inline-flex rounded-full border border-[var(--accent)] bg-[var(--accent)] px-6 py-2 font-sans text-base font-semibold text-white">{inlineProject?.name}</h2>
-          <div className="mt-6 grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
+          <div className="mt-6 sm:hidden"><MobileGallery media={magazineMedia} onOpen={setLightbox} /></div>
+          <div className="mt-6 hidden grid-cols-2 items-start gap-2 sm:grid sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
             {[0, 1, 2].map((column) => (
               <div key={column} className="contents lg:block lg:space-y-4">
             {magazineMedia.map((media, index) => index % 3 === column && (
@@ -178,7 +180,8 @@ function PosterGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
     return `calc(${share * 100}% + ${correction * share - 16 * offsets[c]}px)`;
   }).join(" ");
   return <section className="mt-8" aria-label="Poster design gallery">
-    <div style={{ "--poster-tracks": tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--poster-tracks)] lg:gap-4">
+    <MobileGallery media={media} onOpen={setIndex} />
+    <div style={{ "--poster-tracks": tracks } as CSSProperties} className="hidden sm:grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--poster-tracks)] lg:gap-4">
       {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
         {column.map((i, position) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
           <img src={assetUrl(POSTER_PREVIEWS[items[i].media.path]?.variants[0].path ?? items[i].media.path)} srcSet={POSTER_PREVIEWS[items[i].media.path]?.variants.map((variant) => `${assetUrl(variant.path)} ${variant.width}w`).join(", ")} sizes="(min-width: 1400px) 360px, (min-width: 1024px) 28vw, (min-width: 640px) 48vw, 46vw" width={POSTER_PREVIEWS[items[i].media.path]?.width} height={POSTER_PREVIEWS[items[i].media.path]?.height} alt={`${items[i].title} — ${items[i].media.name}`} className="block h-auto w-full" loading={position === 0 ? "eager" : "lazy"} decoding="async" />
@@ -211,7 +214,8 @@ function DigitalPaintingGallery({ projects }: { projects: (typeof PORTFOLIO)[num
   }).join(" ");
   return (
     <section className="mt-8" aria-label="Digital painting gallery">
-      <div style={{ "--painting-tracks": tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--painting-tracks)] lg:gap-4">
+      <MobileGallery media={media} onOpen={setIndex} />
+    <div style={{ "--painting-tracks": tracks } as CSSProperties} className="hidden sm:grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--painting-tracks)] lg:gap-4">
         {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
         {column.map((i) => {
           const item = items[i];
@@ -305,7 +309,8 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
           <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-6 py-2 font-semibold transition-colors", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
       </div>
-      <div className="flex w-full flex-col gap-3 lg:gap-4">
+      <MobileGallery media={media} onOpen={setIndex} />
+      <div className="hidden w-full flex-col gap-3 sm:flex lg:gap-4">
       {layouts.map((layout, band) => (
         <div key={band} style={{ "--reel-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--reel-tracks)] lg:gap-4">
           {layout.columns.map((column, c) => (
@@ -377,7 +382,8 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
           <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-6 py-2 font-semibold transition-colors", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
       </div>
-      <div className="flex w-full flex-col gap-3 lg:gap-4">
+      <MobileGallery media={media} onOpen={setIndex} />
+      <div className="hidden w-full flex-col gap-3 sm:flex lg:gap-4">
         {layouts.map((layout, band) => (
           <div key={band} style={{ "--banner-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--banner-tracks)] lg:gap-4">
             {layout.columns.map((column, c) => (
@@ -408,7 +414,8 @@ function LogoGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["proje
   const media = items.map((item) => item.media);
   return (
     <section className="mt-8" aria-label="Logo design gallery">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-3 sm:auto-rows-[220px] lg:grid-flow-dense lg:grid-cols-3 lg:auto-rows-[clamp(200px,22vw,300px)] lg:gap-4">
+      <MobileGallery media={media} onOpen={setIndex} />
+      <div className="hidden grid-cols-2 gap-2 sm:grid sm:grid-cols-2 sm:gap-3 sm:auto-rows-[220px] lg:grid-flow-dense lg:grid-cols-3 lg:auto-rows-[clamp(200px,22vw,300px)] lg:gap-4">
         {items.map((item, i) => (
           <button key={item.media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${item.title}`}
             className={cn("catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl sm:h-full", i % 5 === 1 && "lg:row-span-2")}>
@@ -463,7 +470,8 @@ function CatalogGallery({ projects, showDescriptions = false }: { projects: (typ
     return `calc(${share * 100}% + ${correction * share - 16 * offsets[c]}px)`;
   }).join(" ");
   return <section className="mt-6" aria-label="Catalog and brochure gallery">
-    <div style={{ "--catalog-tracks": tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--catalog-tracks)] lg:gap-4">
+    <MobileGallery media={media} onOpen={setIndex} />
+    <div style={{ "--catalog-tracks": tracks } as CSSProperties} className="hidden sm:grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--catalog-tracks)] lg:gap-4">
       {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
         {column.map((i) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
           <img src={assetUrl(items[i].media.path)} alt={`${items[i].title} — ${i + 1}`} className="block h-auto w-full" loading="lazy" />
@@ -492,7 +500,9 @@ function AdditionalCatalog({ project, embedded = false }: { project: (typeof POR
   const presentation = project.slug === "satrap-catalog" ? PORTFOLIO.find((category) => category.slug === "catalog-brochure")?.projects.find((item) => item.slug === "presentation-design") : undefined;
   return (
     <section aria-label={project.name} className={embedded ? undefined : "mt-3 p-4 sm:p-6"}>
-      <div className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-6 lg:gap-8">
+      <MobileGallery media={project.media} onOpen={setIndex} />
+      {CATALOG_DESCRIPTIONS[project.slug] && <div className="mt-6 text-sm leading-7 sm:hidden"><h3 className="font-semibold">{CATALOG_DESCRIPTIONS[project.slug][0]}</h3><p className="mt-2 text-muted-foreground">{CATALOG_DESCRIPTIONS[project.slug][1]}</p></div>}
+      <div className="hidden grid-cols-2 items-start gap-2 sm:grid sm:grid-cols-2 sm:gap-6 lg:gap-8">
         {[0, 1].map((column) => (
           <div key={column} className={cn("flex min-w-0 flex-col gap-2 sm:gap-6 lg:gap-8", column === 1 && "sm:pt-14 lg:pt-20")}>
         {project.media.map((media, i) => i % 2 === column && (

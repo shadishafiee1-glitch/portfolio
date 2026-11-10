@@ -1160,3 +1160,9 @@ currently point at the same commit.
 - Changed all category galleries to two columns below 640px with tighter gaps; retained existing tablet and desktop layouts. Updated poster responsive image sizes for half-width mobile cards.
 - Applied a two-column mobile layout to project galleries and reduced home ribbon tiles from 224x144 to 144x96 below 640px. Full-screen lightboxes retain their inspection size.
 - ESLint, whitespace checks and Vercel-mode production build passed.
+
+### 2026-11-10 — Balanced mobile galleries and new Dideban issue
+- Added three supplied orange Dideban magazine mockups, optimized JPEGs, and regenerated the manifest.
+- Added a shared mobile gallery for every category and filter. It balances two columns using original artwork ratios and solves column widths to align top and bottom edges with uniform 8px gaps, retaining lightbox indices and original proportions. Tablet and desktop layouts are preserved.
+- Added a generated proportion map and scripts/generate-mobile-ratios.mjs; regenerate after adding artwork.
+- ESLint and production build passed. Verified column geometry at 320, 375 and 430px for every category.
