@@ -455,24 +455,24 @@ export function Lightbox({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.25, ease }}
-                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", uniformFrame && "max-sm:gap-2 lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
+                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", !uniformFrame && "max-sm:gap-2", uniformFrame && "max-sm:gap-2 lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
                 onClick={(e) => e.stopPropagation()}
               >
             {total > 1 && <div className="flex w-full shrink-0 items-center justify-between sm:hidden">
               <button type="button" onClick={onPrev} aria-label="Previous" className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[var(--accent)]"><ChevronLeft className="h-4 w-4" /></button>
               <button type="button" onClick={onNext} aria-label="Next" className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[var(--accent)]"><ChevronRight className="h-4 w-4" /></button>
             </div>}
-                <div className={cn("flex min-h-0 w-full flex-1 flex-col items-center justify-center lg:h-full lg:min-w-0", uniformFrame && "max-sm:flex-initial")}>
+                <div className={cn("flex min-h-0 w-full flex-1 flex-col items-center justify-center lg:h-full lg:min-w-0", "max-sm:flex-initial")}>
                 {current.type === "video" ? (
                   <video
                     src={assetUrl(current.path)}
                     controls
                     autoPlay
                     playsInline
-                    className="min-h-0 max-h-full max-w-[92vw] rounded-lg"
+                    className={cn("min-h-0 max-h-full max-w-[92vw] rounded-lg", !uniformFrame && "max-sm:max-h-[calc(100dvh-220px)]")}
                   />
                 ) : (
-                  <div className={cn("flex min-h-0 max-h-full items-center justify-center overflow-hidden rounded-2xl", uniformFrame ? "aspect-[3/2] w-full" : "max-w-full")}>
+                  <div className={cn("flex min-h-0 max-h-full items-center justify-center overflow-hidden rounded-2xl", uniformFrame ? "aspect-[3/2] w-full" : "max-w-full max-sm:max-h-[calc(100dvh-220px)]")}>
                   <img
                     src={assetUrl(current.path)}
                     alt={current.name}

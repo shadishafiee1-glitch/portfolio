@@ -1240,3 +1240,7 @@ currently point at the same commit.
 
 ### 2026-11-10 — Align mobile timeline dots to company names
 - Positioned mobile work timeline dots at the company text line, measuring its actual position to handle floating logo space and wrapping. ResizeObserver and font readiness keep alignment current; desktop dot positions are preserved. ESLint passed.
+
+### 2026-11-10 — Keep mobile arrows directly above non-logo media
+- Removed the expanding mobile image-area spacer for non-logo lightboxes and added an 8px arrow-row gap. Capped tall media to leave room for controls and thumbnails, keeping arrows immediately above each opened image/video.
+- Preserved the approved Logo Design lightbox treatment. ESLint and production build passed.
