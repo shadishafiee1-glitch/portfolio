@@ -369,3 +369,28 @@ body > * {
     animation: employer-logo-float 2.4s ease-in-out infinite;
   }
 }
+
+@keyframes mobile-work-sweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  8% { opacity: 1; }
+  48% { transform: translateX(280%); opacity: 1; }
+  55%, 100% { transform: translateX(280%); opacity: 0; }
+}
+@media (width < 640px) {
+  .mobile-work-sweep { overflow: hidden; isolation: isolate; }
+  .mobile-work-sweep::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 60%;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 20%, transparent), transparent);
+    animation: mobile-work-sweep 6s ease-in-out infinite;
+  }
+  .mobile-work-sweep:nth-child(3)::before { animation-delay: 0.6s; }
+  .mobile-work-sweep:nth-child(4)::before { animation-delay: 1.2s; }
+  .mobile-work-sweep:nth-child(6)::before { animation-delay: 1.8s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-work-sweep::before { animation: none; opacity: 0; }
+}

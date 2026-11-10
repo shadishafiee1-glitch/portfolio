@@ -1249,3 +1249,6 @@ currently point at the same commit.
 - Added a dedicated compact mobile image stage for non-logo lightboxes, placing arrows in a row immediately above the image with explicit viewport-constrained media height. Preserved Logo Design's approved layout.
 - Reduced the home Selected Works heading to 28px and category names to 18px on mobile, retaining larger-screen typography.
 - ESLint and production build passed.
+
+### 2026-11-10 — Mobile selected-work blue sweep
+- Added a soft repeating left-to-right blue wash only to Magazine, Banner, Social Media and Logo rows below Selected Works on mobile. Uses a non-interactive gradient behind row content and respects reduced motion; desktop remains unchanged. ESLint passed.
