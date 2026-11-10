@@ -309,7 +309,7 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
           <button key={value} type="button" aria-pressed={filter === value} onClick={() => { setIndex(null); setFilter(value); }} className={cn("shrink-0 rounded-full border border-[var(--accent)] px-6 py-2 font-semibold transition-colors", filter === value ? "bg-[var(--accent)] text-white" : "text-[var(--accent)] hover:bg-[var(--accent)]/10")}>{label}</button>
         ))}
       </div>
-      <MobileGallery media={media} onOpen={setIndex} />
+      <MobileGallery media={media} onOpen={setIndex} columnCount={3} />
       <div className="hidden w-full flex-col gap-3 sm:flex lg:gap-4">
       {layouts.map((layout, band) => (
         <div key={band} style={{ "--reel-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--reel-tracks)] lg:gap-4">

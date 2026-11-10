@@ -5,12 +5,12 @@ import { MOBILE_IMAGE_RATIOS } from "@/data/mobile-image-ratios.generated";
 import { assetUrl } from "@/lib/assets";
 import type { Project } from "@/lib/types";
 
-/** Two balanced columns with equal outside edges and a constant 8px gap. */
-export function MobileGallery({ media, onOpen }: { media: Project["media"]; onOpen: (index: number) => void }) {
-  const columns: number[][] = [[], []];
-  const loads = [0, 0];
+/** Balanced columns with equal outside edges and a constant 8px gap. */
+export function MobileGallery({ media, onOpen, columnCount = 2 }: { media: Project["media"]; onOpen: (index: number) => void; columnCount?: 2 | 3 }) {
+  const columns: number[][] = Array.from({ length: columnCount }, () => []);
+  const loads = columns.map(() => 0);
   media.forEach((item, i) => {
-    const c = loads[0] <= loads[1] ? 0 : 1;
+    const c = loads.indexOf(Math.min(...loads));
     columns[c].push(i);
     loads[c] += 1 / (MOBILE_IMAGE_RATIOS[item.path] ?? 1);
   });

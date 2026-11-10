@@ -1166,3 +1166,7 @@ currently point at the same commit.
 - Added a shared mobile gallery for every category and filter. It balances two columns using original artwork ratios and solves column widths to align top and bottom edges with uniform 8px gaps, retaining lightbox indices and original proportions. Tablet and desktop layouts are preserved.
 - Added a generated proportion map and scripts/generate-mobile-ratios.mjs; regenerate after adding artwork.
 - ESLint and production build passed. Verified column geometry at 320, 375 and 430px for every category.
+
+### 2026-11-10 — Smaller social artwork on mobile
+- Changed only Social Media Design mobile galleries (including filters) to three balanced columns, retaining equal 8px gaps and aligned outside edges. Other categories and tablet/desktop layouts retain their current column counts.
+- ESLint and production build passed.
