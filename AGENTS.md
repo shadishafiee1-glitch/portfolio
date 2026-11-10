@@ -1227,3 +1227,7 @@ currently point at the same commit.
 
 ### 2026-11-10 — Bring mobile logo descriptions closer
 - Removed surplus flexible space below logo lightbox images on mobile and reduced the image-description gap to 8px for uniform logo frames. Tablet/desktop behavior is preserved. ESLint passed.
+
+### 2026-11-10 — Prevent clipped mobile logo element icons
+- Moved mobile logo description scrolling into its own text container so the element icons remain fully visible outside the capped text area. Reserved icon row space and reduced its mobile top margin; preserved desktop scrolling behavior.
+- Prevented lightbox header from shrinking. ESLint and production build passed.

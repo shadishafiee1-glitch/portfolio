@@ -350,7 +350,7 @@ function LogoIngredients({ path }: { path: string }) {
           : [];
   if (!parts.length) return null;
   return (
-    <div className={cn("mt-5 flex items-center text-[var(--accent)]", parts.length === 2 ? "gap-2" : "w-full justify-between")} aria-label="Logo elements">
+    <div className={cn("mt-5 flex shrink-0 items-center text-[var(--accent)] max-sm:mt-3 max-sm:pb-1", parts.length === 2 ? "gap-2" : "w-full justify-between")} aria-label="Logo elements">
       {parts.map((part, i) => (
         <div key={part.label} className="contents">
           {i > 0 && <Plus aria-hidden="true" className="h-3 w-3 shrink-0" />}
@@ -426,7 +426,7 @@ export function Lightbox({
         >
           {/* top bar */}
           <div
-            className="flex items-center justify-between px-5 py-4 text-white/80 sm:px-8"
+            className="flex shrink-0 items-center justify-between px-5 py-4 text-white/80 sm:px-8"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="font-mono text-xs uppercase tracking-[0.2em]">
@@ -477,7 +477,7 @@ export function Lightbox({
                 )}
                 </div>
                 {description && (
-                  <aside lang="en" style={{ hyphens: "none", overflowWrap: "normal", wordBreak: "normal" }} className="max-h-[25dvh] w-full shrink-0 overflow-y-auto px-3 pb-3 whitespace-pre-line text-left text-xs leading-relaxed text-white/85 lg:max-h-full lg:w-[220px] lg:self-center lg:px-0 lg:text-sm xl:w-[240px]">
+                  <aside lang="en" style={{ hyphens: "none", overflowWrap: "normal", wordBreak: "normal" }} className="max-h-[25dvh] w-full shrink-0 overflow-y-auto px-3 pb-3 whitespace-pre-line text-left text-xs leading-relaxed text-white/85 max-sm:flex max-sm:max-h-none max-sm:flex-col max-sm:overflow-visible lg:max-h-full lg:w-[220px] lg:self-center lg:px-0 lg:text-sm xl:w-[240px]">
                     {description}
                     <LogoIngredients path={current.path} />
                   </aside>
