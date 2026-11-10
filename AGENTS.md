@@ -1190,3 +1190,6 @@ currently point at the same commit.
 - Replaced uneven fixed-width magazine columns with ratio-balanced widths at tablet and desktop sizes. All columns share aligned top/bottom edges with constant responsive gaps; preserved original proportions and lightbox selection.
 - Removed the GitHub repository link and icon from the header.
 - ESLint and production build passed.
+
+### 2026-11-10 — Remove About header item
+- Removed the About navigation button from the header. ESLint passed.

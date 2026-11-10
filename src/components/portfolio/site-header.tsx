@@ -79,18 +79,6 @@ export function SiteHeader({ view, navigate, onOpenSearch }: SiteHeaderProps) {
           >
             Index
           </button>
-          <button
-            type="button"
-            onClick={() => navigate({ kind: "about" })}
-            className={cn(
-              "hidden rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors lg:inline-block",
-              view.kind === "about"
-                ? "bg-foreground text-background"
-                : "text-foreground/60 hover:text-foreground",
-            )}
-          >
-            About
-          </button>
           <ThemeToggle />
         </nav>
       </header>
