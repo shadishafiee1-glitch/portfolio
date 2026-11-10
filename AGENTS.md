@@ -1211,3 +1211,7 @@ currently point at the same commit.
 
 ### 2026-11-10 — Increase mobile role labels
 - Increased mobile role labels by 2px: standard Graphic Designer to 14px and Freelance Graphic Designer to 12px, retaining its single-line treatment. ESLint passed.
+
+### 2026-11-10 — Mobile filter chips and freelance text
+- Increased Freelance Graphic Designer from 12px to 13px on mobile.
+- Reduced mobile category filter text, padding and gaps to keep choices together on one line, with slightly tighter banner chips for their longer labels. Retained tablet/desktop sizing and overflow scrolling on narrow screens. ESLint passed.
