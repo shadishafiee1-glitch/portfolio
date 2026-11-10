@@ -1208,3 +1208,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Single-line freelance role on mobile
 - Reduced only Freelance Graphic Designer to 10px below 640px and prevented wrapping within that role. Preserved company names and desktop sizes. ESLint passed.
+
+### 2026-11-10 — Increase mobile role labels
+- Increased mobile role labels by 2px: standard Graphic Designer to 14px and Freelance Graphic Designer to 12px, retaining its single-line treatment. ESLint passed.
