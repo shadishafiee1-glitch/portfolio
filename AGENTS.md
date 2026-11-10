@@ -1221,3 +1221,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Further compact mobile spacing and filters
 - Reduced mobile work experience gaps to 40px. Further reduced mobile filter chip text, padding and gaps (4px); tablet/desktop styling is preserved. ESLint passed.
+
+### 2026-11-10 — Mobile filter gaps and magazine chip
+- Increased mobile category chip gaps to 8px and matched the Dideban Magazine chip to the standard mobile filter size (10px type with compact padding). Desktop sizes are preserved. ESLint passed.
