@@ -1141,3 +1141,6 @@ currently point at the same commit.
 ### 2026-11-10 — Vercel deployment support
 - Serve Vercel builds at the domain root while preserving /portfolio for GitHub Pages.
 - Added Vercel build/output configuration and automatic Vercel social metadata hostname; SITE_URL can override it for a custom domain.
+
+### 2026-11-10 — Fix Vercel output directory
+- Vercel log showed NEXT_NO_ROUTES_MANIFEST after a successful Next build: its Next.js adapter was incorrectly directed to out. Pointed the adapter to .next, where routes-manifest.json is generated; static export remains enabled.
