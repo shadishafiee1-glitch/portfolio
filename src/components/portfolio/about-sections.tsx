@@ -162,7 +162,7 @@ export function AboutSections() {
               />
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="text-lg font-semibold text-foreground">
-                  {job.role}
+                  <span className="max-sm:text-xs max-sm:font-medium">{job.role}</span>
                   <span className="text-muted-foreground">
                     {" · "}
                     <EmployerName name={job.org} />
@@ -253,9 +253,9 @@ const EMPLOYER_LOGOS: Record<string, { label: string; src: string; prefix?: stri
 
 function EmployerName({ name }: { name: string }) {
   const logo = EMPLOYER_LOGOS[name];
-  if (!logo) return <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-sm max-sm:text-[var(--accent)]">{name}</span>;
+  if (!logo) return <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-base max-sm:font-semibold max-sm:text-[var(--accent)]">{name}</span>;
   return (
-    <span className={`max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-[var(--accent)] ${name === "Bank Tejarat" ? "max-sm:text-xs" : "max-sm:text-sm"}`}>
+    <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-base max-sm:font-semibold max-sm:text-[var(--accent)]">
       {logo.prefix}
       <span tabIndex={0} className="employer-hover group/employer relative inline-block pt-9 sm:pt-0 cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
         {logo.label}

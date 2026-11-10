@@ -1202,3 +1202,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Smaller Bank Tejarat mobile name
 - Reduced only the Bank Tejarat company name to 12px in mobile layouts. ESLint passed.
+
+### 2026-11-10 — Mobile experience text hierarchy
+- Clarified mobile hierarchy per user: role labels (Graphic Designer) are 12px and medium weight; company names are 16px and semibold, including Bank Tejarat. Kept company names blue and single-line; desktop typography is preserved. ESLint passed.
