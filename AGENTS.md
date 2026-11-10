@@ -1199,3 +1199,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Smaller single-line mobile employer names
 - Reduced company names to 14px below 640px and prevented line breaks within each company name, including Proopco (Kifpool.me). Preserved desktop typography and floating logos. ESLint passed.
+
+### 2026-11-10 — Smaller Bank Tejarat mobile name
+- Reduced only the Bank Tejarat company name to 12px in mobile layouts. ESLint passed.

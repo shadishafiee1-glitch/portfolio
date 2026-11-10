@@ -255,7 +255,7 @@ function EmployerName({ name }: { name: string }) {
   const logo = EMPLOYER_LOGOS[name];
   if (!logo) return <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-sm max-sm:text-[var(--accent)]">{name}</span>;
   return (
-    <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-sm max-sm:text-[var(--accent)]">
+    <span className={`max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-[var(--accent)] ${name === "Bank Tejarat" ? "max-sm:text-xs" : "max-sm:text-sm"}`}>
       {logo.prefix}
       <span tabIndex={0} className="employer-hover group/employer relative inline-block pt-9 sm:pt-0 cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
         {logo.label}
