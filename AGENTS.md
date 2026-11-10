@@ -1252,3 +1252,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Mobile selected-work blue sweep
 - Added a soft repeating left-to-right blue wash only to Magazine, Banner, Social Media and Logo rows below Selected Works on mobile. Uses a non-interactive gradient behind row content and respects reduced motion; desktop remains unchanged. ESLint passed.
+
+### 2026-11-10 — Revise mobile sweep categories and opacity
+- Restricted mobile blue sweeps to Magazine, Banner, Poster and Digital Painting; lowered gradient accent opacity from 20% to 12% and updated stagger timing.

@@ -121,7 +121,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, ease, delay: 0.04 * i }}
-                  className={`group/row relative border-b border-foreground/15 ${["magazine", "banner-design", "social-media-design", "logo-design"].includes(cat.slug) ? "mobile-work-sweep" : ""}`}
+                  className={`group/row relative border-b border-foreground/15 ${["magazine", "banner-design", "poster-design", "digital-painting"].includes(cat.slug) ? "mobile-work-sweep" : ""}`}
                 >
                   <button
                     type="button"
