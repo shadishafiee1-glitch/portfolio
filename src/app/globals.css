@@ -363,3 +363,9 @@ body > * {
 @media (prefers-reduced-motion: reduce) {
   .employer-logo-float { animation: none !important; }
 }
+
+@media (width < 640px) {
+  .employer-logo-float {
+    animation: employer-logo-float 2.4s ease-in-out infinite;
+  }
+}

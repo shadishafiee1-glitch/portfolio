@@ -257,9 +257,9 @@ function EmployerName({ name }: { name: string }) {
   return (
     <>
       {logo.prefix}
-      <span tabIndex={0} className="employer-hover group/employer relative inline-block cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
+      <span tabIndex={0} className="employer-hover group/employer relative inline-block pt-9 sm:pt-0 cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
         {logo.label}
-        <span aria-hidden="true" className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-0 block h-12 w-12 -translate-x-1/2 translate-y-2 opacity-0 transition-[opacity,translate] duration-500 ease-out group-hover/employer:translate-y-0 group-hover/employer:opacity-100 group-focus-visible/employer:translate-y-0 group-focus-visible/employer:opacity-100">
+        <span aria-hidden="true" className="pointer-events-none absolute top-0 sm:top-auto sm:bottom-full left-1/2 z-20 mb-0 block h-8 w-8 sm:h-12 sm:w-12 -translate-x-1/2 translate-y-0 sm:translate-y-2 opacity-100 sm:opacity-0 transition-[opacity,translate] duration-500 ease-out group-hover/employer:translate-y-0 group-hover/employer:opacity-100 group-focus-visible/employer:translate-y-0 group-focus-visible/employer:opacity-100">
           <img src={assetUrl(logo.src)} alt="" width={48} height={48} className="employer-logo-float h-full w-full object-contain" style={logo.label === "Khabar Fouri" ? { clipPath: "circle(49% at 50% 50%)" } : logo.label === "Kifpool.me" ? { scale: 1.45 } : undefined} />
         </span>
       </span>

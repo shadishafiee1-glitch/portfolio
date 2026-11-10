@@ -1174,3 +1174,7 @@ currently point at the same commit.
 ### 2026-11-10 — Balance mobile social post sizes
 - Use two equal square frames only for the Social Media Post mobile filter, showing complete images with object-contain and uniform 8px gaps. Keeps unequal aspect ratios from creating oversized and tiny neighboring posts; other filters retain balanced layouts.
 - ESLint and production build passed.
+
+### 2026-11-10 — Visible floating employer logos on mobile
+- Display employer logos persistently above company names below 640px at 32px, reserving vertical space to avoid text overlap. Retained 48px hover/focus reveals on larger screens.
+- Mobile logos reuse the existing float animation and respect reduced-motion settings. ESLint and production build passed.
