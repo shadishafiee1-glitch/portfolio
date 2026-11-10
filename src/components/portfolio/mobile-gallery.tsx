@@ -10,6 +10,7 @@ export function MobileGallery({ media, onOpen, columnCount = 2, uniform = false,
   if (uniform) return <div className="grid grid-cols-2 gap-2 sm:hidden">
     {media.map((item, i) => <button key={item.path} type="button" onClick={() => onOpen(i)} aria-label={`Open ${item.name}`} className="catalog-image-glow flex aspect-square min-w-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/5">
       <img src={assetUrl(item.path)} alt={item.name} className="h-full w-full object-contain" loading="lazy" decoding="async" />
+      <GalleryOutline />
     </button>)}
   </div>;
   const columns: number[][] = Array.from({ length: columnCount }, () => []);
@@ -33,7 +34,14 @@ export function MobileGallery({ media, onOpen, columnCount = 2, uniform = false,
     {active.map((column, c) => <div key={c} className="flex min-w-0 flex-col" style={{ gap }}>
       {column.map(i => <button key={media[i].path} type="button" onClick={() => onOpen(i)} aria-label={`Open ${media[i].name}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-xl">
         <img src={assetUrl(media[i].path)} alt={media[i].name} width={1000} height={1000 / (MOBILE_IMAGE_RATIOS[media[i].path] ?? 1)} className="block h-auto w-full" loading="lazy" decoding="async" />
+        <GalleryOutline />
       </button>)}
     </div>)}
   </div>;
+}
+
+function GalleryOutline() {
+  return <svg aria-hidden="true" className="gallery-outline" width="100%" height="100%">
+    <rect x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" pathLength="1" />
+  </svg>;
 }

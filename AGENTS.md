@@ -1193,3 +1193,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Remove About header item
 - Removed the About navigation button from the header. ESLint passed.
+
+### 2026-11-10 — Restore magazine hover outlines
+- Added the existing blue SVG hover/focus border treatment to the shared balanced gallery used by Magazine Design, including uniform mobile frames. ESLint passed.
