@@ -104,7 +104,7 @@ export function HomeView({ navigate }: HomeViewProps) {
 
       <section id="discipline-index" className="relative scroll-mt-20">
         <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
-          <h2 className="display-heavy mb-7 inline-block text-[clamp(2.2rem,5vw,3.5rem)] text-foreground">Selected Works<span aria-hidden="true" className="mt-3 block h-2 w-24 rounded-full bg-[var(--accent)]" /></h2>
+          <h2 className="display-heavy mb-7 inline-block text-[1.75rem] sm:text-[clamp(2.2rem,5vw,3.5rem)] text-foreground">Selected Works<span aria-hidden="true" className="mt-3 block h-2 w-24 rounded-full bg-[var(--accent)]" /></h2>
 
           {/* The numbered discipline list — hover a row to preview its cover
               (cursor preview) + turn the name blue. No dim/blur of siblings. */}
@@ -142,7 +142,7 @@ export function HomeView({ navigate }: HomeViewProps) {
                     </span>
                     {/* name — turns blue on hover */}
                     <span className="relative z-10 min-w-0 flex-1">
-                      <span className="block text-balance text-[clamp(1.3rem,4vw,2.4rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover/row:text-[var(--accent)] group-hover/row:translate-x-1.5">
+                      <span className="block text-balance text-lg sm:text-[clamp(1.3rem,4vw,2.4rem)] font-semibold leading-[1] tracking-tight text-foreground transition-colors duration-300 group-hover/row:text-[var(--accent)] group-hover/row:translate-x-1.5">
                         {cat.name}
                       </span>
                       <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/40">

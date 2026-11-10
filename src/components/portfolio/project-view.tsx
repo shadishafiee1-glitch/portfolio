@@ -448,6 +448,13 @@ export function Lightbox({
             className="relative mx-auto flex min-h-0 w-full flex-1 items-center justify-center px-4 pb-4"
             onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
           >
+            {!uniformFrame && <div className="flex min-h-0 w-full flex-col items-center gap-2 sm:hidden" onClick={e => e.stopPropagation()}>
+              {total > 1 && <div className="flex w-full shrink-0 justify-between">
+                <button type="button" onClick={onPrev} aria-label="Previous" className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[var(--accent)]"><ChevronLeft className="h-4 w-4" /></button>
+                <button type="button" onClick={onNext} aria-label="Next" className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[var(--accent)]"><ChevronRight className="h-4 w-4" /></button>
+              </div>}
+              {current.type === "video" ? <video src={assetUrl(current.path)} controls autoPlay playsInline className="block max-h-[calc(100dvh-240px)] max-w-full rounded-2xl" /> : <img src={assetUrl(current.path)} alt={current.name} className="block h-auto max-h-[calc(100dvh-240px)] w-auto max-w-full rounded-2xl object-contain" />}
+            </div>}
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.path}
@@ -455,7 +462,7 @@ export function Lightbox({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.25, ease }}
-                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", !uniformFrame && "max-sm:gap-2", uniformFrame && "max-sm:gap-2 lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
+                className={cn("relative flex h-full min-h-0 w-full flex-col items-center justify-center", (description || uniformFrame) && "gap-5 lg:flex-row lg:gap-6 lg:px-20", !uniformFrame && "max-sm:hidden", uniformFrame && "max-sm:gap-2 lg:max-w-[calc((100dvh-190px)*1.5+424px)] xl:max-w-[calc((100dvh-190px)*1.5+444px)]")}
                 onClick={(e) => e.stopPropagation()}
               >
             {total > 1 && <div className="flex w-full shrink-0 items-center justify-between sm:hidden">

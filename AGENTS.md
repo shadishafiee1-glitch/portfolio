@@ -1244,3 +1244,8 @@ currently point at the same commit.
 ### 2026-11-10 — Keep mobile arrows directly above non-logo media
 - Removed the expanding mobile image-area spacer for non-logo lightboxes and added an 8px arrow-row gap. Capped tall media to leave room for controls and thumbnails, keeping arrows immediately above each opened image/video.
 - Preserved the approved Logo Design lightbox treatment. ESLint and production build passed.
+
+### 2026-11-10 — Explicit mobile lightbox layout and smaller Selected Works
+- Added a dedicated compact mobile image stage for non-logo lightboxes, placing arrows in a row immediately above the image with explicit viewport-constrained media height. Preserved Logo Design's approved layout.
+- Reduced the home Selected Works heading to 28px and category names to 18px on mobile, retaining larger-screen typography.
+- ESLint and production build passed.
