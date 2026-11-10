@@ -21,7 +21,7 @@ const EDUCATION = [
 const EXPERIENCE = [
   {
     role: "Graphic Designer",
-    org: "Proopco, part of Kifpool.me",
+    org: "Proopco (Kifpool.me)",
     period: "August 2026 – Present",
     bullets: [
       "Manage end-to-end social media design, from creative ideation and concept development to final visual execution.",
@@ -244,8 +244,8 @@ function Section({
   );
 }
 
-const EMPLOYER_LOGOS: Record<string, { label: string; src: string; prefix?: string }> = {
-  "Proopco, part of Kifpool.me": { label: "Kifpool.me", prefix: "Proopco, part of ", src: "images/kifpool-logo-transparent.png" },
+const EMPLOYER_LOGOS: Record<string, { label: string; src: string; prefix?: string; suffix?: string }> = {
+  "Proopco (Kifpool.me)": { label: "Kifpool.me", prefix: "Proopco (", suffix: ")", src: "images/kifpool-logo-transparent.png" },
   "Bank Tejarat": { label: "Bank Tejarat", src: "images/bank-tejarat-transparent.png" },
   "Khabar Fouri": { label: "Khabar Fouri", src: "images/khabar-fouri-logo.png" },
   "Part Software Group": { label: "Part Software Group", src: "images/part-software-transparent.png" },
@@ -253,9 +253,9 @@ const EMPLOYER_LOGOS: Record<string, { label: string; src: string; prefix?: stri
 
 function EmployerName({ name }: { name: string }) {
   const logo = EMPLOYER_LOGOS[name];
-  if (!logo) return <>{name}</>;
+  if (!logo) return <span className="max-sm:text-[var(--accent)]">{name}</span>;
   return (
-    <>
+    <span className="max-sm:text-[var(--accent)]">
       {logo.prefix}
       <span tabIndex={0} className="employer-hover group/employer relative inline-block pt-9 sm:pt-0 cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
         {logo.label}
@@ -263,6 +263,7 @@ function EmployerName({ name }: { name: string }) {
           <img src={assetUrl(logo.src)} alt="" width={48} height={48} className="employer-logo-float h-full w-full object-contain" style={logo.label === "Khabar Fouri" ? { clipPath: "circle(49% at 50% 50%)" } : logo.label === "Kifpool.me" ? { scale: 1.45 } : undefined} />
         </span>
       </span>
-    </>
+      {logo.suffix}
+    </span>
   );
 }

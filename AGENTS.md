@@ -1181,3 +1181,7 @@ currently point at the same commit.
 
 ### 2026-11-10 — Khabar Fouri role wording
 - Removed Digital Marketing from the Khabar Fouri role title, retaining Graphic Designer.
+
+### 2026-11-10 — Employer names and mobile color
+- Renamed the first employer to Proopco (Kifpool.me), preserving its floating logo. Company names use the accent blue below 640px; desktop colors retain existing behavior.
+- ESLint and whitespace checks passed.
