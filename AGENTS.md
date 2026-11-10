@@ -1147,3 +1147,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Activate contact links
 - Connected footer Dribbble and LinkedIn icons to the user's profiles (removed LinkedIn tracking parameters) and Phone to tel:+989364719124.
+
+### 2026-11-10 — Phone hover number
+- Show the phone number above the footer contact icon on hover and keyboard focus, with left-to-right digits; retained tel link for mobile dialing and added the number to its accessible label.

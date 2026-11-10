@@ -33,9 +33,14 @@ export function SiteFooter(_props: SiteFooterProps) {
               {SOCIAL.map(({ label, href, icon: Icon }) => {
                 const classes = "inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-deep)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]";
                 return (
-                  <li key={label}>
+                  <li key={label} className="group relative">
+                    {label === "Phone" && (
+                      <span aria-hidden="true" dir="ltr" className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-3 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-lg bg-foreground px-3 py-2 font-mono text-sm text-background opacity-0 shadow-md transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100 motion-reduce:transition-none">
+                        +989364719124
+                      </span>
+                    )}
                     {href ? (
-                      <a href={href} aria-label={label} title={label} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className={classes}>
+                      <a href={href} aria-label={label === "Phone" ? "Call +989364719124" : label} title={label === "Phone" ? "+989364719124" : label} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className={classes}>
                         <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     ) : (
