@@ -44,7 +44,7 @@ export function WorksShowcaseB() {
                 {[0, 1].map((copy) => (
                   <div key={copy} aria-hidden={copy === 1 ? true : undefined} className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4">
                     {items.map((item) => (
-                      <div key={item.key} className="h-36 w-56 shrink-0 overflow-hidden rounded-xl bg-foreground/5 sm:h-44 sm:w-72">
+                      <div key={item.key} className="h-24 w-36 shrink-0 overflow-hidden rounded-xl bg-foreground/5 sm:h-44 sm:w-72">
                         <img
                           src={assetUrl(item.src)}
                           alt={copy === 0 ? item.name : ""}

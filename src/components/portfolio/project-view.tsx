@@ -160,7 +160,7 @@ export function ProjectView({
       </header>
 
       {/* Gallery */}
-      <div className="mt-12 space-y-10 sm:space-y-16">
+      <div className="mt-12 max-sm:grid max-sm:grid-cols-2 max-sm:items-start max-sm:gap-x-2 max-sm:gap-y-5 sm:space-y-16">
         {project.media.map((m, i) => (
           <motion.figure
             key={m.path}
@@ -170,7 +170,7 @@ export function ProjectView({
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease }}
             className={cn(
-              "group relative scroll-mt-28",
+              "group relative min-w-0 scroll-mt-28",
               i % 2 === 1 && "md:ml-[12%]",
             )}
           >
@@ -198,8 +198,8 @@ export function ProjectView({
                 />
               )}
             </button>
-            <figcaption className="mt-3 flex items-center justify-between gap-4">
-              <span className="font-mono text-xs text-muted-foreground">
+            <figcaption className="mt-3 flex items-center justify-between gap-2 sm:gap-4">
+              <span className="min-w-0 break-words font-mono text-xs text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} — {m.name}
               </span>
               <div className="flex items-center gap-3">

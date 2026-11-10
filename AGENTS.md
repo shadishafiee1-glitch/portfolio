@@ -1155,3 +1155,8 @@ currently point at the same commit.
 - Added four supplied magazine mockups to the existing Dideban project, preserving the three earlier images. Optimized JPEGs at quality 90 with a maximum 2800px edge and regenerated the manifest.
 - Matched the gallery to the site's rounded, outlined image treatment with three desktop columns, two tablet columns and one mobile column; retained original image proportions and lightbox navigation.
 - ESLint and Vercel-mode production build passed.
+
+### 2026-11-10 — Compact mobile artwork layouts
+- Changed all category galleries to two columns below 640px with tighter gaps; retained existing tablet and desktop layouts. Updated poster responsive image sizes for half-width mobile cards.
+- Applied a two-column mobile layout to project galleries and reduced home ribbon tiles from 224x144 to 144x96 below 640px. Full-screen lightboxes retain their inspection size.
+- ESLint, whitespace checks and Vercel-mode production build passed.
