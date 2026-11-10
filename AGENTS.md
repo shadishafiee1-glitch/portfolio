@@ -1234,3 +1234,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Smaller mobile lightbox arrows above artwork
 - Moved mobile previous/next controls into the lightbox top bar above artwork, using 32px circles and 16px chevrons. Retained side arrows on tablet and desktop. ESLint passed.
+
+### 2026-11-10 — Align mobile lightbox arrows with artwork edges
+- Moved compact mobile arrows from the top bar into a full-width row directly above artwork, aligned to its left and right edges. Desktop controls are preserved. ESLint passed.
