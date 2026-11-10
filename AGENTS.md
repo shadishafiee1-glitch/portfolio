@@ -1237,3 +1237,6 @@ currently point at the same commit.
 
 ### 2026-11-10 — Align mobile lightbox arrows with artwork edges
 - Moved compact mobile arrows from the top bar into a full-width row directly above artwork, aligned to its left and right edges. Desktop controls are preserved. ESLint passed.
+
+### 2026-11-10 — Align mobile timeline dots to company names
+- Positioned mobile work timeline dots at the company text line, measuring its actual position to handle floating logo space and wrapping. ResizeObserver and font readiness keep alignment current; desktop dot positions are preserved. ESLint passed.

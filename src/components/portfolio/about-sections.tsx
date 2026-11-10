@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { assetUrl } from "@/lib/assets";
 
@@ -156,10 +157,7 @@ export function AboutSections() {
               className="relative border-l border-foreground/20 pl-6"
             >
               {/* period / place dot — blue */}
-              <span
-                className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full border-2 border-background bg-[var(--accent)]"
-                aria-hidden
-              />
+              <EmployerMarker />
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="text-lg font-semibold text-foreground">
                   <span className={job.role === "Freelance Graphic Designer" ? "max-sm:whitespace-nowrap max-sm:text-[13px] max-sm:font-medium" : "max-sm:text-sm max-sm:font-medium"}>{job.role}</span>
@@ -253,9 +251,9 @@ const EMPLOYER_LOGOS: Record<string, { label: string; src: string; prefix?: stri
 
 function EmployerName({ name }: { name: string }) {
   const logo = EMPLOYER_LOGOS[name];
-  if (!logo) return <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-base max-sm:font-semibold max-sm:text-[var(--accent)]">{name}</span>;
+  if (!logo) return <span data-employer-name className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-base max-sm:font-semibold max-sm:text-[var(--accent)]">{name}</span>;
   return (
-    <span className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-base max-sm:font-semibold max-sm:text-[var(--accent)]">
+    <span data-employer-name className="max-sm:inline-block max-sm:whitespace-nowrap max-sm:text-base max-sm:font-semibold max-sm:text-[var(--accent)]">
       {logo.prefix}
       <span tabIndex={0} className="employer-hover group/employer relative inline-block pt-9 sm:pt-0 cursor-default outline-none transition-colors duration-200 hover:font-bold hover:text-[var(--accent)] focus-visible:font-bold focus-visible:text-[var(--accent)]">
         {logo.label}
@@ -266,4 +264,26 @@ function EmployerName({ name }: { name: string }) {
       {logo.suffix}
     </span>
   );
+}
+
+function EmployerMarker() {
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const marker = ref.current;
+    const article = marker?.closest("article");
+    const company = article?.querySelector<HTMLElement>("[data-employer-name]");
+    if (!marker || !article || !company) return;
+    const align = () => {
+      const lineHeight = parseFloat(getComputedStyle(company).lineHeight) || 28;
+      const top = company.getBoundingClientRect().bottom - article.getBoundingClientRect().top - lineHeight / 2 - 6;
+      marker.style.setProperty("--company-dot-top", top + "px");
+    };
+    const observer = new ResizeObserver(align);
+    observer.observe(article);
+    observer.observe(company);
+    align();
+    document.fonts.ready.then(align);
+    return () => observer.disconnect();
+  }, []);
+  return <span ref={ref} aria-hidden className="absolute -left-[7px] top-[var(--company-dot-top,6px)] h-3 w-3 rounded-full border-2 border-background bg-[var(--accent)] sm:top-1.5" />;
 }
