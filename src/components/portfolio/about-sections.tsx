@@ -40,7 +40,7 @@ const EXPERIENCE = [
     ],
   },
   {
-    role: "Graphic Designer, Digital Marketing",
+    role: "Graphic Designer",
     org: "Khabar Fouri",
     period: "2026 · 3 months",
     bullets: [
