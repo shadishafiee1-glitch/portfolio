@@ -17,7 +17,7 @@ const SOCIAL = [
 export function SiteFooter(_props: SiteFooterProps) {
   return (
     <footer className="mt-auto border-t border-foreground/15 bg-background/50">
-      <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-14">
+      <div className="mx-auto max-w-(--portfolio-width) px-5 py-12 sm:px-8 sm:py-14">
         <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="contact-headline footer-contact-pulse display-text relative inline-block text-balance text-3xl text-foreground sm:text-4xl">

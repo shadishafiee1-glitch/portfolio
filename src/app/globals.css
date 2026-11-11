@@ -51,6 +51,7 @@
    glow, restrained ink (not heavy black everywhere), and one vivid accent.
    The mood is sophisticated + artistic, NOT brutalist/heavy. */
 :root {
+  --portfolio-width: max(1400px, 90vw);
   --paper: #F4F5F7;          /* warm cool-gray paper */
   --paper-deep: #E9EAEE;     /* card / muted */
   --ink: #1A1A22;             /* near-black, slightly blue — not pure black */

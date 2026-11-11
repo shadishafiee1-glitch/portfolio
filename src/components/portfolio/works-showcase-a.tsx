@@ -34,7 +34,7 @@ export function WorksShowcaseA() {
 
   return (
     <section className="border-t border-foreground/15">
-      <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-(--portfolio-width) px-5 py-14 sm:px-8 sm:py-20">
         <h2 className="sr-only">Selected work</h2>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">

@@ -1255,3 +1255,7 @@ currently point at the same commit.
 
 ### 2026-11-10 — Revise mobile sweep categories and opacity
 - Restricted mobile blue sweeps to Magazine, Banner, Poster and Digital Painting; lowered gradient accent opacity from 20% to 12% and updated stagger timing.
+
+### 2026-11-11 — Fluid layout on wide screens
+- Shared page containers and the fixed header now grow with the viewport above roughly 1556 CSS pixels. The header stays aligned with the content gutters.
+- Scaled moving ribbon tiles on wide screens to keep the artwork proportions and continuous coverage.

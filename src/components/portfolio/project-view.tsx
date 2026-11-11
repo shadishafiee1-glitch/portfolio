@@ -64,7 +64,7 @@ export function ProjectView({
   })();
 
   return (
-    <div className="mx-auto max-w-[1400px] px-5 pb-24 pt-10 sm:px-8 sm:pt-16">
+    <div className="mx-auto max-w-(--portfolio-width) px-5 pb-24 pt-10 sm:px-8 sm:pt-16">
       {/* Sticky back-to-category pill (fades in on long scrolls) */}
       <StickyBackNav
         label={cat.name}

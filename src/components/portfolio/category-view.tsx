@@ -39,7 +39,7 @@ export function CategoryView({ categorySlug, navigate }: CategoryViewProps) {
   }
 
   return (
-    <div className="mx-auto max-w-[1400px] px-5 pb-24 pt-10 sm:px-8 sm:pt-16">
+    <div className="mx-auto max-w-(--portfolio-width) px-5 pb-24 pt-10 sm:px-8 sm:pt-16">
       {/* Breadcrumb */}
       <motion.button
         initial={{ opacity: 0, x: -8 }}
@@ -166,7 +166,7 @@ function PosterGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
     <div style={{ "--poster-tracks": tracks } as CSSProperties} className="hidden sm:grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--poster-tracks)] lg:gap-4">
       {active.map((column, c) => <div key={c} className="contents lg:flex lg:min-w-0 lg:flex-col lg:gap-4">
         {column.map((i, position) => <button key={items[i].media.path} type="button" onClick={() => setIndex(i)} aria-label={`Open ${items[i].title} ${i + 1}`} className="catalog-image-glow block w-full cursor-zoom-in overflow-hidden rounded-2xl">
-          <img src={assetUrl(POSTER_PREVIEWS[items[i].media.path]?.variants[0].path ?? items[i].media.path)} srcSet={POSTER_PREVIEWS[items[i].media.path]?.variants.map((variant) => `${assetUrl(variant.path)} ${variant.width}w`).join(", ")} sizes="(min-width: 1400px) 360px, (min-width: 1024px) 28vw, (min-width: 640px) 48vw, 46vw" width={POSTER_PREVIEWS[items[i].media.path]?.width} height={POSTER_PREVIEWS[items[i].media.path]?.height} alt={`${items[i].title} — ${items[i].media.name}`} className="block h-auto w-full" loading={position === 0 ? "eager" : "lazy"} decoding="async" />
+          <img src={assetUrl(POSTER_PREVIEWS[items[i].media.path]?.variants[0].path ?? items[i].media.path)} srcSet={POSTER_PREVIEWS[items[i].media.path]?.variants.map((variant) => `${assetUrl(variant.path)} ${variant.width}w`).join(", ")} sizes="(min-width: 1556px) 24vw, (min-width: 1400px) 360px, (min-width: 1024px) 28vw, (min-width: 640px) 48vw, 46vw" width={POSTER_PREVIEWS[items[i].media.path]?.width} height={POSTER_PREVIEWS[items[i].media.path]?.height} alt={`${items[i].title} — ${items[i].media.name}`} className="block h-auto w-full" loading={position === 0 ? "eager" : "lazy"} decoding="async" />
           <GalleryOutline />
         </button>)}
       </div>)}

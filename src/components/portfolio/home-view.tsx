@@ -45,7 +45,7 @@ export function HomeView({ navigate }: HomeViewProps) {
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-[1400px] px-5 pt-16 pb-12 sm:px-8 sm:pt-24 sm:pb-16">
+        <div className="mx-auto max-w-(--portfolio-width) px-5 pt-16 pb-12 sm:px-8 sm:pt-24 sm:pb-16">
           {/* eyebrow — role */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -103,7 +103,7 @@ export function HomeView({ navigate }: HomeViewProps) {
       <WorksShowcase a={opt === "a"} b={opt === "b"} c={opt === "c"} navigate={navigate} />
 
       <section id="discipline-index" className="relative scroll-mt-20">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-(--portfolio-width) px-5 py-14 sm:px-8 sm:py-20">
           <h2 className="display-heavy mb-7 inline-block text-[1.75rem] sm:text-[clamp(2.2rem,5vw,3.5rem)] text-foreground">Selected Works<span aria-hidden="true" className="mt-3 block h-2 w-24 rounded-full bg-[var(--accent)]" /></h2>
 
           {/* The numbered discipline list — hover a row to preview its cover
