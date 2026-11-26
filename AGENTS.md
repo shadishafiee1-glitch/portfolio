@@ -1274,3 +1274,6 @@ currently point at the same commit.
 
 ### 2026-11-26 — Swap Proopco banner positions
 - Exchanged the Tuesday withdrawal and top-100 free prop banners in the gallery order.
+
+### 2026-11-26 — Five films reel cover
+- Appended the supplied Proopco artwork to Social Media Design and Reels Cover in the existing gallery order.

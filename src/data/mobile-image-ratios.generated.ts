@@ -75,6 +75,7 @@ export const MOBILE_IMAGE_RATIOS: Record<string, number> = {
   "resources/social-media-design/damoon-stories/27-singapore-story.jpg": 0.5625,
   "resources/social-media-design/damoon-stories/28-aseman-story.jpg": 0.5625,
   "resources/social-media-design/damoon-stories/29-kish-story.jpg": 0.5625,
+  "resources/social-media-design/proopco-reels/49-five-films-for-traders.jpg": 0.5625,
   "resources/social-media-design/proopco-stories/01-dollar-price.jpg": 0.5625,
   "resources/social-media-design/proopco-stories/01-top-trader.jpg": 0.5625,
   "resources/social-media-design/reels-cover/01-reels-cover.jpg": 0.5625,

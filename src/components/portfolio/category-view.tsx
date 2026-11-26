@@ -223,12 +223,12 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
       category: project.tags.includes("reels-cover") || (project.slug === "selected-social" && SOCIAL_REELS_COVERS.has(media.name)) ? "reels-cover" : project.slug === "selected-social" && SOCIAL_STORIES.has(media.name) ? "story" : project.tags.includes("post") ? "post" : project.tags.includes("story") ? "story" : (SOCIAL_RATIOS[media.name] ?? 1) < 0.65 ? "story" : "post",
     })))
     .filter((item) => filter === "all" || item.category === filter);
-  const sequence = [1, 18, 8, 3, 13, 22, 6, 20, 2, 9, 24, 4, 16, 10, 21, 14, 7, 25, 11, 17, 19, 5, 12, 23, 15];
+  const sequence = [1, 18, 8, 3, 13, 22, 6, 20, 2, 9, 24, 4, 16, 10, 21, 14, 7, 25, 11, 17, 19, 5, 12, 23, 15, 49];
   items.sort((a, b) => sequence.indexOf(Number(a.media.name.slice(0, 2))) - sequence.indexOf(Number(b.media.name.slice(0, 2))));
   if (filter === "all") {
     const comic = items.findIndex((item) => item.media.name === "05-social");
     if (comic >= 0) items.unshift(...items.splice(comic, 1));
-    const priority = (name: string) => name === "01-top-trader" ? 2 :
+    const priority = (name: string) => name === "49-five-films-for-traders" ? 3 : name === "01-top-trader" ? 2 :
       ["01-social", "27-singapore-story", "28-aseman-story", "29-kish-story"].includes(name) ? 1 : 0;
     items.sort((a, b) => priority(a.media.name) - priority(b.media.name));
     const soon = items.findIndex((item) => item.media.name === "04-social");

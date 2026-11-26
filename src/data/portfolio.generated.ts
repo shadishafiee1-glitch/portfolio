@@ -509,7 +509,7 @@ export const PORTFOLIO: Category[] = [
     "description": "Social media creatives brought to life through my own ideas and design. Every piece is conceived and designed by me.",
     "accent": "#c2410c",
     "cover": "resources/social-media-design/damoon-stories/27-singapore-story.jpg",
-    "projectCount": 6,
+    "projectCount": 7,
     "projects": [
       {
         "slug": "damoon-stories",
@@ -537,6 +537,25 @@ export const PORTFOLIO: Category[] = [
           {
             "path": "resources/social-media-design/damoon-stories/29-kish-story.jpg",
             "name": "29-kish-story",
+            "type": "image",
+            "ext": ".jpg"
+          }
+        ]
+      },
+      {
+        "slug": "proopco-reels",
+        "name": "Proopco Reels Covers",
+        "description": "",
+        "year": null,
+        "client": "Proopco",
+        "tags": [
+          "reels-cover"
+        ],
+        "cover": "resources/social-media-design/proopco-reels/49-five-films-for-traders.jpg",
+        "media": [
+          {
+            "path": "resources/social-media-design/proopco-reels/49-five-films-for-traders.jpg",
+            "name": "49-five-films-for-traders",
             "type": "image",
             "ext": ".jpg"
           }
@@ -1063,5 +1082,5 @@ export const PORTFOLIO: Category[] = [
   }
 ] as Category[];
 
-export const TOTAL_PROJECTS = 26;
+export const TOTAL_PROJECTS = 27;
 export const TOTAL_CATEGORIES = 7;
