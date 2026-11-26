@@ -237,10 +237,21 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
       [items[soon], items[aseman]] = [items[aseman], items[soon]];
     }
   }
+  // Keep the established masonry slots while rotating the three selected artworks.
+  const slotNames = items.map(item => item.media.name);
+  const slotRatios = items.map(item => SOCIAL_RATIOS[item.media.name] ?? (item.category === "post" ? 1 : 0.5625));
+  if (filter === "all") {
+    const comic = slotNames.indexOf("05-social");
+    const journal = slotNames.indexOf("01-reels-cover");
+    const routine = slotNames.indexOf("18-social");
+    if (comic >= 0 && journal >= 0 && routine >= 0) {
+      [items[comic], items[journal], items[routine]] = [items[routine], items[comic], items[journal]];
+    }
+  }
   const media = items.map((item) => item.media);
   // Solve column widths from their total image heights, including every gutter,
   // so the varied-size columns share both their top and bottom edges.
-  const bandCount = Math.ceil(items.length / 8);
+  const bandCount = Math.ceil(items.length / (filter === "all" ? 9 : 8));
   const balanced = filter === "all" || filter === "story";
   const bands = balanced
     ? Array.from({ length: bandCount }, (_, band) => {
@@ -251,7 +262,7 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
     : [items.map((_, i) => i)];
   const layouts = bands.map((indices, band) => {
     const columns: number[][] = [[], [], [], []];
-    const targets = [0.2, 0.3, 0.15, 0.35].map((weight) => Math.floor(indices.length * weight));
+    const targets = [0.22, 0.28, 0.20, 0.30].map((weight) => Math.floor(indices.length * weight));
     for (let remaining = indices.length - targets.reduce((sum, n) => sum + n, 0), c = 0; remaining > 0; remaining--, c++) targets[c % 4]++;
     let cursor = 0;
     targets.forEach((count, c) => {
@@ -262,16 +273,28 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
     if (balanced) {
       // Four readable columns; balance actual artwork heights before solving
       // widths so a single cover cannot create an oversized column.
-      columns.splice(0, columns.length, [], [], [], []);
-      const loads = [0, 0, 0, 0];
-      const heightOf = (i: number) => 1 / (SOCIAL_RATIOS[items[i].media.name] ?? (items[i].category === "post" ? 1 : 0.5625));
-      [...indices].sort((a, b) => heightOf(b) - heightOf(a)).forEach((i) => {
-        const order = [0, 1, 2, 3].map((c) => (c + band) % 4);
-        const column = order.reduce((best, c) => loads[c] < loads[best] ? c : best, order[0]);
-        columns[column].push(i);
-        loads[column] += heightOf(i) + 0.05;
-      });
+      const heightOf = (i: number) => 1 / slotRatios[i];
+      const byHeight = [...indices].sort((a, b) => heightOf(b) - heightOf(a));
+      function distribute(count: number) {
+        columns.splice(0, columns.length, ...Array.from({ length: count }, (): number[] => []));
+        const loads = columns.map(() => 0);
+        for (const i of byHeight) {
+          const order = columns.map((_, c) => (c + band) % count);
+          const column = order.reduce((best, c) => loads[c] < loads[best] ? c : best, order[0]);
+          columns[column].push(i);
+          loads[column] += heightOf(i) + 0.05;
+        }
+      }
+      distribute(4);
+      if (filter === "all" && indices.length >= 5) {
+        const widths = columns.map(column => 1 / column.reduce((sum, i) => sum + heightOf(i), 0));
+        if (Math.max(...widths) > 0.35 * widths.reduce((sum, width) => sum + width, 0)) distribute(5);
+      }
       columns.forEach((column) => column.sort((a, b) => a - b));
+    }
+    if (filter === "all" && band === 0) {
+      const lead = columns.findIndex(column => items[column[0]]?.media.name === "18-social");
+      if (lead > 0) columns.unshift(...columns.splice(lead, 1));
     }
     const activeColumns = columns.filter((column) => column.length);
     const sums = activeColumns.map((column) => column.reduce((sum, i) => sum + 1 / (SOCIAL_RATIOS[items[i].media.name] ?? (items[i].category === "post" ? 1 : 0.5625)), 0));

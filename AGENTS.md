@@ -1277,3 +1277,21 @@ currently point at the same commit.
 
 ### 2026-11-26 — Five films reel cover
 - Appended the supplied Proopco artwork to Social Media Design and Reels Cover in the existing gallery order.
+
+### 2026-11-26 — Moderate oversized social artwork
+- Centered desktop social gallery bands with oversized columns and reduced their width by up to 15%, keeping the masonry order, proportions and gutters.
+
+### 2026-11-26 — Restore full-width social gallery
+- Restored both gallery edges to the page gutters and softened the column count difference within filtered desktop layouts.
+
+### 2026-11-26 — Reduce oversized social covers
+- Rebalanced the three desktop All bands whose widest tile exceeded 35 percent of the tracks while preserving full-width alignment and gutters.
+
+### 2026-11-26 — Lead social gallery with trading journal cover
+- Swapped the Digital Signature comic and loss-journal cover in All, preserving their masonry slots and fitting each artwork at its own proportions.
+
+### 2026-11-26 — Enlarge narrow social gallery frames
+- Grouped the desktop All gallery into fuller bands to give narrow frames more width. Kept the loss-journal cover at the top left.
+
+### 2026-11-26 — Publish final social gallery order
+- Swapped the trader routine and loss-journal covers in All, retaining the existing desktop slots.
