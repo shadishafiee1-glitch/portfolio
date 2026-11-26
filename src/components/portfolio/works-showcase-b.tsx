@@ -14,17 +14,20 @@ const artworkNames: Record<number, string> = {
   13: "AI product banners",
   15: "Tehran campaign design",
   16: "Chocolate packaging design",
+  18: "Flex Friday cloud campaign poster",
+  19: "Flex Friday Telegram campaign poster",
   17: "Hidden Waves of AI magazine cover",
 };
 
 // Alternate warm, cool and neutral artwork, including across each loop seam.
 // Each artwork belongs to one row only. Repeat within that row to fill wide screens.
 const rows = [
-  [16, 12, 1, 5],
-  [4, 13, 15, 11],
+  [16, 12, 18, 1, 5],
+  [4, 13, 15, 19, 11],
   [6, 8, 17, 10],
 ].map((row) => [...row, ...row].map((id, index) => ({
   key: `${id}-${index}`,
+  portrait: id === 18 || id === 19,
   src: id === 13 ? "images/ribbons/13-light-gray.png" : `images/ribbons/${id}.jpg`,
   name: artworkNames[id],
 })));
@@ -44,7 +47,7 @@ export function WorksShowcaseB() {
                 {[0, 1].map((copy) => (
                   <div key={copy} aria-hidden={copy === 1 ? true : undefined} className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4">
                     {items.map((item) => (
-                      <div key={item.key} className="h-24 w-36 shrink-0 overflow-hidden rounded-xl bg-foreground/5 sm:h-[max(11rem,11.3vw)] sm:w-[max(18rem,18.5vw)]">
+                      <div key={item.key} className={`h-24 shrink-0 overflow-hidden rounded-xl bg-foreground/5 sm:h-[max(11rem,11.3vw)] ${item.portrait ? "aspect-4/5" : "w-36 sm:w-[max(18rem,18.5vw)]"}`}>
                         <img
                           src={assetUrl(item.src)}
                           alt={copy === 0 ? item.name : ""}

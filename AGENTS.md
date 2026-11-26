@@ -1259,3 +1259,18 @@ currently point at the same commit.
 ### 2026-11-11 — Fluid layout on wide screens
 - Shared page containers and the fixed header now grow with the viewport above roughly 1556 CSS pixels. The header stays aligned with the content gutters.
 - Scaled moving ribbon tiles on wide screens to keep the artwork proportions and continuous coverage.
+
+### 2026-11-26 — Flex Friday posters
+- Added both campaign posters to separate homepage ribbons in portrait tiles.
+
+### 2026-11-26 — Proopco Black Friday banners
+- Added four campaign banners to Banner Design and its Proopco filter.
+
+### 2026-11-26 — Space out Black Friday banners
+- Placed the cloud first and interleaved the three other campaign images throughout the banner gallery and Proopco filter.
+
+### 2026-11-26 — Align banner gallery edges
+- Calculated balanced columns from measured image proportions on all screen sizes and used a two-column balanced gallery on tablets.
+
+### 2026-11-26 — Swap Proopco banner positions
+- Exchanged the Tuesday withdrawal and top-100 free prop banners in the gallery order.

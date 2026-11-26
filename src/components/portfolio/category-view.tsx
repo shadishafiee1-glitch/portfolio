@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { CATEGORY_MAP, PORTFOLIO } from "@/data/portfolio";
-import { BANNER_RATIOS } from "@/data/banner-ratios";
+import { MOBILE_IMAGE_RATIOS } from "@/data/mobile-image-ratios.generated";
 import { CATALOG_RATIOS } from "@/data/catalog-ratios";
 import { POSTER_RATIOS } from "@/data/poster-ratios";
 import { POSTER_PREVIEWS } from "@/data/poster-previews.generated";
@@ -292,7 +292,8 @@ function SocialGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
         ))}
       </div>
       <MobileGallery media={media} onOpen={setIndex} columnCount={3} uniform={filter === "post"} />
-      <div className="hidden w-full flex-col gap-3 sm:flex lg:gap-4">
+      <MobileGallery media={media} onOpen={setIndex} gap={12} className="hidden sm:grid lg:hidden" />
+      <div className="hidden w-full flex-col gap-4 lg:flex">
       {layouts.map((layout, band) => (
         <div key={band} style={{ "--reel-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--reel-tracks)] lg:gap-4">
           {layout.columns.map((column, c) => (
@@ -320,11 +321,11 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
   const [index, setIndex] = useState<number | null>(null);
   const [filter, setFilter] = useState("all");
   const ordered = [...projects].sort((a, b) => Number(b.slug === "selected-banners") - Number(a.slug === "selected-banners"));
-  const sequence = [1, 14, 2, 15, 3, 16, 4, 17, 5, 18, 6, 19, 20, 9, 22, 21, 10, 11, 12, 13, 7, 8];
+  const sequence = [24, 1, 14, 2, 15, 3, 12, 4, 23, 17, 5, 18, 6, 19, 20, 25, 9, 22, 21, 10, 11, 26, 16, 13, 7, 8];
   const items = ordered.flatMap((project) => project.media.map((media) => ({ media, title: project.name })))
     .filter((item) => {
       const number = Number(item.media.name.slice(0, 2));
-      return filter === "all" || (filter === "proopco" ? number >= 10 && number <= 21 : filter === "part-software-group" ? [6, 7, 9, 22].includes(number) : [1, 2, 4, 5].includes(number));
+      return filter === "all" || (filter === "proopco" ? (number >= 10 && number <= 21) || [23, 24, 25, 26].includes(number) : filter === "part-software-group" ? [6, 7, 9, 22].includes(number) : [1, 2, 4, 5].includes(number));
     })
     .sort((a, b) => sequence.indexOf(Number(a.media.name.slice(0, 2))) - sequence.indexOf(Number(b.media.name.slice(0, 2))));
   const phoneIndex = items.findIndex((item) => item.media.path.endsWith("/08-finance-app.jpg"));
@@ -339,7 +340,7 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
     const indices = Array.from({ length: end - start }, (_, i) => start + i);
     const columns: number[][] = Array.from({ length: Math.min(columnCount, indices.length) }, () => []);
     const loads = columns.map(() => 0);
-    const heightOf = (i: number) => 1 / (BANNER_RATIOS[items[i].media.name] ?? 1);
+    const heightOf = (i: number) => 1 / (MOBILE_IMAGE_RATIOS[items[i].media.path] ?? 1);
     [...indices].sort((a, b) => heightOf(b) - heightOf(a)).forEach((i) => {
       const order = columns.map((_, c) => (c + band) % columns.length);
       const column = order.reduce((best, c) => loads[c] < loads[best] ? c : best, order[0]);
@@ -365,7 +366,8 @@ function BannerGallery({ projects }: { projects: (typeof PORTFOLIO)[number]["pro
         ))}
       </div>
       <MobileGallery media={media} onOpen={setIndex} />
-      <div className="hidden w-full flex-col gap-3 sm:flex lg:gap-4">
+      <MobileGallery media={media} onOpen={setIndex} gap={12} className="hidden sm:grid lg:hidden" />
+      <div className="hidden w-full flex-col gap-4 lg:flex">
         {layouts.map((layout, band) => (
           <div key={band} style={{ "--banner-tracks": layout.tracks } as CSSProperties} className="grid grid-cols-2 items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-[var(--banner-tracks)] lg:gap-4">
             {layout.columns.map((column, c) => (

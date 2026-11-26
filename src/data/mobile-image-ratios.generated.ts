@@ -21,6 +21,10 @@ export const MOBILE_IMAGE_RATIOS: Record<string, number> = {
   "resources/banner-design/selected-banners/20-coupon.jpg": 0.8002853067047075,
   "resources/banner-design/selected-banners/21-black-rocket.jpg": 1.7777777777777777,
   "resources/banner-design/selected-banners/22-pulse.jpg": 1.4997321906802357,
+  "resources/banner-design/selected-banners/23-flex-restart.jpg": 0.8,
+  "resources/banner-design/selected-banners/24-flex-cloud.jpg": 0.8,
+  "resources/banner-design/selected-banners/25-flex-instagram.jpg": 0.8,
+  "resources/banner-design/selected-banners/26-flex-telegram.jpg": 0.8,
   "resources/catalog-brochure/featured/catalog.jpg": 1.6277777777777778,
   "resources/catalog-brochure/lookbook/01-spread.png": 1.75,
   "resources/catalog-brochure/parscenter/01-catalog.jpg": 1.5898148148148148,
@@ -54,6 +58,9 @@ export const MOBILE_IMAGE_RATIOS: Record<string, number> = {
   "resources/magazine/dideban-magazine/05-generative-ai-layout.jpg": 1.4997321906802357,
   "resources/magazine/dideban-magazine/06-generative-ai-cover.jpg": 1.4997070884592854,
   "resources/magazine/dideban-magazine/07-governance-intelligence.jpg": 1.4997070884592854,
+  "resources/magazine/dideban-magazine/08-foundation-models.jpg": 1.4997321906802357,
+  "resources/magazine/dideban-magazine/09-machine-intelligence-cover.jpg": 1.4997070884592854,
+  "resources/magazine/dideban-magazine/10-machine-intelligence-spread.jpg": 1.4997070884592854,
   "resources/magazine/featured/01-cover.jpg": 1.6277777777777778,
   "resources/magazine/featured/02-spread-detail.png": 1.75,
   "resources/poster-design/bank-tejarat/01-emergency-access.jpg": 0.7075788061703555,
@@ -99,8 +106,5 @@ export const MOBILE_IMAGE_RATIOS: Record<string, number> = {
   "resources/social-media-design/selected-social/23-social.jpg": 0.5625,
   "resources/social-media-design/selected-social/24-social.jpg": 0.5625,
   "resources/social-media-design/selected-social/25-social.jpg": 0.5625,
-  "resources/social-media-design/selected-stories/26-maze-story.jpg": 0.5625,
-  "resources/magazine/dideban-magazine/08-foundation-models.jpg": 1.4997321906802357,
-  "resources/magazine/dideban-magazine/09-machine-intelligence-cover.jpg": 1.4997070884592854,
-  "resources/magazine/dideban-magazine/10-machine-intelligence-spread.jpg": 1.4997070884592854
+  "resources/social-media-design/selected-stories/26-maze-story.jpg": 0.5625
 };

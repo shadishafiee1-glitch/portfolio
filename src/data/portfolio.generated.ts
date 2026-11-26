@@ -473,6 +473,30 @@ export const PORTFOLIO: Category[] = [
             "name": "22-pulse",
             "type": "image",
             "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/23-flex-restart.jpg",
+            "name": "23-flex-restart",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/24-flex-cloud.jpg",
+            "name": "24-flex-cloud",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/25-flex-instagram.jpg",
+            "name": "25-flex-instagram",
+            "type": "image",
+            "ext": ".jpg"
+          },
+          {
+            "path": "resources/banner-design/selected-banners/26-flex-telegram.jpg",
+            "name": "26-flex-telegram",
+            "type": "image",
+            "ext": ".jpg"
           }
         ]
       }
